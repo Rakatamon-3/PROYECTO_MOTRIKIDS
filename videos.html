@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MotriKids | Videos educativos</title>
+  <meta name="description" content="MotriKids - Videos alegres para cantar, mirar y jugar: motricidad fina, vocales, números y tijeras.">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Quicksand','sans-serif'] },
+          colors: {
+            primary: '#a7c7e7',
+            secondary: '#ffb3ba',
+            accent: '#ffdfba',
+            success: '#baffc9',
+            warning: '#ffffba',
+            info: '#bae1ff',
+            surface: '#fbfaee',
+            'surface-dim': '#dbdbcf',
+            'surface-bright': '#fbfaee',
+            'surface-container-lowest': '#ffffff',
+            'surface-container-low': '#f5f4e8',
+            'surface-container': '#efeee2',
+            text: '#333333',
+            muted: '#666666',
+            purple: { 400:'#9b88ed', 500:'#8b5cf6', 600:'#7c3aed', 700:'#6d28d9', 800:'#5b21b6' }
+          },
+          borderRadius: { '4xl':'32px', '5xl':'48px' }
+        }
+      }
+    }
+  </script>
+  <style>
+    body{background-color:#fbfaee;color:#333333;position:relative}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;z-index:-1;background-image:url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1.8' fill='%23ffb3ba' opacity='0.18'/%3E%3Cpath d='M50 20l2 3h3l-2 2 1 3-2.5-1.8-2.5 1.8 1-3-2-2h3z' fill='%23ffffba' opacity='0.22'/%3E%3Ccircle cx='80' cy='40' r='1.2' fill='%23bae1ff' opacity='0.18'/%3E%3Ccircle cx='30' cy='70' r='1.6' fill='%23baffc9' opacity='0.18'/%3E%3Ccircle cx='120' cy='15' r='1.4' fill='%23ffdfba' opacity='0.18'/%3E%3Ccircle cx='65' cy='110' r='1' fill='%23a7c7e7' opacity='0.14'/%3E%3C/svg%3E");background-repeat:repeat}
+    .hero-bg{background:linear-gradient(135deg,rgba(167,199,231,.20) 0%,rgba(255,179,186,.20) 50%,rgba(255,223,186,.20) 100%)}
+    .cloud-divider{position:absolute;bottom:0;left:0;width:100%;overflow:hidden;line-height:0}
+    .cloud-divider svg{display:block;width:calc(100% + 1.3px);height:60px}
+    .cloud-divider .shape-fill{fill:#fbfaee}
+    .card-pill{border-radius:32px}
+    .btn-squish:active{transform:translateY(2px) scale(.98)}
+    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @keyframes twinkle{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
+    .float-slow{animation:floatY 4s ease-in-out infinite}
+    .float-fast{animation:floatY 3s ease-in-out infinite}
+    .twinkle{animation:twinkle 2.2s ease-in-out infinite}
+  </style>
+</head>
+<body class="font-sans antialiased text-text bg-surface">
+
+<header class="bg-white sticky top-0 z-50 shadow-sm px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
+  <a href="index.html" class="flex items-center gap-3 no-underline">
+    <div class="text-3xl md:text-4xl text-purple-600"><i class="fa-solid fa-hand-sparkles"></i></div>
+    <div>
+      <h1 class="text-2xl md:text-3xl font-bold text-purple-700 leading-none tracking-tight"><span class="text-purple-600">M</span><span class="text-blue-400">o</span><span class="text-teal-400">t</span><span class="text-green-500">r</span><span class="text-yellow-400">i</span><span class="text-orange-400">K</span><span class="text-rose-400">i</span><span class="text-pink-400">d</span><span class="text-purple-500">s</span></h1>
+      <p class="text-[11px] md:text-xs text-muted font-medium mt-0.5">Pequeños trazos, grandes logros <i class="fa-solid fa-heart text-secondary text-[10px]"></i></p>
+    </div>
+  </a>
+  <nav class="hidden lg:flex items-center gap-5 text-sm font-semibold text-muted">
+    <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="index.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+    <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="juegos.html"><i class="fa-solid fa-gamepad"></i><span>Juegos</span></a>
+    <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="recursos.html"><i class="fa-solid fa-book-open"></i><span>Recursos</span></a>
+    <a class="flex flex-col items-center gap-1 text-purple-700 border-b-2 border-purple-700 pb-1" href="videos.html"><i class="fa-solid fa-circle-play"></i><span>Videos</span></a>
+    <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="vocales.html"><i class="fa-solid fa-font"></i><span>Vocales</span></a>
+    <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="numeros.html"><i class="fa-solid fa-hashtag"></i><span>Números</span></a>
+  </nav>
+  <button id="menuBtn" class="lg:hidden text-2xl text-purple-700 p-2" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+</header>
+<nav id="mobileNav" class="hidden lg:hidden bg-white border-t shadow-md px-6 py-4 flex-col gap-3 text-sm font-semibold">
+  <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="index.html"><i class="fa-solid fa-house w-5"></i> Inicio</a>
+  <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="juegos.html"><i class="fa-solid fa-gamepad w-5"></i> Juegos</a>
+  <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="recursos.html"><i class="fa-solid fa-book-open w-5"></i> Recursos</a>
+  <a class="flex items-center gap-3 text-purple-700 font-bold" href="videos.html"><i class="fa-solid fa-circle-play w-5"></i> Videos educativos</a>
+  <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="vocales.html"><i class="fa-solid fa-font w-5"></i> Vocales</a>
+  <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="numeros.html"><i class="fa-solid fa-hashtag w-5"></i> Números</a>
+</nav>
+
+<section class="relative pt-10 md:pt-14 pb-24 px-6 overflow-hidden hero-bg" style="background-image:url(&quot;data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23ffb3ba' opacity='0.35'/%3E%3Cpath d='M50 20l2 5h5l-4 3 2 5-5-3-5 3 2-5-4-3h5z' fill='%23ffffba' opacity='0.4'/%3E%3Ccircle cx='80' cy='40' r='1.5' fill='%23bae1ff' opacity='0.35'/%3E%3Ccircle cx='30' cy='70' r='2' fill='%23baffc9' opacity='0.35'/%3E%3Cpath d='M90 80l1.5 4h4l-3 2.5 1.5 4-4-2.5-4 2.5 1.5-4-3-2.5h4z' fill='%239b88ed' opacity='0.35'/%3E%3Ccircle cx='120' cy='15' r='1.8' fill='%23ffdfba' opacity='0.35'/%3E%3Ccircle cx='25' cy='45' r='1.3' fill='%23a7c7e7' opacity='0.3'/%3E%3Cpath d='M70 10l1.5 3h3l-2 2 1 3-2.5-1.8-2.5 1.8 1-3-2-2h3z' fill='%23ffb3ba' opacity='0.4'/%3E%3Ccircle cx='65' cy='85' r='1.2' fill='%23ffdfba' opacity='0.35'/%3E%3Cpath d='M15 90l1.8 3.5h3.5l-2.8 2 1 3.5-2.5-1.8-2.5 1.8 1-3.5-2.8-2h3.5z' fill='%23bae1ff' opacity='0.3'/%3E%3Ccircle cx='110' cy='110' r='2' fill='%23ffb3ba' opacity='0.25'/%3E%3Ccircle cx='45' cy='55' r='1' fill='%23baffc9' opacity='0.4'/%3E%3Cpath d='M105 50l1.2 2.5h2.5l-2 1.5 0.8 2.5-2.5-1.8-2.5 1.8 0.8-2.5-2-1.5h2.5z' fill='%23ffffba' opacity='0.35'/%3E%3Ccircle cx='130' cy='60' r='1.4' fill='%239b88ed' opacity='0.25'/%3E%3C/svg%3E&quot;);background-repeat:repeat">
+  <div class="max-w-7xl mx-auto flex flex-col items-center gap-4 relative z-10 text-center">
+    <p class="text-[11px] md:text-xs font-bold tracking-widest uppercase text-purple-600 bg-white/70 px-4 py-1.5 rounded-full"><i class="fa-solid fa-circle-play mr-1"></i> MotriKids · Videos</p>
+    <h2 class="text-4xl md:text-5xl font-extrabold text-purple-700 tracking-tight">Videos educativos</h2>
+    <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl leading-relaxed">Videos alegres para cantar, mirar y jugar junto a los niños (requiere conexión a internet).</p>
+  </div>
+  <div class="absolute top-8 left-6 md:left-10 text-yellow-400 text-2xl md:text-3xl opacity-60 float-slow"><i class="fa-solid fa-star"></i></div>
+  <div class="absolute top-12 right-12 text-info text-lg opacity-60 float-fast"><i class="fa-solid fa-circle"></i></div>
+  <div class="absolute bottom-24 right-6 md:right-16 text-purple-400 text-3xl md:text-4xl opacity-60 float-slow"><i class="fa-solid fa-star"></i></div>
+  <div class="absolute bottom-20 right-1/3 text-warning text-xl opacity-70 twinkle"><i class="fa-solid fa-star"></i></div>
+  <div class="cloud-divider">
+    <svg preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path class="shape-fill" d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C79.86,122.9,161.4,117.82,238.4,94.9,268.21,86.08,295.6,71.21,321.39,56.44Z"></path></svg>
+  </div>
+</section>
+
+<main class="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-14">
+  <div class="text-center mb-4 flex items-center justify-center gap-3">
+    <i class="fa-solid fa-star text-yellow-400 text-2xl md:text-3xl"></i>
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Explora por categoría</h2>
+  </div>
+  <p class="text-center text-muted font-medium max-w-2xl mx-auto mb-6">Filtra por tema y dale play: los videos se ven directo desde esta página.</p>
+
+  <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-10">
+    <button data-filter="todos" class="btn-squish font-bold text-sm py-2.5 px-6 rounded-full shadow-sm transition-all hover:scale-105 border-b-4 bg-purple-600 text-white border-purple-800"><i class="fa-solid fa-layer-group mr-1"></i> Todos</button>
+    <button data-filter="vocales" class="btn-squish font-bold text-sm py-2.5 px-6 rounded-full shadow-sm transition-all hover:scale-105 border-b-4 bg-white text-gray-700 border-gray-200"><i class="fa-solid fa-font mr-1"></i> Vocales</button>
+    <button data-filter="numeros" class="btn-squish font-bold text-sm py-2.5 px-6 rounded-full shadow-sm transition-all hover:scale-105 border-b-4 bg-white text-gray-700 border-gray-200"><i class="fa-solid fa-hashtag mr-1"></i> Números</button>
+    <button data-filter="colores" class="btn-squish font-bold text-sm py-2.5 px-6 rounded-full shadow-sm transition-all hover:scale-105 border-b-4 bg-white text-gray-700 border-gray-200"><i class="fa-solid fa-palette mr-1"></i> Colores</button>
+    <button data-filter="animales" class="btn-squish font-bold text-sm py-2.5 px-6 rounded-full shadow-sm transition-all hover:scale-105 border-b-4 bg-white text-gray-700 border-gray-200"><i class="fa-solid fa-paw mr-1"></i> Animales</button>
+    <button data-filter="motricidad" class="btn-squish font-bold text-sm py-2.5 px-6 rounded-full shadow-sm transition-all hover:scale-105 border-b-4 bg-white text-gray-700 border-gray-200"><i class="fa-solid fa-hand mr-1"></i> Motricidad</button>
+  </div>
+
+  <section id="videoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/DdED0CIRRS0" title="Pequeño Pez - Palo palito (Juego con dedos)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Palo palito · Juego con dedos</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Pequeño Pez · Sigue el ritmo con tus deditos.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/DdED0CIRRS0?si=2HcgRkc1ypGHfqUO"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/F8sFFTJgyqw" title="Pequeño Pez - Pez tiburón (Juego de manos)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Pez tiburón · Juego de manos</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Pequeño Pez · Mueve tus manitos como un tiburón.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/F8sFFTJgyqw?si=hTi-9o9_gg__ANYR"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/no_Z3VUuKs4" title="Abro y cierro - Canción infantil" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Abro y cierro · Canción infantil</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Dos Cocos · Abre y cierra tus manitos al cantar.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/no_Z3VUuKs4?si=F4Ef1w-FTaw7gWVf"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/trSM6vdhbE0" title="Dedos rítmicos - Juego musical de coordinación" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Dedos rítmicos · Juego musical</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Dos Cocos · Coordinación y ritmo con tus dedos.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/trSM6vdhbE0?si=6FdQv2W_EC4B8KYz"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/qXwUGm7odY0" title="Pequeño Pez - Con mis manos" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Con mis manos</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Pequeño Pez · Descubre todo lo que puedes hacer con tus manos.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/qXwUGm7odY0?si=IbXBtZqRcQjtE-SL"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/KwNNgdhXNSw" title="Mis dos dedos caminan - Canción de motricidad fina" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Mis dos dedos caminan</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Canta Maestra · Canción para caminar con tus deditos.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/KwNNgdhXNSw?si=MLms4-g3WmSLds0w"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/pHyYn0fnRII" title="Pequeño Pez - En mi casa (Juego de manos)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">En mi casa · Juego de manos</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Pequeño Pez · Un juego de manos para hacer en familia.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/pHyYn0fnRII?si=QEl1ip_vtbSdqoD7"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/1zP0Vnhd95E" title="Pequeño Pez - Me muevo (Canción para despertar el cuerpo)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Me muevo · Despertar el cuerpo</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Pequeño Pez · Canción alegre para despertar y mover el cuerpo con ritmo.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/1zP0Vnhd95E?si=qq5cr0-aSWtjavmq"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/zlot8JGOonM" title="Pequeño Pez - Sube y baja (Juego corporal)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Sube y baja · Juego corporal</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Pequeño Pez · Juego motriz corporal para subir y bajar al compás musical.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/zlot8JGOonM?si=ueWGbZsOImyl8svC"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/LIhkeaGuUJQ" title="Los Meñiques De La Casa - Baila A Lo Loco" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Baila a lo loco</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Los Meñiques De La Casa · Coordinación, ritmo dinámico y baile divertido.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/LIhkeaGuUJQ?si=siCEO-W601CjYktl"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/jUcQj90mJEI" title="Chikiti Pop - El baile del cuerpo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">El baile del cuerpo</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Chikiti Pop · Mueve cada parte del cuerpo con energía y precisión motriz.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/jUcQj90mJEI?si=TkC0m0xX90BhqfTb"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/nWOCo_VlT78" title="Chikiti Pop - La Mané" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">La Mané · Juego de manos y cuerpo</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Chikiti Pop · Canción motriz para coordinar manitos y movimientos corporales.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/nWOCo_VlT78?si=nL6mUPtIkZD25dzT"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/3kgbBaKQgCk" title="Luli Pampín - Aram Sam Sam" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Aram Sam Sam</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Luli Pampín · Clásica coreografía de palmas, giros y movimiento coordinado.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/3kgbBaKQgCk?si=aCzMIgphR4ig2YOm"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/cgEnBkmcpuQ" title="CantaJuego - Soy Una Taza" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Soy una taza</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por CantaJuego · El clásico juego de imitación corporal y coordinación motriz.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/cgEnBkmcpuQ?si=WAghwII_j0Q2lQ-H"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/YzEO5rq2ZsM" title="Canta Maestra - Muévete (Canción infantil para bailar)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Muévete · Para bailar</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Canta Maestra · Ritmo, psicomotricidad y destreza motriz corporal.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/YzEO5rq2ZsM?si=cCGQFTWdjNL1mXUP"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/1x5OVLEqh4Y" title="Canta Maestra - Mis manos son (Rock)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Mis manos son · Rock infantil</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Canta Maestra · Divertido ritmo de rock para mover y agitar los deditos.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/1x5OVLEqh4Y?si=rClB9HvqLaqPBrgu"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/CXx3wjd5SaE" title="Canta Maestra - ¿Qué día es hoy? (Días de la semana)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">¿Qué día es hoy? · Días de la semana</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Canta Maestra · Canción interactiva para cantar y señalar con los dedos.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/CXx3wjd5SaE?si=YG8bVB2uUO5VTHvR"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/iC-9PKGI4Mk" title="Canta Maestra - Hola, hola con las manos (Canción de saludo)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Hola, hola con las manos · Saludo</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Canta Maestra · Saluda con las manos y pies siguiendo el compás musical.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/iC-9PKGI4Mk?si=43XLnXXPlDIhb6zW"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/SdZFPvGhUyA" title="Canta Maestra - Mano abierta, mano cerrada" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Mano abierta, mano cerrada</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Canta Maestra · Ejercicio fundamental de prensión y extensión de dedos.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/SdZFPvGhUyA?si=FDdIY3UU7LojohUJ"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/DXUHqOJYIQQ" title="Canta Maestra - Mis manos" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Mis manos</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Canta Maestra · Coordinación bimanual, aplausos y control digital.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/DXUHqOJYIQQ?si=umwX-k2LSH68vsmW"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/3jYCsXffUe4" title="Canta Maestra - Canción del Por Favor (Palabras mágicas)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Por favor · Palabras mágicas</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Canta Maestra · Gestos con las manos y expresión corporal guiada.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/3jYCsXffUe4?si=UPoCAfABu7Fs3JZ8"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/ebEDhHfXtWQ" title="Canta Maestra - Mano que mano y mano (Canción motriz)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Mano que mano y mano</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Canta Maestra · Agilidad de dedos, palmas y juego de manos coordinado.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/ebEDhHfXtWQ?si=o5KkAglxYyNl_0w6"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/H-XH79VBFjY" title="Pequeño Pez - Chocolate (Juego de manos)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
+        <h3 class="font-bold text-gray-800">Chocolate · Juego de manos</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Pequeño Pez · Clásico y divertido juego rítmico de palmas con las manos.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/H-XH79VBFjY?si=sZpZAcxBf6INbALF"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/sDBGBXyJaJg" title="Minders Psicología Infantil - Ejercicios de las vocales · Aprendiendo a leer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">Ejercicios de las vocales · Aprendiendo a leer</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Minders · Estimulación del lenguaje y pronunciación divertida de las vocales.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/sDBGBXyJaJg?si=WfRtZdBExPrE49B9"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/LNhnbvbwd6I" title="Tobi Guau - Aprende las vocales con palabras e imágenes" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">Aprende las vocales con palabras e imágenes</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Tobi Guau · Reconocimiento visual y auditivo de la A, E, I, O, U.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/LNhnbvbwd6I?si=HJXA-tY9e5MbI8Ij"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/b_YV4GVDGSA" title="ChiquitinesTV - La Risa de las Vocales · Canción infantil" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">La Risa de las Vocales · Canción infantil</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por ChiquitinesTV · El clásico alegre para cantar cómo ríe cada una de las vocales.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/b_YV4GVDGSA?si=zoklXJDp_2TimPtY"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/t5Zv-gfjeV8" title="Alexander Cutire - La risa de las vocales · Melodía alegre" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">La risa de las vocales · Melodía alegre</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Alexander Cutire · Canción rítmica para memorizar las vocales riendo.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/t5Zv-gfjeV8?si=016HzDuUrVb7jqtv"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/l5p6Ygd3gFo" title="Luli Pampín - La canción de las vocales · AEIOU" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">La canción de las vocales · AEIOU</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Luli Pampín · Música, baile y color para aprender las 5 vocales.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/l5p6Ygd3gFo?si=Pyz1zCug-wLy8Vmc"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/XK8mxT_f1gY" title="Babyradio - La canción de la vocal A" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">La canción de la vocal A</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Babyradio · Descubre cómo suena y se escribe la primera vocal A.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/XK8mxT_f1gY?si=j1_assBHSJf2sb2R"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/bAC92NAaYtM" title="Babyradio - La canción de la vocal E con Mon el dragón" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">La canción de la vocal E con Mon el dragón</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Babyradio · Mon el dragón nos enseña palabras divertidas con la letra E.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/bAC92NAaYtM?si=4so49ViPEj1CkY-V"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/5BPY0OzPkjA" title="Babyradio - La canción de la vocal I con Mon" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">La canción de la vocal I con Mon</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Babyradio · Canción alegre para identificar el sonido de la letra I.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/5BPY0OzPkjA?si=GSNBWiL7BBnSgtBv"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/pELHumPyCNw" title="Babyradio - La canción de la vocal O" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">La canción de la vocal O</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Babyradio · Redondita como una rueda, aprendemos a cantar con la O.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/pELHumPyCNw?si=ht0cXcIQl2IB_M45"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/EiERKl8PYE8" title="Babyradio - Aprende la vocal U · Canción infantil" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">Aprende la vocal U · Canción infantil</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Babyradio · Completa las 5 vocales con la divertida canción de la U.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/EiERKl8PYE8?si=nN0q6PfZZ0txx9Ku"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/hKQ44eZNgoI" title="Babyradio - Las vocales · Aprende la A con Mon el dragón" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">Las vocales · Aprende la A con Mon el dragón</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Babyradio · Aventuras y canciones para repasar las vocales en Inicial.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/hKQ44eZNgoI?si=6yhoIBbr43zPGze0"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/DwIfD6zMrL8" title="El Mono Sílabo - Canción de la Letra O · El Mono Sílabo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">Canción de la Letra O · El Mono Sílabo</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Lunacreciente · Canción didáctica para reconocer y trazar la vocal O.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/DwIfD6zMrL8?si=tmaA5N_shQxwDU5t"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/4-qfdXzEbIE" title="El Mono Sílabo - Canción de la Letra E · El Mono Sílabo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">Canción de la Letra E · El Mono Sílabo</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Lunacreciente · Aprende palabras que inician con la vocal E con ritmo.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/4-qfdXzEbIE?si=su4m2Qi0QiTcDJ8M"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/oQZdkPamNYM" title="El Mono Sílabo - Canción de la Letra I · El Mono Sílabo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">Canción de la Letra I · El Mono Sílabo</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Lunacreciente · Ejercicios de fonética y asociación con la vocal I.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/oQZdkPamNYM?si=AGUgwsb8yiq42Q5C"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/8Sd04XNalDg" title="El Mono Sílabo - Canción de la Letra A · El Mono Sílabo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">Canción de la Letra A · El Mono Sílabo</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Lunacreciente · Conoce el avión, árbol y anillo junto a la vocal A.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/8Sd04XNalDg?si=-CPLAzKp7d3-Y9Tw"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/DDg0cHSR1wY" title="El Mono Sílabo - La Canción de las Vocales · A E I O U" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">La Canción de las Vocales · A E I O U</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Lunacreciente · Las 5 vocales reunidas en una melodía inolvidable.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/DDg0cHSR1wY?si=w4L4Uf5g6A9fUPLP"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+    <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/vV413yrc4ow" title="El Mono Sílabo - Canción de la Letra U · El Mono Sílabo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="p-5 flex flex-col gap-2 flex-1">
+        <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
+        <h3 class="font-bold text-gray-800">Canción de la Letra U · El Mono Sílabo</h3>
+        <p class="text-sm text-muted leading-relaxed flex-1">Por Lunacreciente · Aprende la última de las vocales con el simpático monito.</p>
+        <a class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 border-b-4 border-purple-800 inline-flex items-center gap-2" target="_blank" rel="noopener" href="https://youtu.be/vV413yrc4ow?si=ozqEVfi64nI3pzS5"><i class="fa-brands fa-youtube"></i> Ver en YouTube</a>
+      </div>
+    </article>
+
+  </section>
+
+  <p id="videoEmpty" class="hidden text-center text-muted font-medium py-10">Aún no hay videos en esta categoría. ¡Vuelve pronto!</p>
+
+</main>
+
+<footer class="bg-purple-700 text-white py-8 px-6 mt-8">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="flex items-center gap-4 text-sm opacity-95 text-center md:text-left">
+      <i class="fa-solid fa-star text-yellow-400 text-2xl"></i>
+      <div>
+        <p class="font-bold">MotriKids © 2025 | Unidad Educativa Ecuatoriana Austriaca</p>
+        <p class="text-purple-200">Aprender, crecer y crear juntos.</p>
+      </div>
+    </div>
+    <div class="text-sm text-purple-200 flex items-center gap-2 font-medium text-center">
+      <i class="fa-solid fa-heart text-secondary"></i> Con amor, dedicación y paciencia todo es posible.
+    </div>
+    <div class="flex gap-4 text-xl">
+      <a class="hover:text-purple-300 transition-colors" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a class="hover:text-purple-300 transition-colors" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a class="hover:text-purple-300 transition-colors" href="videos.html" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('menuBtn')?.addEventListener('click',()=>{
+    const m=document.getElementById('mobileNav');
+    m.classList.toggle('hidden');
+    m.classList.toggle('flex');
+  });
+
+  // Filtro por categoría: las tarjetas sin data-cat son de motricidad
+  const pillActive = ['bg-purple-600','text-white','border-purple-800'];
+  const pillInactive = ['bg-white','text-gray-700','border-gray-200'];
+  const pills = document.querySelectorAll('[data-filter]');
+  function setPill(btn, active){
+    btn.classList.remove(...(active ? pillInactive : pillActive));
+    btn.classList.add(...(active ? pillActive : pillInactive));
+  }
+  pills.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      pills.forEach(b=>setPill(b,false));
+      setPill(btn,true);
+      const f = btn.dataset.filter;
+      let visible = 0;
+      document.querySelectorAll('#videoGrid article').forEach(card=>{
+        const cat = card.dataset.cat || 'motricidad';
+        const show = (f === 'todos' || cat === f);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      document.getElementById('videoEmpty')?.classList.toggle('hidden', visible > 0);
+    });
+  });
+</script>
+</body>
+</html>

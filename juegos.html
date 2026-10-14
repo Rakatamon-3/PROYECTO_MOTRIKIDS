@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MotriKids | Juegos de Motricidad Fina</title>
+  <meta name="description"
+    content="MotriKids - Juegos en línea de KodomiClub para Educación Inicial 1 y 2. Colores, números, letras y más.">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Quicksand', 'sans-serif'] },
+          colors: {
+            primary: '#a7c7e7',
+            secondary: '#ffb3ba',
+            accent: '#ffdfba',
+            success: '#baffc9',
+            warning: '#ffffba',
+            info: '#bae1ff',
+            surface: '#fbfaee',
+            'surface-dim': '#dbdbcf',
+            'surface-bright': '#fbfaee',
+            'surface-container-lowest': '#ffffff',
+            'surface-container-low': '#f5f4e8',
+            'surface-container': '#efeee2',
+            text: '#333333',
+            muted: '#666666',
+            purple: { 400: '#9b88ed', 500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9', 800: '#5b21b6' }
+          },
+          borderRadius: { '4xl': '32px', '5xl': '48px' }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #fbfaee;
+      color: #333333;
+      position: relative
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .35;
+      z-index: -1;
+      background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1.8' fill='%23ffb3ba' opacity='0.18'/%3E%3Cpath d='M50 20l2 3h3l-2 2 1 3-2.5-1.8-2.5 1.8 1-3-2-2h3z' fill='%23ffffba' opacity='0.22'/%3E%3Ccircle cx='80' cy='40' r='1.2' fill='%23bae1ff' opacity='0.18'/%3E%3Ccircle cx='30' cy='70' r='1.6' fill='%23baffc9' opacity='0.18'/%3E%3Ccircle cx='120' cy='15' r='1.4' fill='%23ffdfba' opacity='0.18'/%3E%3Ccircle cx='65' cy='110' r='1' fill='%23a7c7e7' opacity='0.14'/%3E%3C/svg%3E");
+      background-repeat: repeat
+    }
+
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(167, 199, 231, .20) 0%, rgba(255, 179, 186, .20) 50%, rgba(255, 223, 186, .20) 100%)
+    }
+
+    .cloud-divider {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0
+    }
+
+    .cloud-divider svg {
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 60px
+    }
+
+    .cloud-divider .shape-fill {
+      fill: #fbfaee
+    }
+
+    .card-pill {
+      border-radius: 32px
+    }
+
+    .btn-squish:active {
+      transform: translateY(2px) scale(.98)
+    }
+
+    @keyframes floatY {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-8px)
+      }
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: .6;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.15)
+      }
+    }
+
+    .float-slow {
+      animation: floatY 4s ease-in-out infinite
+    }
+
+    .float-fast {
+      animation: floatY 3s ease-in-out infinite
+    }
+
+    .twinkle {
+      animation: twinkle 2.2s ease-in-out infinite
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased text-text bg-surface">
+
+  <header class="bg-white sticky top-0 z-50 shadow-sm px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 no-underline">
+      <div class="text-3xl md:text-4xl text-purple-600"><i class="fa-solid fa-hand-sparkles"></i></div>
+      <div>
+        <h1 class="text-2xl md:text-3xl font-bold text-purple-700 leading-none tracking-tight"><span
+            class="text-purple-600">M</span><span class="text-blue-400">o</span><span
+            class="text-teal-400">t</span><span class="text-green-500">r</span><span
+            class="text-yellow-400">i</span><span class="text-orange-400">K</span><span
+            class="text-rose-400">i</span><span class="text-pink-400">d</span><span class="text-purple-500">s</span>
+        </h1>
+        <p class="text-[11px] md:text-xs text-muted font-medium mt-0.5">Pequeños trazos, grandes logros <i
+            class="fa-solid fa-heart text-secondary text-[10px]"></i></p>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-5 text-sm font-semibold text-muted">
+      <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="index.html"><i
+          class="fa-solid fa-house"></i><span>Inicio</span></a>
+      <a class="flex flex-col items-center gap-1 text-purple-700 border-b-2 border-purple-700 pb-1"
+        href="juegos.html"><i class="fa-solid fa-gamepad"></i><span>Juegos</span></a>
+      <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="recursos.html"><i
+          class="fa-solid fa-book-open"></i><span>Recursos</span></a>
+      <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="videos.html"><i
+          class="fa-solid fa-circle-play"></i><span>Videos</span></a>
+      <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="vocales.html"><i
+          class="fa-solid fa-font"></i><span>Vocales</span></a>
+      <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="numeros.html"><i
+          class="fa-solid fa-hashtag"></i><span>Números</span></a>
+    </nav>
+    <button id="menuBtn" class="lg:hidden text-2xl text-purple-700 p-2" aria-label="Abrir menú"><i
+        class="fa-solid fa-bars"></i></button>
+  </header>
+  <nav id="mobileNav"
+    class="hidden lg:hidden bg-white border-t shadow-md px-6 py-4 flex-col gap-3 text-sm font-semibold">
+    <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="index.html"><i
+        class="fa-solid fa-house w-5"></i> Inicio</a>
+    <a class="flex items-center gap-3 text-purple-700 font-bold" href="juegos.html"><i
+        class="fa-solid fa-gamepad w-5"></i> Juegos</a>
+    <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="recursos.html"><i
+        class="fa-solid fa-book-open w-5"></i> Recursos</a>
+    <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="videos.html"><i
+        class="fa-solid fa-circle-play w-5"></i> Videos educativos</a>
+    <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="vocales.html"><i
+        class="fa-solid fa-font w-5"></i> Vocales</a>
+    <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="numeros.html"><i
+        class="fa-solid fa-hashtag w-5"></i> Números</a>
+  </nav>
+
+  <section class="relative pt-10 md:pt-14 pb-24 px-6 overflow-hidden hero-bg"
+    style="background-image:url(&quot;data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23ffb3ba' opacity='0.35'/%3E%3Cpath d='M50 20l2 5h5l-4 3 2 5-5-3-5 3 2-5-4-3h5z' fill='%23ffffba' opacity='0.4'/%3E%3Ccircle cx='80' cy='40' r='1.5' fill='%23bae1ff' opacity='0.35'/%3E%3Ccircle cx='30' cy='70' r='2' fill='%23baffc9' opacity='0.35'/%3E%3Cpath d='M90 80l1.5 4h4l-3 2.5 1.5 4-4-2.5-4 2.5 1.5-4-3-2.5h4z' fill='%239b88ed' opacity='0.35'/%3E%3Ccircle cx='120' cy='15' r='1.8' fill='%23ffdfba' opacity='0.35'/%3E%3Ccircle cx='25' cy='45' r='1.3' fill='%23a7c7e7' opacity='0.3'/%3E%3Cpath d='M70 10l1.5 3h3l-2 2 1 3-2.5-1.8-2.5 1.8 1-3-2-2h3z' fill='%23ffb3ba' opacity='0.4'/%3E%3Ccircle cx='65' cy='85' r='1.2' fill='%23ffdfba' opacity='0.35'/%3E%3Cpath d='M15 90l1.8 3.5h3.5l-2.8 2 1 3.5-2.5-1.8-2.5 1.8 1-3.5-2.8-2h3.5z' fill='%23bae1ff' opacity='0.3'/%3E%3Ccircle cx='110' cy='110' r='2' fill='%23ffb3ba' opacity='0.25'/%3E%3Ccircle cx='45' cy='55' r='1' fill='%23baffc9' opacity='0.4'/%3E%3Cpath d='M105 50l1.2 2.5h2.5l-2 1.5 0.8 2.5-2.5-1.8-2.5 1.8 0.8-2.5-2-1.5h2.5z' fill='%23ffffba' opacity='0.35'/%3E%3Ccircle cx='130' cy='60' r='1.4' fill='%239b88ed' opacity='0.25'/%3E%3C/svg%3E&quot;);background-repeat:repeat">
+    <div class="max-w-7xl mx-auto flex flex-col items-center gap-4 relative z-10 text-center">
+      <p
+        class="text-[11px] md:text-xs font-bold tracking-widest uppercase text-purple-600 bg-white/70 px-4 py-1.5 rounded-full">
+        <i class="fa-solid fa-gamepad mr-1"></i> MotriKids · Juegos
+      </p>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-purple-700 tracking-tight">Juegos en Línea</h2>
+      <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl leading-relaxed">Juegos de KodomiClub para
+        aprender jugando: colores, números, letras y más.</p>
+    </div>
+    <div class="absolute top-8 left-6 md:left-10 text-yellow-400 text-2xl md:text-3xl opacity-60 float-slow"><i
+        class="fa-solid fa-star"></i></div>
+    <div class="absolute top-12 right-12 text-info text-lg opacity-60 float-fast"><i class="fa-solid fa-circle"></i>
+    </div>
+    <div class="absolute bottom-24 right-6 md:right-16 text-purple-400 text-3xl md:text-4xl opacity-60 float-slow"><i
+        class="fa-solid fa-star"></i></div>
+    <div class="absolute bottom-20 right-1/3 text-warning text-xl opacity-70 twinkle"><i class="fa-solid fa-star"></i>
+    </div>
+    <div class="cloud-divider">
+      <svg preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+        <path class="shape-fill"
+          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C79.86,122.9,161.4,117.82,238.4,94.9,268.21,86.08,295.6,71.21,321.39,56.44Z">
+        </path>
+      </svg>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-14">
+    <section id="juegos-linea">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-600">Mundo</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🍂 Estaciones del año</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Descubre primavera, verano, otoño e invierno jugando.</p>
+          <a href="https://kodomiclub.com/juegos/estaciones-del-ano" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-sky-100 text-sky-600">Lenguaje</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🔤 Inglés: escucha y elige</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Escucha la palabra en inglés y elige la imagen correcta.
+          </p>
+          <a href="https://kodomiclub.com/juegos/ingles-escucha-y-elige" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-600">Mundo</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🚦 La calle y las señales</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Aprende las señales de tránsito y a cruzar seguro.</p>
+          <a href="https://kodomiclub.com/juegos/la-calle-y-las-senales" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Emociones</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">😊 Adivina la emoción</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Mira la carita y adivina si está feliz, triste o enojada.
+          </p>
+          <a href="https://kodomiclub.com/juegos/adivina-la-emocion" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-600">Sonidos</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🔊 ¿Qué suena?</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Escucha con atención y descubre qué objeto está sonando.
+          </p>
+          <a href="https://kodomiclub.com/juegos/que-suena" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-600">Animales</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🏠 ¿Dónde vive cada uno?</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Lleva cada animalito a su casita correcta.</p>
+          <a href="https://kodomiclub.com/juegos/donde-vive-cada-uno" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-600">Animales</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🍎 ¿Qué come cada uno?</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Dale a cada animal su comida favorita.</p>
+          <a href="https://kodomiclub.com/juegos/que-come-cada-uno" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-rose-100 text-rose-600">Colores</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🎨 Adivina el color</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Mira el objeto y elige su color correcto.</p>
+          <a href="https://kodomiclub.com/juegos/adivina-el-color" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-sky-100 text-sky-600">Coordinación</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🎣 A pescar</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Pesca pececitos moviendo tu caña con precisión.</p>
+          <a href="https://kodomiclub.com/juegos/a-pescar" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-orange-100 text-orange-600">Lógica</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🛒 La lista de la compra</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Memoriza la lista y mete al carrito lo que falta.</p>
+          <a href="https://kodomiclub.com/juegos/la-lista-de-la-compra" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-rose-100 text-rose-600">Colores</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🫗 Mezclamos colores</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Mezcla pinturas y descubre qué color nuevo aparece.</p>
+          <a href="https://kodomiclub.com/juegos/mezclamos-colores" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-sky-100 text-sky-600">Lenguaje</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🔤 Aprende las letras</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Conoce las letras del abecedario con dibujos divertidos.
+          </p>
+          <a href="https://kodomiclub.com/juegos/aprende-las-letras" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-600">Espacio</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">↔️ Izquierda y derecha</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Aprende a ubicar lo que está a cada lado.</p>
+          <a href="https://kodomiclub.com/juegos/izquierda-y-derecha" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-orange-100 text-orange-600">Lógica</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🧺 Clasifica en cestas</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Separa objetos por tipo y mételos en su cesta.</p>
+          <a href="https://kodomiclub.com/juegos/clasifica-en-cestas" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-yellow-100 text-yellow-600">Tamaños</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🐘 Grande o pequeño</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Compara objetos y elige cuál es más grande.</p>
+          <a href="https://kodomiclub.com/juegos/grande-o-pequeno" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-600">Atención</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🌑 Busca la sombra</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Empareja cada dibujo con su sombra correcta.</p>
+          <a href="https://kodomiclub.com/juegos/busca-la-sombra" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-yellow-100 text-yellow-600">Números</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🔢 La misma cantidad</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Cuenta y encuentra los grupos con igual cantidad.</p>
+          <a href="https://kodomiclub.com/juegos/encuentra-la-misma-cantidad" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-600">Animales</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🐣 ¿De quién es el bebé?</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Une cada cría con su mamá animal.</p>
+          <a href="https://kodomiclub.com/juegos/de-quien-es-el-bebe" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Cuerpo</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">👃 ¿Dónde está la nariz?</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Señala las partes del cuerpo en el dibujo.</p>
+          <a href="https://kodomiclub.com/juegos/donde-esta-la-nariz" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-yellow-100 text-yellow-600">Números</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🔢 A contar</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Cuenta objetos y elige el número correcto.</p>
+          <a href="https://kodomiclub.com/juegos/a-contar" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-yellow-100 text-yellow-600">Números</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🖐️ Cuenta con los dedos</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Usa tus deditos para contar hasta 10.</p>
+          <a href="https://kodomiclub.com/juegos/cuenta-con-los-dedos" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-600">Formas</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🧩 Encaja las figuras</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Arrastra cada forma a su hueco correcto.</p>
+          <a href="https://kodomiclub.com/juegos/encaja-las-figuras" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+
+        <article
+          class="bg-white rounded-[32px] p-6 flex flex-col gap-3 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <span
+            class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-600">Animales</span>
+          <h3 class="font-bold text-gray-800 text-lg leading-snug">🍽️ Dales de comer</h3>
+          <p class="text-sm text-muted leading-relaxed flex-1">Alimenta a los animalitos con su comida favorita.</p>
+          <a href="https://kodomiclub.com/juegos/dales-de-comer" target="_blank" rel="noopener"
+            class="btn-squish self-start bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-purple-700 text-white py-8 px-6 mt-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-4 text-sm opacity-95 text-center md:text-left">
+        <i class="fa-solid fa-star text-yellow-400 text-2xl"></i>
+        <div>
+          <p class="font-bold">MotriKids © 2025 | Unidad Educativa Ecuatoriana Austriaca</p>
+          <p class="text-purple-200">Aprender, crecer y crear juntos.</p>
+        </div>
+      </div>
+      <div class="text-sm text-purple-200 flex items-center gap-2 font-medium text-center">
+        <i class="fa-solid fa-heart text-secondary"></i> Con amor, dedicación y paciencia todo es posible.
+      </div>
+      <div class="flex gap-4 text-xl">
+        <a class="hover:text-purple-300 transition-colors" href="#" aria-label="Facebook"><i
+            class="fa-brands fa-facebook"></i></a>
+        <a class="hover:text-purple-300 transition-colors" href="#" aria-label="Instagram"><i
+            class="fa-brands fa-instagram"></i></a>
+        <a class="hover:text-purple-300 transition-colors" href="videos.html" aria-label="YouTube"><i
+            class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('menuBtn')?.addEventListener('click', () => {
+      const m = document.getElementById('mobileNav');
+      m.classList.toggle('hidden');
+      m.classList.toggle('flex');
+    });
+  </script>
+</body>
+
+</html>
