@@ -16,10 +16,10 @@ Plataforma educativa web diseñada para potenciar el desarrollo de la **motricid
    - *Vocales y Números*: Trazos guiados del 1 al 10 y vocales mayúsculas/minúsculas.
    - *Recorte, Formas y Creatividad*: Siluetas para colorear, rasgar y recortar libremente.
    - *Pizarra Mágica Digital*: Canvas interactivo para pintar con el dedo o mouse con sincronización exacta y mirilla visual.
-3. **🎮 Juegos Interactivos (`juegos.html`)**: Mini-juegos educativos para ejercitar la precisión del clic, arrastre y reflejos.
+3. **🎮 Juegos en Línea (`juegos.html`)**: 23 juegos educativos de [Kodomi Club](https://kodomiclub.com/juegos) que se abren en otra pestaña, porque ese sitio no permite mostrarlos dentro de otras páginas.
 4. **📺 Videos Educativos (`videos.html`)**: Colección de videos seleccionados de YouTube organizados por categorías (Motricidad fina, Vocales, Números, Colores, Animales).
-5. **🔤 Vocales (`vocales.html`)**: Módulo interactivo dedicado al aprendizaje auditivo y fonético de las 5 vocales.
-6. **🔢 Números (`numeros.html`)**: Reconocimiento numérico, asociación de cantidades y conteo guiado.
+5. **🔤 Vocales (`vocales.html`)**: Las 5 vocales con lectura en voz alta y trazo en la pizarra digital.
+6. **🔢 Números (`numeros.html`)**: Los números del 1 al 10 con lectura en voz alta, conteo y trazo en la pizarra digital.
 
 ---
 
@@ -29,7 +29,7 @@ Plataforma educativa web diseñada para potenciar el desarrollo de la **motricid
 - **JavaScript (Vanilla JS)**
 - **HTML5 Canvas API** (Pizarra mágica de dibujo digital)
 - **Gráficos vectoriales SVG** integrados
-- **Tailwind CSS** (vía CDN)
+- **Tailwind CSS** (compilado en `assets/tailwind.css`)
 - **Font Awesome 6** (Iconografía infantil)
 - **Google Fonts** (Tipografía Quicksand)
 
@@ -37,7 +37,7 @@ Plataforma educativa web diseñada para potenciar el desarrollo de la **motricid
 
 ## 💻 Ejecución Local
 
-Para visualizar el proyecto localmente, simplemente abre cualquiera de los archivos `.html` (por ejemplo `index.html`) en cualquier navegador web moderno o utiliza un servidor local estático:
+Para visualizar el proyecto localmente, abre cualquiera de los archivos `.html` (por ejemplo `index.html`) en un navegador web moderno o utiliza un servidor local estático:
 
 ```bash
 # Con Node.js
@@ -45,4 +45,15 @@ npx serve .
 
 # O con Python
 python -m http.server 8000
+```
+
+Las miniaturas de los videos se ven en ambos casos, pero para reproducirlos dentro de la página hace falta un servidor (`http://` o `https://`). YouTube exige el encabezado `Referer` y los archivos abiertos directamente (`file://`) no lo envían, así que en ese caso cada video se abre en YouTube en una pestaña nueva.
+
+## 🎨 Estilos
+
+Los estilos de Tailwind ya están compilados en `assets/tailwind.css`, así que el sitio no necesita ningún paso previo para funcionar. Si agregas o cambias clases de Tailwind en los `.html`, vuelve a compilar:
+
+```bash
+npm install
+npm run build:css
 ```

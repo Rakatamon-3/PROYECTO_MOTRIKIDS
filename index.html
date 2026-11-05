@@ -5,41 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MotriKids | Motricidad fina para Inicial 1 y 2</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <meta name="description"
     content="MotriKids - Recursos interactivos y actividades divertidas para motricidad fina en Educación Inicial 1 y 2. Juegos, vocales, números, videos y fichas para imprimir.">
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="assets/tailwind.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Quicksand', 'sans-serif'] },
-          colors: {
-            primary: '#a7c7e7',
-            secondary: '#ffb3ba',
-            accent: '#ffdfba',
-            success: '#baffc9',
-            warning: '#ffffba',
-            info: '#bae1ff',
-            surface: '#fbfaee',
-            'surface-dim': '#dbdbcf',
-            'surface-bright': '#fbfaee',
-            'surface-container-lowest': '#ffffff',
-            'surface-container-low': '#f5f4e8',
-            'surface-container': '#efeee2',
-            text: '#333333',
-            muted: '#666666',
-            purple: { 400: '#9b88ed', 500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9', 800: '#5b21b6' }
-          },
-          borderRadius: { '4xl': '32px', '5xl': '48px' }
-        }
-      }
-    }
-  </script>
   <style>
     body {
-      background-color: #fbfaee;
+      background-color: #fcfcff;
       color: #333333;
       position: relative
     }
@@ -56,7 +30,7 @@
     }
 
     .hero-bg {
-      background: linear-gradient(135deg, rgba(167, 199, 231, .20) 0%, rgba(255, 179, 186, .20) 50%, rgba(255, 223, 186, .20) 100%)
+      background: linear-gradient(135deg, rgba(167, 199, 231, .22) 0%, rgba(196, 181, 253, .18) 50%, rgba(255, 179, 186, .14) 100%)
     }
 
     .cloud-divider {
@@ -71,11 +45,11 @@
     .cloud-divider svg {
       display: block;
       width: calc(100% + 1.3px);
-      height: 60px
+      height: 36px
     }
 
     .cloud-divider .shape-fill {
-      fill: #fbfaee
+      fill: #fcfcff
     }
 
     .card-pill {
@@ -123,70 +97,109 @@
     .twinkle {
       animation: twinkle 2.2s ease-in-out infinite
     }
+
+    /* Vocales de fondo: mismo tamaño y opacidad que las estrellas */
+    .vowel-cookie {
+      opacity: .7;
+      pointer-events: none
+    }
+
+    .vowel-cookie text {
+      font: 700 30px 'Quicksand', sans-serif;
+      fill: #fff;
+      text-anchor: middle
+    }
+
+    /* Galleta con forma de letra: sin base, la letra lleva el color */
+    .vowel-cookie:has(use[href="#cookie-letter"]) text {
+      font-size: 56px;
+      fill: currentColor;
+      stroke: #fff;
+      stroke-width: 2.5px;
+      paint-order: stroke
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .float-slow,
+      .float-fast,
+      .twinkle {
+        animation: none
+      }
+    }
   </style>
 </head>
 
 <body class="font-sans antialiased text-text bg-surface">
 
+  <!-- Formas de galleta para las vocales del fondo -->
+  <svg class="hidden" aria-hidden="true">
+    <symbol id="cookie-round" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="currentColor"/><circle cx="16" cy="20" r="2.5" fill="#fff" opacity=".6"/><circle cx="48" cy="18" r="2" fill="#fff" opacity=".6"/><circle cx="50" cy="44" r="2.5" fill="#fff" opacity=".6"/><circle cx="13" cy="42" r="2" fill="#fff" opacity=".6"/></symbol>
+    <symbol id="cookie-bite" viewBox="0 0 64 64"><path d="M30 4C14 5 4 18 4 33c0 16 13 27 28 27 15 0 27-11 28-26-5 1-9-1-11-5-5 1-9-2-10-7-5-1-9-6-9-18Z" fill="currentColor"/><circle cx="17" cy="20" r="2.5" fill="#fff" opacity=".6"/><circle cx="13" cy="44" r="2" fill="#fff" opacity=".6"/><circle cx="47" cy="48" r="2.5" fill="#fff" opacity=".6"/></symbol>
+    <symbol id="cookie-flower" viewBox="0 0 64 64"><g fill="currentColor"><circle cx="32" cy="13" r="11"/><circle cx="45.4" cy="18.6" r="11"/><circle cx="51" cy="32" r="11"/><circle cx="45.4" cy="45.4" r="11"/><circle cx="32" cy="51" r="11"/><circle cx="18.6" cy="45.4" r="11"/><circle cx="13" cy="32" r="11"/><circle cx="18.6" cy="18.6" r="11"/><circle cx="32" cy="32" r="20"/></g></symbol>
+    <symbol id="cookie-heart" viewBox="0 0 64 64"><path d="M32 60C10 44 2 32 4 19 6 7 23 2 32 15c9-13 26-8 28 4 2 13-6 25-28 41Z" fill="currentColor"/></symbol>
+    <symbol id="cookie-star" viewBox="0 0 64 64"><path d="M32 8l7.5 15.5 17 2.5-12.3 12 2.9 17L32 47l-15.1 8 2.9-17L7.5 26l17-2.5Z" fill="currentColor" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/></symbol>
+    <symbol id="cookie-square" viewBox="0 0 64 64"><rect x="5" y="5" width="54" height="54" rx="14" fill="currentColor"/><g fill="#fff" opacity=".6"><circle cx="14" cy="14" r="2"/><circle cx="50" cy="14" r="2"/><circle cx="14" cy="50" r="2"/><circle cx="50" cy="50" r="2"/></g></symbol>
+    <symbol id="cookie-letter" viewBox="0 0 64 64"></symbol>
+  </svg>
+
   <header class="bg-white sticky top-0 z-50 shadow-sm px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-3 no-underline">
+    <a href="index.html" class="flex items-center gap-3 min-h-[44px] no-underline">
       <div class="text-3xl md:text-4xl text-purple-600"><i class="fa-solid fa-hand-sparkles"></i></div>
       <div>
-        <h1 class="text-2xl md:text-3xl font-bold text-purple-700 leading-none tracking-tight"><span
+        <p class="text-2xl md:text-3xl font-bold text-purple-700 leading-none tracking-tight"><span
             class="text-purple-600">M</span><span class="text-blue-400">o</span><span
             class="text-teal-400">t</span><span class="text-green-500">r</span><span
             class="text-yellow-400">i</span><span class="text-orange-400">K</span><span
             class="text-rose-400">i</span><span class="text-pink-400">d</span><span class="text-purple-500">s</span>
-        </h1>
-        <p class="text-[11px] md:text-xs text-muted font-medium mt-0.5">Pequeños trazos, grandes logros <i
-            class="fa-solid fa-heart text-secondary text-[10px]"></i></p>
+        </p>
+        <p class="text-xs md:text-xs text-muted font-medium mt-0.5">Pequeños trazos, grandes logros <i
+            class="fa-solid fa-heart text-secondary text-xs"></i></p>
       </div>
     </a>
     <nav class="hidden lg:flex items-center gap-5 text-sm font-semibold text-muted">
-      <a class="flex flex-col items-center gap-1 text-purple-700 border-b-2 border-purple-700 pb-1" href="index.html"><i
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] text-purple-700 border-b-2 border-purple-700 pb-1" href="index.html"><i
           class="fa-solid fa-house"></i><span>Inicio</span></a>
-      <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="juegos.html"><i
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="juegos.html"><i
           class="fa-solid fa-gamepad"></i><span>Juegos</span></a>
-      <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="recursos.html"><i
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="recursos.html"><i
           class="fa-solid fa-book-open"></i><span>Recursos</span></a>
-      <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="videos.html"><i
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="videos.html"><i
           class="fa-solid fa-circle-play"></i><span>Videos</span></a>
-      <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="vocales.html"><i
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="vocales.html"><i
           class="fa-solid fa-font"></i><span>Vocales</span></a>
-      <a class="flex flex-col items-center gap-1 hover:text-purple-600 transition-colors" href="numeros.html"><i
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="numeros.html"><i
           class="fa-solid fa-hashtag"></i><span>Números</span></a>
     </nav>
-    <button id="menuBtn" class="lg:hidden text-2xl text-purple-700 p-2" aria-label="Abrir menú"><i
+    <button id="menuBtn" class="lg:hidden w-12 h-12 flex items-center justify-center text-2xl text-purple-700" aria-label="Abrir menú"><i
         class="fa-solid fa-bars"></i></button>
   </header>
   <nav id="mobileNav"
     class="hidden lg:hidden bg-white border-t shadow-md px-6 py-4 flex-col gap-3 text-sm font-semibold">
-    <a class="flex items-center gap-3 text-purple-700 font-bold" href="index.html"><i class="fa-solid fa-house w-5"></i>
+    <a class="flex items-center gap-3 min-h-[44px] text-purple-700 font-bold" href="index.html"><i class="fa-solid fa-house w-5"></i>
       Inicio</a>
-    <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="juegos.html"><i
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="juegos.html"><i
         class="fa-solid fa-gamepad w-5"></i> Juegos</a>
-    <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="recursos.html"><i
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="recursos.html"><i
         class="fa-solid fa-book-open w-5"></i> Recursos</a>
-    <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="videos.html"><i
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="videos.html"><i
         class="fa-solid fa-circle-play w-5"></i> Videos educativos</a>
-    <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="vocales.html"><i
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="vocales.html"><i
         class="fa-solid fa-font w-5"></i> Vocales</a>
-    <a class="flex items-center gap-3 text-muted hover:text-purple-600" href="numeros.html"><i
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="numeros.html"><i
         class="fa-solid fa-hashtag w-5"></i> Números</a>
   </nav>
 
-  <section class="relative pt-10 md:pt-14 pb-24 px-6 overflow-hidden hero-bg"
-    style="background-image:url(&quot;data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23ffb3ba' opacity='0.35'/%3E%3Cpath d='M50 20l2 5h5l-4 3 2 5-5-3-5 3 2-5-4-3h5z' fill='%23ffffba' opacity='0.4'/%3E%3Ccircle cx='80' cy='40' r='1.5' fill='%23bae1ff' opacity='0.35'/%3E%3Ccircle cx='30' cy='70' r='2' fill='%23baffc9' opacity='0.35'/%3E%3Cpath d='M90 80l1.5 4h4l-3 2.5 1.5 4-4-2.5-4 2.5 1.5-4-3-2.5h4z' fill='%239b88ed' opacity='0.35'/%3E%3Ccircle cx='120' cy='15' r='1.8' fill='%23ffdfba' opacity='0.35'/%3E%3Ccircle cx='25' cy='45' r='1.3' fill='%23a7c7e7' opacity='0.3'/%3E%3Cpath d='M70 10l1.5 3h3l-2 2 1 3-2.5-1.8-2.5 1.8 1-3-2-2h3z' fill='%23ffb3ba' opacity='0.4'/%3E%3Ccircle cx='65' cy='85' r='1.2' fill='%23ffdfba' opacity='0.35'/%3E%3Cpath d='M15 90l1.8 3.5h3.5l-2.8 2 1 3.5-2.5-1.8-2.5 1.8 1-3.5-2.8-2h3.5z' fill='%23bae1ff' opacity='0.3'/%3E%3Ccircle cx='110' cy='110' r='2' fill='%23ffb3ba' opacity='0.25'/%3E%3Ccircle cx='45' cy='55' r='1' fill='%23baffc9' opacity='0.4'/%3E%3Cpath d='M105 50l1.2 2.5h2.5l-2 1.5 0.8 2.5-2.5-1.8-2.5 1.8 0.8-2.5-2-1.5h2.5z' fill='%23ffffba' opacity='0.35'/%3E%3Ccircle cx='130' cy='60' r='1.4' fill='%239b88ed' opacity='0.25'/%3E%3C/svg%3E&quot;);background-repeat:repeat">
-    <div class="max-w-7xl mx-auto flex flex-col items-center gap-8 relative z-10">
+  <section class="relative pt-6 md:pt-8 pb-12 md:pb-14 px-6 overflow-hidden hero-bg">
+    <div class="max-w-7xl mx-auto flex flex-col items-center relative z-10">
       <div class="w-full text-center flex flex-col items-center max-w-3xl">
-        <h2 class="text-xl md:text-2xl font-bold text-purple-800 mb-2">Bienvenido a</h2>
-        <h1 class="text-5xl md:text-6xl font-extrabold text-purple-700 mb-6 drop-shadow-sm tracking-tight"><span
+        <p class="text-xl md:text-2xl font-bold text-purple-800 mb-2">Bienvenido a</p>
+        <div class="flex items-center justify-center gap-3 mb-3"><img src="assets/mascota.svg" alt="" class="w-14 h-14 md:w-20 md:h-20 float-slow"><h1 class="text-5xl md:text-6xl font-extrabold text-purple-700 drop-shadow-sm tracking-tight"><span
             class="text-purple-600">M</span><span class="text-blue-400">o</span><span
             class="text-teal-400">t</span><span class="text-green-500">r</span><span
             class="text-yellow-400">i</span><span class="text-orange-400">K</span><span
             class="text-rose-400">i</span><span class="text-pink-400">d</span><span class="text-purple-500">s</span>
-        </h1>
-        <p class="text-base md:text-lg text-gray-700 mb-8 font-medium leading-relaxed">
+        </h1></div>
+        <p class="text-base md:text-lg text-gray-700 mb-5 font-medium leading-relaxed">
           Recursos interactivos y actividades divertidas para apoyar el desarrollo de la <span
             class="font-bold text-purple-700">Motricidad Fina</span> en niños de <span
             class="font-bold text-purple-700">Educación Inicial</span>
@@ -200,10 +213,25 @@
         </div>
       </div>
     </div>
+    <!-- Vocales tipo galleta -->
+    <div aria-hidden="true">
+      <svg class="vowel-cookie absolute top-[14%] left-[9%] w-9 h-9 text-rose-400 float-slow hidden sm:block" viewBox="0 0 64 64"><use href="#cookie-flower"/><text x="32" y="43">A</text></svg>
+      <svg class="vowel-cookie absolute top-[44%] left-[3%] w-7 h-7 text-sky-400 twinkle hidden md:block" viewBox="0 0 64 64"><use href="#cookie-round"/><text x="32" y="43">e</text></svg>
+      <svg class="vowel-cookie absolute top-[72%] left-[5%] w-8 h-8 text-pink-400 float-fast hidden sm:block" viewBox="0 0 64 64"><use href="#cookie-heart"/><text x="32" y="43">I</text></svg>
+      <svg class="vowel-cookie absolute top-[24%] left-[18%] w-10 h-10 text-amber-400 twinkle hidden lg:block" viewBox="0 0 64 64"><use href="#cookie-bite"/><text x="32" y="43">O</text></svg>
+      <svg class="vowel-cookie absolute top-[58%] left-[15%] w-9 h-9 text-violet-400 float-slow hidden lg:block" viewBox="0 0 64 64"><use href="#cookie-star"/><text x="32" y="43">u</text></svg>
+      <svg class="vowel-cookie absolute top-[80%] left-[24%] w-8 h-8 text-emerald-400 twinkle hidden xl:block" viewBox="0 0 64 64"><use href="#cookie-letter"/><text x="32" y="43">A</text></svg>
+      <svg class="vowel-cookie absolute top-[9%] right-[7%] w-8 h-8 text-teal-400 float-fast" viewBox="0 0 64 64"><use href="#cookie-square"/><text x="32" y="43">E</text></svg>
+      <svg class="vowel-cookie absolute top-[40%] right-[3%] w-7 h-7 text-orange-400 twinkle hidden md:block" viewBox="0 0 64 64"><use href="#cookie-bite"/><text x="32" y="43">a</text></svg>
+      <svg class="vowel-cookie absolute top-[72%] right-[3%] w-10 h-10 text-emerald-400 float-slow hidden sm:block" viewBox="0 0 64 64"><use href="#cookie-flower"/><text x="32" y="43">U</text></svg>
+      <svg class="vowel-cookie absolute top-[28%] right-[19%] w-6 h-6 text-rose-400 float-fast hidden lg:block" viewBox="0 0 64 64"><use href="#cookie-round"/><text x="32" y="43">i</text></svg>
+      <svg class="vowel-cookie absolute top-[60%] right-[16%] w-9 h-9 text-sky-400 twinkle hidden lg:block" viewBox="0 0 64 64"><use href="#cookie-star"/><text x="32" y="43">o</text></svg>
+      <svg class="vowel-cookie absolute top-[82%] right-[25%] w-8 h-8 text-purple-400 float-slow hidden xl:block" viewBox="0 0 64 64"><use href="#cookie-letter"/><text x="32" y="43">O</text></svg>
+    </div>
     <!-- Estrellas y circulitos extra (más densidad) -->
     <div class="absolute top-8 left-6 md:left-10 text-yellow-400 text-2xl md:text-3xl opacity-60 float-slow"><i
         class="fa-solid fa-star"></i></div>
-    <div class="absolute top-6 left-1/3 text-secondary text-xl opacity-50 twinkle hidden md:block"><i
+    <div class="absolute top-6 left-[24%] text-secondary text-xl opacity-50 twinkle hidden md:block"><i
         class="fa-solid fa-star"></i></div>
     <div class="absolute top-12 right-12 text-info text-lg opacity-60 float-fast"><i class="fa-solid fa-circle"></i>
     </div>
@@ -215,12 +243,12 @@
     </div>
     <div class="absolute bottom-24 right-6 md:right-16 text-purple-400 text-3xl md:text-4xl opacity-60 float-slow"><i
         class="fa-solid fa-star"></i></div>
-    <div class="absolute bottom-20 right-1/3 text-warning text-xl opacity-70 twinkle"><i class="fa-solid fa-star"></i>
+    <div class="absolute bottom-14 right-[10%] text-warning text-xl opacity-70 twinkle"><i class="fa-solid fa-star"></i>
     </div>
     <div class="absolute bottom-14 left-1/4 w-2 h-2 bg-primary rounded-full opacity-60 float-fast"></div>
     <div class="absolute top-1/2 left-4 w-2 h-2 bg-success rounded-full opacity-50 hidden lg:block"></div>
     <div class="absolute top-1/3 right-6 w-3 h-3 bg-warning rounded-full opacity-60 float-slow hidden lg:block"></div>
-    <div class="absolute bottom-32 left-1/3 text-accent text-lg opacity-50 twinkle hidden md:block"><i
+    <div class="absolute bottom-16 left-[10%] text-accent text-lg opacity-50 twinkle hidden md:block"><i
         class="fa-solid fa-star"></i></div>
     <div class="absolute top-10 right-[18%] text-success text-sm opacity-60 twinkle hidden md:block"><i
         class="fa-solid fa-star"></i></div>
@@ -234,9 +262,16 @@
     </div>
   </section>
 
-  <main class="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-16 relative overflow-hidden">
+  <main class="max-w-7xl mx-auto px-4 md:px-6 pt-5 pb-12 relative overflow-hidden">
     <!-- Fondito extra de estrellitas / circulitos en el área principal (sutil) -->
-    <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+      <svg class="vowel-cookie absolute top-4 left-[8%] w-8 h-8 text-pink-400 float-slow hidden md:block" viewBox="0 0 64 64"><use href="#cookie-bite"/><text x="32" y="43">U</text></svg>
+      <svg class="vowel-cookie absolute top-4 left-[26%] w-7 h-7 text-sky-400 twinkle hidden lg:block" viewBox="0 0 64 64"><use href="#cookie-flower"/><text x="32" y="43">i</text></svg>
+      <svg class="vowel-cookie absolute top-4 right-[24%] w-7 h-7 text-amber-400 float-fast hidden lg:block" viewBox="0 0 64 64"><use href="#cookie-heart"/><text x="32" y="43">E</text></svg>
+      <svg class="vowel-cookie absolute top-4 right-[7%] w-8 h-8 text-violet-400 twinkle hidden md:block" viewBox="0 0 64 64"><use href="#cookie-square"/><text x="32" y="43">a</text></svg>
+      <svg class="vowel-cookie absolute bottom-3 left-[14%] w-7 h-7 text-teal-400 float-fast" viewBox="0 0 64 64"><use href="#cookie-round"/><text x="32" y="43">O</text></svg>
+      <svg class="vowel-cookie absolute bottom-2 left-[46%] w-8 h-8 text-rose-400 twinkle hidden md:block" viewBox="0 0 64 64"><use href="#cookie-letter"/><text x="32" y="43">e</text></svg>
+      <svg class="vowel-cookie absolute bottom-3 right-[14%] w-8 h-8 text-orange-400 float-slow" viewBox="0 0 64 64"><use href="#cookie-star"/><text x="32" y="43">A</text></svg>
       <div class="absolute top-4 left-8 text-warning/60 text-sm twinkle hidden md:block"><i
           class="fa-solid fa-star"></i></div>
       <div class="absolute top-10 right-12 w-2.5 h-2.5 bg-info/60 rounded-full float-slow"></div>
@@ -247,56 +282,56 @@
       <div class="absolute top-1/2 right-4 w-2 h-2 bg-success/40 rounded-full"></div>
       <div class="absolute bottom-32 right-1/4 w-1.5 h-1.5 bg-secondary/40 rounded-full"></div>
     </div>
-    <section class="mb-16 md:mb-20">
-      <div class="text-center mb-8 md:mb-10 flex items-center justify-center gap-3">
+    <section>
+      <div class="text-center mb-6 flex items-center justify-center gap-3">
         <i class="fa-solid fa-star text-yellow-400 text-2xl md:text-3xl"></i>
         <h2 class="text-2xl md:text-3xl font-bold text-gray-800">¿Qué quieres aprender hoy?</h2>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
         <a href="juegos.html"
-          class="bg-white rounded-[32px] p-4 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 group">
+          class="bg-white rounded-[32px] p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 group">
           <div
-            class="w-16 h-16 rounded-full bg-teal-400 text-white flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform border-b-4 border-teal-500">
+            class="w-20 h-20 rounded-full bg-teal-400 text-white flex items-center justify-center text-3xl mb-3 group-hover:scale-110 transition-transform border-b-4 border-teal-500">
             <i class="fa-solid fa-gamepad"></i>
           </div>
-          <h3 class="font-bold text-gray-800 text-sm leading-tight">Juegos</h3>
-          <p class="text-[11px] text-muted leading-tight mt-1">Juega y desarrolla</p>
+          <h3 class="font-bold text-gray-800 text-lg leading-tight">Juegos</h3>
+          <p class="text-sm text-muted leading-tight mt-1">Juega y desarrolla</p>
         </a>
         <a href="recursos.html"
-          class="bg-white rounded-[32px] p-4 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 group">
+          class="bg-white rounded-[32px] p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 group">
           <div
-            class="w-16 h-16 rounded-full bg-purple-500 text-white flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform border-b-4 border-purple-700">
+            class="w-20 h-20 rounded-full bg-purple-500 text-white flex items-center justify-center text-3xl mb-3 group-hover:scale-110 transition-transform border-b-4 border-purple-700">
             <i class="fa-solid fa-book-open"></i>
           </div>
-          <h3 class="font-bold text-gray-800 text-sm leading-tight">Recursos</h3>
-          <p class="text-[11px] text-muted leading-tight mt-1">Materiales para el aula</p>
+          <h3 class="font-bold text-gray-800 text-lg leading-tight">Recursos</h3>
+          <p class="text-sm text-muted leading-tight mt-1">Materiales para el aula</p>
         </a>
         <a href="videos.html"
-          class="bg-white rounded-[32px] p-4 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 group">
+          class="bg-white rounded-[32px] p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 group">
           <div
-            class="w-16 h-16 rounded-full bg-rose-400 text-white flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform border-b-4 border-rose-500">
+            class="w-20 h-20 rounded-full bg-rose-400 text-white flex items-center justify-center text-3xl mb-3 group-hover:scale-110 transition-transform border-b-4 border-rose-500">
             <i class="fa-solid fa-circle-play"></i>
           </div>
-          <h3 class="font-bold text-gray-800 text-sm leading-tight">Videos</h3>
-          <p class="text-[11px] text-muted leading-tight mt-1">Canta y aprende</p>
+          <h3 class="font-bold text-gray-800 text-lg leading-tight">Videos</h3>
+          <p class="text-sm text-muted leading-tight mt-1">Canta y aprende</p>
         </a>
         <a href="vocales.html"
-          class="bg-white rounded-[32px] p-4 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 group">
+          class="bg-white rounded-[32px] p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 group">
           <div
-            class="w-16 h-16 rounded-full bg-pink-400 text-white flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform border-b-4 border-pink-500">
+            class="w-20 h-20 rounded-full bg-pink-400 text-white flex items-center justify-center text-3xl mb-3 group-hover:scale-110 transition-transform border-b-4 border-pink-500">
             <i class="fa-solid fa-font"></i>
           </div>
-          <h3 class="font-bold text-gray-800 text-sm leading-tight">Vocales</h3>
-          <p class="text-[11px] text-muted leading-tight mt-1">Conoce y traza</p>
+          <h3 class="font-bold text-gray-800 text-lg leading-tight">Vocales</h3>
+          <p class="text-sm text-muted leading-tight mt-1">Conoce y traza</p>
         </a>
         <a href="numeros.html"
-          class="bg-white rounded-[32px] p-4 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 group">
+          class="bg-white rounded-[32px] p-5 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 group">
           <div
-            class="w-16 h-16 rounded-full bg-green-500 text-white flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform border-b-4 border-green-600">
+            class="w-20 h-20 rounded-full bg-green-500 text-white flex items-center justify-center text-3xl mb-3 group-hover:scale-110 transition-transform border-b-4 border-green-600">
             <i class="fa-solid fa-hashtag"></i>
           </div>
-          <h3 class="font-bold text-gray-800 text-sm leading-tight">Números</h3>
-          <p class="text-[11px] text-muted leading-tight mt-1">Cuenta y traza 1-10</p>
+          <h3 class="font-bold text-gray-800 text-lg leading-tight">Números</h3>
+          <p class="text-sm text-muted leading-tight mt-1">Cuenta y traza 1-10</p>
         </a>
       </div>
     </section>
@@ -309,20 +344,15 @@
       <div class="flex items-center gap-4 text-sm opacity-95 text-center md:text-left">
         <i class="fa-solid fa-star text-yellow-400 text-2xl"></i>
         <div>
-          <p class="font-bold">MotriKids © 2025 | Unidad Educativa Ecuatoriana Austriaca</p>
+          <p class="font-bold">MotriKids © 2026 | Unidad Educativa Ecuatoriana Austriaca</p>
           <p class="text-purple-200">Aprender, crecer y crear juntos.</p>
         </div>
       </div>
       <div class="text-sm text-purple-200 flex items-center gap-2 font-medium text-center">
         <i class="fa-solid fa-heart text-secondary"></i> Con amor, dedicación y paciencia todo es posible.
       </div>
-      <div class="flex gap-4 text-xl">
-        <a class="hover:text-purple-300 transition-colors" href="#" aria-label="Facebook"><i
-            class="fa-brands fa-facebook"></i></a>
-        <a class="hover:text-purple-300 transition-colors" href="#" aria-label="Instagram"><i
-            class="fa-brands fa-instagram"></i></a>
-        <a class="hover:text-purple-300 transition-colors" href="videos.html" aria-label="YouTube"><i
-            class="fa-brands fa-youtube"></i></a>
+      <div class="flex gap-1 text-xl">
+        <a class="w-11 h-11 inline-flex items-center justify-center hover:text-purple-300 transition-colors" href="videos.html" aria-label="Videos"><i class="fa-brands fa-youtube"></i></a>
       </div>
     </div>
   </footer>
