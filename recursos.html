@@ -482,6 +482,8 @@
       </div>
     </section>
 
+    <p id="catalogoVacio" class="hidden text-center text-muted font-medium py-10">No encontramos fichas con esa búsqueda. Prueba con otra palabra.</p>
+
   </main>
 
 
@@ -630,9 +632,9 @@
   <!-- CONTENEDOR EXCLUSIVO PARA IMPRESIÓN (A4 LIMPIO) -->
   <div id="printContainer" class="hidden">
     <!-- El contenido de la ficha para imprimir se inyecta dinámicamente aquí -->
+    <p style="font-family:'Quicksand',sans-serif; font-size:18px; font-weight:700; text-align:center; padding-top:40px;">Para imprimir una ficha, pulsa «Imprimir ficha A4» en la actividad que elijas.</p>
   </div>
 
-    <p style="font-family:'Quicksand',sans-serif; font-size:18px; font-weight:700; text-align:center; padding-top:40px;">Para imprimir una ficha, pulsa «Imprimir ficha A4» en la actividad que elijas.</p>
 
   <!-- Footer Escolar -->
   <footer class="bg-purple-700 text-white py-8 px-6 mt-16">
@@ -1086,6 +1088,11 @@
     // ==============================================================
     // RENDERIZADO DEL CATÁLOGO DE TARJETAS (PORTADA 100% FIEL)
     // ==============================================================
+    // Busca sin distinguir mayúsculas ni tildes: "arcoiris" encuentra "Arcoíris"
+    function normalizarTexto(texto) {
+      return texto.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    }
+
     function renderizarCatalogo(filtro = 'todas', busqueda = '') {
       const grids = {
         grafomotricidad: document.getElementById('grid-grafomotricidad'),
@@ -1096,7 +1103,8 @@
 
       Object.values(grids).forEach(g => { if (g) g.innerHTML = ''; });
 
-      const term = busqueda.trim().toLowerCase();
+      const term = normalizarTexto(busqueda.trim());
+      let visibles = 0;
       const counts = { todas: 0, grafomotricidad: 0, laberintos: 0, vocales_numeros: 0, recorte_formas: 0 };
 
       Object.values(ACTIVIDADES).forEach(act => {
@@ -1114,14 +1122,15 @@
         if (filtro !== 'todas' && act.categoria !== filtro) return;
 
         if (term) {
-          const match = act.titulo.toLowerCase().includes(term) ||
-            act.descripcion.toLowerCase().includes(term) ||
-            act.tag.toLowerCase().includes(term);
+          const match = normalizarTexto(act.titulo).includes(term) ||
+            normalizarTexto(act.descripcion).includes(term) ||
+            normalizarTexto(act.tag).includes(term);
           if (!match) return;
         }
 
         const grid = grids[act.categoria];
         if (!grid) return;
+        visibles++;
 
         const card = document.createElement('article');
         card.className = 'bg-white rounded-[32px] p-4 sm:p-5 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 border border-purple-100 flex flex-col justify-between group';
@@ -1192,6 +1201,8 @@
           sec.classList.add('hidden');
         }
       });
+
+      document.getElementById('catalogoVacio')?.classList.toggle('hidden', visibles > 0);
     }
 
     let currentFilter = 'todas';
@@ -1225,6 +1236,7 @@
     let currentColor = '#7c3aed';
     let currentSize = 16;
     let isEraser = false;
+    let lastPoint = null;
 
     // Efectos de Sonido Nativos (Web Audio API)
     let audioCtx = null;
@@ -1367,6 +1379,7 @@
       }
       ctx.lineTo(pos.x + 0.1, pos.y + 0.1);
       ctx.stroke();
+      lastPoint = pos;
     }
 
     function drawMove(e) {
@@ -1374,14 +1387,17 @@
       moverMirillaPuntero(pos);
 
       if (!isDrawing) return;
+      // Solo se pinta el tramo nuevo: repintar todo el trazo se vuelve lento en tabletas
+      ctx.beginPath();
+      ctx.moveTo(lastPoint.x, lastPoint.y);
       ctx.lineTo(pos.x, pos.y);
       ctx.stroke();
+      lastPoint = pos;
     }
 
     function endDraw(e) {
       if (!isDrawing) return;
       isDrawing = false;
-      ctx.closePath();
     }
 
     // Control de Modal
@@ -1399,6 +1415,8 @@
 
       const modal = document.getElementById('drawModal');
       modal.classList.remove('hidden');
+      // Cada ficha empieza con el crayón, aunque la anterior terminara con el borrador
+      if (isEraser) activarCrayon(currentColor);
 
       setTimeout(() => {
         initCanvas();
@@ -1415,7 +1433,7 @@
       hideReticle();
     }
 
-    function seleccionarColor(hex) {
+    function activarCrayon(hex) {
       isEraser = false;
       currentColor = hex;
       document.getElementById('eraserBtn')?.classList.remove('bg-purple-100', 'border-purple-400');
@@ -1425,6 +1443,10 @@
       });
       document.querySelector(`.color-btn[onclick*="${hex}"]`)?.classList.add('ring-2', 'ring-offset-2', 'ring-purple-600');
       actualizarMirillaPuntero();
+    }
+
+    function seleccionarColor(hex) {
+      activarCrayon(hex);
       playSound('pop');
     }
 
@@ -1566,6 +1588,9 @@
       </div>
     `;
 
+      // El navegador propone el título de la página como nombre del PDF
+      document.title = `MotriKids - ${act.titulo}`;
+
       setTimeout(() => {
         window.print();
       }, 150);
@@ -1575,6 +1600,8 @@
     window.addEventListener('afterprint', () => {
       document.title = tituloPagina;
     });
+
+    // Inicializar catálogo al cargar
     renderizarCatalogo();
 
     // Redimensionado de ventana
@@ -1587,8 +1614,4 @@
 
 </body>
 
-</html>      // El navegador propone el título de la página como nombre del PDF
-      document.title = `MotriKids - ${act.titulo}`;
-
-
-    // Inicializar catálogo al cargar
+</html>
