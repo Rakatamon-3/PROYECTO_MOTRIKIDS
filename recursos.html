@@ -1087,6 +1087,36 @@
     // ==============================================================
     // RENDERIZADO DEL CATÁLOGO DE TARJETAS (PORTADA 100% FIEL)
     // ==============================================================
+    // Trazos de los números: se abren desde numeros.html y no forman parte del catálogo
+    const TRAZOS_NUMEROS = {
+      1: 'M 340 150 L 400 90 L 400 410',
+      2: 'M 300 170 C 300 70, 500 70, 500 180 C 500 260, 340 320, 300 410 L 510 410',
+      3: 'M 310 130 C 360 70, 500 80, 490 170 C 485 230, 420 245, 390 245 C 440 245, 505 265, 500 335 C 495 425, 350 435, 300 370',
+      4: 'M 450 410 L 450 90 L 290 310 L 530 310',
+      5: 'M 490 95 L 330 95 L 315 235 C 370 195, 500 210, 500 310 C 500 420, 350 430, 300 370',
+      6: 'M 470 110 C 380 90, 300 180, 300 300 C 300 380, 350 415, 400 415 C 460 415, 500 370, 500 315 C 500 260, 455 225, 400 225 C 350 225, 305 260, 300 300',
+      7: 'M 300 95 L 500 95 L 370 410',
+      8: 'M 400 245 C 340 245, 315 210, 315 170 C 315 120, 355 90, 400 90 C 445 90, 485 120, 485 170 C 485 210, 460 245, 400 245 C 335 245, 300 285, 300 330 C 300 385, 345 415, 400 415 C 455 415, 500 385, 500 330 C 500 285, 465 245, 400 245',
+      9: 'M 495 180 C 495 125, 450 90, 400 90 C 345 90, 305 130, 305 180 C 305 235, 350 265, 400 265 C 450 265, 495 235, 495 180 C 495 290, 470 410, 340 410',
+      10: 'M 220 150 L 280 90 L 280 410 M 510 90 C 570 90, 610 160, 610 250 C 610 340, 570 410, 510 410 C 450 410, 410 340, 410 250 C 410 160, 450 90, 510 90'
+    };
+
+    function obtenerActividad(key) {
+      if (ACTIVIDADES[key]) return ACTIVIDADES[key];
+      const numero = key.startsWith('trazo_') ? key.slice(6) : null;
+      const trazo = TRAZOS_NUMEROS[numero];
+      if (!trazo) return null;
+      const inicios = [...trazo.matchAll(/M (\d+) (\d+)/g)]
+        .map(m => `<circle cx="${m[1]}" cy="${m[2]}" r="13" fill="#22c55e"/>`).join('');
+      return {
+        id: key,
+        titulo: `Traza el número ${numero}`,
+        instrucciones: 'Empieza en el punto verde y sigue la línea punteada con tu crayón.',
+        edad: 'Inicial 1 y 2',
+        svg: `<svg viewBox="0 0 800 500" class="w-full h-full" xmlns="http://www.w3.org/2000/svg"><path d="${trazo}" fill="none" stroke="#15803d" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 24"/>${inicios}</svg>`
+      };
+    }
+
     // Busca sin distinguir mayúsculas ni tildes: "arcoiris" encuentra "Arcoíris"
     function normalizarTexto(texto) {
       return texto.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -1401,7 +1431,7 @@
 
     // Control de Modal
     function abrirPizarra(key) {
-      const act = ACTIVIDADES[key];
+      const act = obtenerActividad(key);
       if (!act) return;
       currentActivityKey = key;
 
@@ -1430,6 +1460,8 @@
       modal.classList.add('hidden');
       currentActivityKey = null;
       hideReticle();
+      // Quien llegó desde Vocales o Números vuelve a esa página
+      if (abiertaDesdeEnlace && history.length > 1) history.back();
     }
 
     function activarCrayon(hex) {
@@ -1492,7 +1524,7 @@
 
     function descargarDibujo() {
       if (!canvas || !currentActivityKey) return;
-      const act = ACTIVIDADES[currentActivityKey];
+      const act = obtenerActividad(currentActivityKey);
 
       const offCanvas = document.createElement('canvas');
       offCanvas.width = 1200;
@@ -1530,7 +1562,7 @@
     // MOTOR DE IMPRESIÓN DIRECTA DE FICHAS DIDÁCTICAS (A4 LIMPIO)
     // ==============================================================
     function imprimirFichaDirecta(key) {
-      const act = ACTIVIDADES[key];
+      const act = obtenerActividad(key);
       if (!act) return;
 
       const printContainer = document.getElementById('printContainer');
@@ -1602,6 +1634,14 @@
 
     // Inicializar catálogo al cargar
     renderizarCatalogo();
+
+    // Enlace directo a una ficha, por ejemplo recursos.html?trazar=vocal_a_gigante
+    const fichaEnlazada = new URLSearchParams(location.search).get('trazar');
+    let abiertaDesdeEnlace = false;
+    if (fichaEnlazada && obtenerActividad(fichaEnlazada)) {
+      abiertaDesdeEnlace = true;
+      abrirPizarra(fichaEnlazada);
+    }
 
     // Redimensionado de ventana
     window.addEventListener('resize', () => {

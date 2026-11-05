@@ -16,10 +16,10 @@ Plataforma educativa web diseñada para potenciar el desarrollo de la **motricid
    - *Vocales y Números*: Trazos guiados del 1 al 10 y vocales mayúsculas/minúsculas.
    - *Recorte, Formas y Creatividad*: Siluetas para colorear, rasgar y recortar libremente.
    - *Pizarra Mágica Digital*: Canvas interactivo para pintar con el dedo o mouse con sincronización exacta y mirilla visual.
-3. **🎮 Juegos Interactivos (`juegos.html`)**: Mini-juegos educativos para ejercitar la precisión del clic, arrastre y reflejos.
+3. **🎮 Juegos en Línea (`juegos.html`)**: 23 juegos educativos de [Kodomi Club](https://kodomiclub.com/juegos) que se abren en otra pestaña, porque ese sitio no permite mostrarlos dentro de otras páginas.
 4. **📺 Videos Educativos (`videos.html`)**: Colección de videos seleccionados de YouTube organizados por categorías (Motricidad fina, Vocales, Números, Colores, Animales).
-5. **🔤 Vocales (`vocales.html`)**: Módulo interactivo dedicado al aprendizaje auditivo y fonético de las 5 vocales.
-6. **🔢 Números (`numeros.html`)**: Reconocimiento numérico, asociación de cantidades y conteo guiado.
+5. **🔤 Vocales (`vocales.html`)**: Las 5 vocales con lectura en voz alta y trazo en la pizarra digital.
+6. **🔢 Números (`numeros.html`)**: Los números del 1 al 10 con lectura en voz alta, conteo y trazo en la pizarra digital.
 
 ---
 

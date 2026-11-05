@@ -84,7 +84,7 @@
   <div class="max-w-7xl mx-auto flex flex-col items-center gap-4 relative z-10 text-center">
     <p class="text-[11px] md:text-xs font-bold tracking-widest uppercase text-purple-600 bg-white/70 px-4 py-1.5 rounded-full"><i class="fa-solid fa-hashtag mr-1"></i> MotriKids · Números</p>
     <h2 class="text-4xl md:text-5xl font-extrabold text-purple-700 tracking-tight">Los números del 1 al 10</h2>
-    <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl leading-relaxed">Traza cada número con el dedito y cuenta los animalitos y objetos de cada tarjeta.</p>
+    <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl leading-relaxed">Toca el número para escucharlo y pulsa «Trazar» para repasarlo con el dedo o el ratón.</p>
   </div>
   <div class="absolute top-8 left-6 md:left-10 text-yellow-400 text-2xl md:text-3xl opacity-60 float-slow"><i class="fa-solid fa-star"></i></div>
   <div class="absolute top-12 right-12 text-info text-lg opacity-60 float-fast"><i class="fa-solid fa-circle"></i></div>
@@ -103,62 +103,62 @@
 
   <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
     <article class="bg-white rounded-[32px] p-5 text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col items-center gap-3">
-      <div class="w-20 h-20 rounded-full bg-rose-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-rose-500">1</div>
-      <div class="w-full border-2 border-dashed border-gray-200 rounded-2xl py-1 text-4xl font-extrabold text-gray-300">1</div>
+      <button type="button" data-say="Uno. Una mariposa." aria-label="Escuchar el número 1" class="btn-squish relative w-20 h-20 rounded-full bg-rose-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-rose-500">1<span class="absolute -right-1 -bottom-1 w-7 h-7 rounded-full bg-white text-gray-700 text-xs flex items-center justify-center shadow" aria-hidden="true"><i class="fa-solid fa-volume-high"></i></span></button>
+      <a href="recursos.html?trazar=trazo_1" aria-label="Trazar el número 1 en la pizarra" class="w-full border-2 border-dashed border-gray-300 hover:border-gray-500 rounded-2xl py-1 text-gray-500 hover:text-gray-700 transition-colors flex flex-col items-center"><span class="text-4xl font-extrabold">1</span><span class="text-xs font-bold"><i class="fa-solid fa-pencil mr-1"></i>Trazar</span></a>
       <div class="flex flex-wrap justify-center gap-2 text-xs font-bold"><span class="bg-gray-50 px-3 py-1.5 rounded-full">🦋 Una mariposa</span></div>
     </article>
 
     <article class="bg-white rounded-[32px] p-5 text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col items-center gap-3">
-      <div class="w-20 h-20 rounded-full bg-sky-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-sky-500">2</div>
-      <div class="w-full border-2 border-dashed border-gray-200 rounded-2xl py-1 text-4xl font-extrabold text-gray-300">2</div>
+      <button type="button" data-say="Dos. Dos peces." aria-label="Escuchar el número 2" class="btn-squish relative w-20 h-20 rounded-full bg-sky-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-sky-500">2<span class="absolute -right-1 -bottom-1 w-7 h-7 rounded-full bg-white text-gray-700 text-xs flex items-center justify-center shadow" aria-hidden="true"><i class="fa-solid fa-volume-high"></i></span></button>
+      <a href="recursos.html?trazar=trazo_2" aria-label="Trazar el número 2 en la pizarra" class="w-full border-2 border-dashed border-gray-300 hover:border-gray-500 rounded-2xl py-1 text-gray-500 hover:text-gray-700 transition-colors flex flex-col items-center"><span class="text-4xl font-extrabold">2</span><span class="text-xs font-bold"><i class="fa-solid fa-pencil mr-1"></i>Trazar</span></a>
       <div class="flex flex-wrap justify-center gap-2 text-xs font-bold"><span class="bg-gray-50 px-3 py-1.5 rounded-full">🐟🐟 Dos peces</span></div>
     </article>
 
     <article class="bg-white rounded-[32px] p-5 text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col items-center gap-3">
-      <div class="w-20 h-20 rounded-full bg-yellow-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-yellow-500">3</div>
-      <div class="w-full border-2 border-dashed border-gray-200 rounded-2xl py-1 text-4xl font-extrabold text-gray-300">3</div>
+      <button type="button" data-say="Tres. Tres manzanas." aria-label="Escuchar el número 3" class="btn-squish relative w-20 h-20 rounded-full bg-yellow-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-yellow-500">3<span class="absolute -right-1 -bottom-1 w-7 h-7 rounded-full bg-white text-gray-700 text-xs flex items-center justify-center shadow" aria-hidden="true"><i class="fa-solid fa-volume-high"></i></span></button>
+      <a href="recursos.html?trazar=trazo_3" aria-label="Trazar el número 3 en la pizarra" class="w-full border-2 border-dashed border-gray-300 hover:border-gray-500 rounded-2xl py-1 text-gray-500 hover:text-gray-700 transition-colors flex flex-col items-center"><span class="text-4xl font-extrabold">3</span><span class="text-xs font-bold"><i class="fa-solid fa-pencil mr-1"></i>Trazar</span></a>
       <div class="flex flex-wrap justify-center gap-2 text-xs font-bold"><span class="bg-gray-50 px-3 py-1.5 rounded-full">🍎🍎🍎 Tres manzanas</span></div>
     </article>
 
     <article class="bg-white rounded-[32px] p-5 text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col items-center gap-3">
-      <div class="w-20 h-20 rounded-full bg-emerald-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-emerald-500">4</div>
-      <div class="w-full border-2 border-dashed border-gray-200 rounded-2xl py-1 text-4xl font-extrabold text-gray-300">4</div>
+      <button type="button" data-say="Cuatro. Cuatro pollitos." aria-label="Escuchar el número 4" class="btn-squish relative w-20 h-20 rounded-full bg-emerald-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-emerald-500">4<span class="absolute -right-1 -bottom-1 w-7 h-7 rounded-full bg-white text-gray-700 text-xs flex items-center justify-center shadow" aria-hidden="true"><i class="fa-solid fa-volume-high"></i></span></button>
+      <a href="recursos.html?trazar=trazo_4" aria-label="Trazar el número 4 en la pizarra" class="w-full border-2 border-dashed border-gray-300 hover:border-gray-500 rounded-2xl py-1 text-gray-500 hover:text-gray-700 transition-colors flex flex-col items-center"><span class="text-4xl font-extrabold">4</span><span class="text-xs font-bold"><i class="fa-solid fa-pencil mr-1"></i>Trazar</span></a>
       <div class="flex flex-wrap justify-center gap-2 text-xs font-bold"><span class="bg-gray-50 px-3 py-1.5 rounded-full">🐤🐤🐤🐤 Cuatro pollitos</span></div>
     </article>
 
     <article class="bg-white rounded-[32px] p-5 text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col items-center gap-3">
-      <div class="w-20 h-20 rounded-full bg-purple-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-purple-500">5</div>
-      <div class="w-full border-2 border-dashed border-gray-200 rounded-2xl py-1 text-4xl font-extrabold text-gray-300">5</div>
+      <button type="button" data-say="Cinco. Cinco estrellas." aria-label="Escuchar el número 5" class="btn-squish relative w-20 h-20 rounded-full bg-purple-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-purple-500">5<span class="absolute -right-1 -bottom-1 w-7 h-7 rounded-full bg-white text-gray-700 text-xs flex items-center justify-center shadow" aria-hidden="true"><i class="fa-solid fa-volume-high"></i></span></button>
+      <a href="recursos.html?trazar=trazo_5" aria-label="Trazar el número 5 en la pizarra" class="w-full border-2 border-dashed border-gray-300 hover:border-gray-500 rounded-2xl py-1 text-gray-500 hover:text-gray-700 transition-colors flex flex-col items-center"><span class="text-4xl font-extrabold">5</span><span class="text-xs font-bold"><i class="fa-solid fa-pencil mr-1"></i>Trazar</span></a>
       <div class="flex flex-wrap justify-center gap-2 text-xs font-bold"><span class="bg-gray-50 px-3 py-1.5 rounded-full">⭐⭐⭐⭐⭐ Cinco estrellas</span></div>
     </article>
 
     <article class="bg-white rounded-[32px] p-5 text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col items-center gap-3">
-      <div class="w-20 h-20 rounded-full bg-rose-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-rose-500">6</div>
-      <div class="w-full border-2 border-dashed border-gray-200 rounded-2xl py-1 text-4xl font-extrabold text-gray-300">6</div>
+      <button type="button" data-say="Seis. Seis mariquitas." aria-label="Escuchar el número 6" class="btn-squish relative w-20 h-20 rounded-full bg-rose-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-rose-500">6<span class="absolute -right-1 -bottom-1 w-7 h-7 rounded-full bg-white text-gray-700 text-xs flex items-center justify-center shadow" aria-hidden="true"><i class="fa-solid fa-volume-high"></i></span></button>
+      <a href="recursos.html?trazar=trazo_6" aria-label="Trazar el número 6 en la pizarra" class="w-full border-2 border-dashed border-gray-300 hover:border-gray-500 rounded-2xl py-1 text-gray-500 hover:text-gray-700 transition-colors flex flex-col items-center"><span class="text-4xl font-extrabold">6</span><span class="text-xs font-bold"><i class="fa-solid fa-pencil mr-1"></i>Trazar</span></a>
       <div class="flex flex-wrap justify-center gap-2 text-xs font-bold"><span class="bg-gray-50 px-3 py-1.5 rounded-full">🐞🐞🐞🐞🐞🐞 Seis mariquitas</span></div>
     </article>
 
     <article class="bg-white rounded-[32px] p-5 text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col items-center gap-3">
-      <div class="w-20 h-20 rounded-full bg-sky-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-sky-500">7</div>
-      <div class="w-full border-2 border-dashed border-gray-200 rounded-2xl py-1 text-4xl font-extrabold text-gray-300">7</div>
+      <button type="button" data-say="Siete. Siete flores." aria-label="Escuchar el número 7" class="btn-squish relative w-20 h-20 rounded-full bg-sky-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-sky-500">7<span class="absolute -right-1 -bottom-1 w-7 h-7 rounded-full bg-white text-gray-700 text-xs flex items-center justify-center shadow" aria-hidden="true"><i class="fa-solid fa-volume-high"></i></span></button>
+      <a href="recursos.html?trazar=trazo_7" aria-label="Trazar el número 7 en la pizarra" class="w-full border-2 border-dashed border-gray-300 hover:border-gray-500 rounded-2xl py-1 text-gray-500 hover:text-gray-700 transition-colors flex flex-col items-center"><span class="text-4xl font-extrabold">7</span><span class="text-xs font-bold"><i class="fa-solid fa-pencil mr-1"></i>Trazar</span></a>
       <div class="flex flex-wrap justify-center gap-2 text-xs font-bold"><span class="bg-gray-50 px-3 py-1.5 rounded-full">🌷🌷🌷🌷🌷🌷🌷 Siete flores</span></div>
     </article>
 
     <article class="bg-white rounded-[32px] p-5 text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col items-center gap-3">
-      <div class="w-20 h-20 rounded-full bg-yellow-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-yellow-500">8</div>
-      <div class="w-full border-2 border-dashed border-gray-200 rounded-2xl py-1 text-4xl font-extrabold text-gray-300">8</div>
+      <button type="button" data-say="Ocho. Ocho conchas." aria-label="Escuchar el número 8" class="btn-squish relative w-20 h-20 rounded-full bg-yellow-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-yellow-500">8<span class="absolute -right-1 -bottom-1 w-7 h-7 rounded-full bg-white text-gray-700 text-xs flex items-center justify-center shadow" aria-hidden="true"><i class="fa-solid fa-volume-high"></i></span></button>
+      <a href="recursos.html?trazar=trazo_8" aria-label="Trazar el número 8 en la pizarra" class="w-full border-2 border-dashed border-gray-300 hover:border-gray-500 rounded-2xl py-1 text-gray-500 hover:text-gray-700 transition-colors flex flex-col items-center"><span class="text-4xl font-extrabold">8</span><span class="text-xs font-bold"><i class="fa-solid fa-pencil mr-1"></i>Trazar</span></a>
       <div class="flex flex-wrap justify-center gap-2 text-xs font-bold"><span class="bg-gray-50 px-3 py-1.5 rounded-full">🐚🐚🐚🐚🐚🐚🐚🐚 Ocho conchas</span></div>
     </article>
 
     <article class="bg-white rounded-[32px] p-5 text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col items-center gap-3">
-      <div class="w-20 h-20 rounded-full bg-emerald-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-emerald-500">9</div>
-      <div class="w-full border-2 border-dashed border-gray-200 rounded-2xl py-1 text-4xl font-extrabold text-gray-300">9</div>
+      <button type="button" data-say="Nueve. Nueve globos." aria-label="Escuchar el número 9" class="btn-squish relative w-20 h-20 rounded-full bg-emerald-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-emerald-500">9<span class="absolute -right-1 -bottom-1 w-7 h-7 rounded-full bg-white text-gray-700 text-xs flex items-center justify-center shadow" aria-hidden="true"><i class="fa-solid fa-volume-high"></i></span></button>
+      <a href="recursos.html?trazar=trazo_9" aria-label="Trazar el número 9 en la pizarra" class="w-full border-2 border-dashed border-gray-300 hover:border-gray-500 rounded-2xl py-1 text-gray-500 hover:text-gray-700 transition-colors flex flex-col items-center"><span class="text-4xl font-extrabold">9</span><span class="text-xs font-bold"><i class="fa-solid fa-pencil mr-1"></i>Trazar</span></a>
       <div class="flex flex-wrap justify-center gap-2 text-xs font-bold"><span class="bg-gray-50 px-3 py-1.5 rounded-full">🎈🎈🎈🎈🎈🎈🎈🎈🎈 Nueve globos</span></div>
     </article>
 
     <article class="bg-white rounded-[32px] p-5 text-center shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col items-center gap-3">
-      <div class="w-20 h-20 rounded-full bg-purple-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-purple-500">10</div>
-      <div class="w-full border-2 border-dashed border-gray-200 rounded-2xl py-1 text-4xl font-extrabold text-gray-300">10</div>
+      <button type="button" data-say="Diez. Diez deditos." aria-label="Escuchar el número 10" class="btn-squish relative w-20 h-20 rounded-full bg-purple-400 text-white flex items-center justify-center text-4xl font-extrabold border-b-4 border-purple-500">10<span class="absolute -right-1 -bottom-1 w-7 h-7 rounded-full bg-white text-gray-700 text-xs flex items-center justify-center shadow" aria-hidden="true"><i class="fa-solid fa-volume-high"></i></span></button>
+      <a href="recursos.html?trazar=trazo_10" aria-label="Trazar el número 10 en la pizarra" class="w-full border-2 border-dashed border-gray-300 hover:border-gray-500 rounded-2xl py-1 text-gray-500 hover:text-gray-700 transition-colors flex flex-col items-center"><span class="text-4xl font-extrabold">10</span><span class="text-xs font-bold"><i class="fa-solid fa-pencil mr-1"></i>Trazar</span></a>
       <div class="flex flex-wrap justify-center gap-2 text-xs font-bold"><span class="bg-gray-50 px-3 py-1.5 rounded-full">🖐️🖐️ Diez deditos</span></div>
     </article>
   </section>
@@ -189,6 +189,18 @@
     const m=document.getElementById('mobileNav');
     m.classList.toggle('hidden');
     m.classList.toggle('flex');
+  });
+
+  // Lee en voz alta la vocal o el número al tocar su círculo
+  document.querySelectorAll('[data-say]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if (!('speechSynthesis' in window)) return;
+      speechSynthesis.cancel();
+      const frase = new SpeechSynthesisUtterance(btn.dataset.say);
+      frase.lang = 'es';
+      frase.rate = 0.85;
+      speechSynthesis.speak(frase);
+    });
   });
 </script>
 </body>
