@@ -14,7 +14,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
     body {
-      background-color: #f7f6ff;
+      background-color: #fcfcff;
       color: #333333;
       position: relative;
     }
@@ -50,7 +50,7 @@
     }
 
     .cloud-divider .shape-fill {
-      fill: #f7f6ff;
+      fill: #fcfcff;
     }
 
     .btn-squish:active {
@@ -490,8 +490,9 @@
 
         <div class="flex items-center gap-2">
           <button onclick="imprimirDesdeModal()" title="Imprimir esta ficha"
-            class="btn-squish bg-white hover:bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold min-h-[44px] px-3 py-1.5 rounded-xl shadow-sm hidden sm:inline-flex items-center gap-1.5 transition-all">
-            <i class="fa-solid fa-print"></i> Imprimir ficha A4
+            class="btn-squish bg-white hover:bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold min-h-[44px] px-3 py-1.5 rounded-xl shadow-sm inline-flex items-center justify-center min-w-[44px] gap-1.5 transition-all"
+            aria-label="Imprimir ficha A4">
+            <i class="fa-solid fa-print"></i> <span class="hidden sm:inline">Imprimir ficha A4</span>
           </button>
           <button onclick="cerrarPizarra()"
             class="w-11 h-11 rounded-xl bg-white hover:bg-red-50 text-gray-500 hover:text-red-500 border border-gray-200 flex items-center justify-center transition-all"
@@ -1436,8 +1437,9 @@
       modal.classList.add('hidden');
       currentActivityKey = null;
       hideReticle();
-      // Quien llegó desde Vocales o Números vuelve a esa página
-      if (abiertaDesdeEnlace && history.length > 1) history.back();
+      // Quien llegó desde Vocales o Números vuelve a esa página, nunca a otro sitio
+      const vieneDelSitio = location.protocol === 'file:' || document.referrer.startsWith(location.origin);
+      if (abiertaDesdeEnlace && vieneDelSitio && history.length > 1) history.back();
     }
 
     function activarCrayon(hex) {

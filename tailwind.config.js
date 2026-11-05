@@ -11,7 +11,7 @@ module.exports = {
         success: '#baffc9',
         warning: '#ffffba',
         info: '#bae1ff',
-        surface: '#f7f6ff',
+        surface: '#fcfcff',
         text: '#333333',
         muted: '#666666',
         purple: { 400: '#9b88ed', 500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9', 800: '#5b21b6' }
