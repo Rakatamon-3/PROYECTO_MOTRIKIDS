@@ -29,7 +29,7 @@ Plataforma educativa web diseñada para potenciar el desarrollo de la **motricid
 - **JavaScript (Vanilla JS)**
 - **HTML5 Canvas API** (Pizarra mágica de dibujo digital)
 - **Gráficos vectoriales SVG** integrados
-- **Tailwind CSS** (vía CDN)
+- **Tailwind CSS** (compilado en `assets/tailwind.css`)
 - **Font Awesome 6** (Iconografía infantil)
 - **Google Fonts** (Tipografía Quicksand)
 
@@ -48,3 +48,12 @@ python -m http.server 8000
 ```
 
 Las miniaturas de los videos se ven en ambos casos, pero para reproducirlos dentro de la página hace falta un servidor (`http://` o `https://`). YouTube exige el encabezado `Referer` y los archivos abiertos directamente (`file://`) no lo envían, así que en ese caso cada video se abre en YouTube en una pestaña nueva.
+
+## 🎨 Estilos
+
+Los estilos de Tailwind ya están compilados en `assets/tailwind.css`, así que el sitio no necesita ningún paso previo para funcionar. Si agregas o cambias clases de Tailwind en los `.html`, vuelve a compilar:
+
+```bash
+npm install
+npm run build:css
+```
