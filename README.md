@@ -37,7 +37,7 @@ Plataforma educativa web diseñada para potenciar el desarrollo de la **motricid
 
 ## 💻 Ejecución Local
 
-Para visualizar el proyecto localmente, simplemente abre cualquiera de los archivos `.html` (por ejemplo `index.html`) en cualquier navegador web moderno o utiliza un servidor local estático:
+Para visualizar el proyecto localmente, abre cualquiera de los archivos `.html` (por ejemplo `index.html`) en un navegador web moderno o utiliza un servidor local estático:
 
 ```bash
 # Con Node.js
@@ -46,3 +46,5 @@ npx serve .
 # O con Python
 python -m http.server 8000
 ```
+
+Las miniaturas de los videos se ven en ambos casos, pero para reproducirlos dentro de la página hace falta un servidor (`http://` o `https://`). YouTube exige el encabezado `Referer` y los archivos abiertos directamente (`file://`) no lo envían, así que en ese caso cada video se abre en YouTube en una pestaña nueva.

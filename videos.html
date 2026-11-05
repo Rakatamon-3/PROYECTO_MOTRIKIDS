@@ -49,6 +49,14 @@
     .float-slow{animation:floatY 4s ease-in-out infinite}
     .float-fast{animation:floatY 3s ease-in-out infinite}
     .twinkle{animation:twinkle 2.2s ease-in-out infinite}
+    /* Miniatura clicable: el reproductor de YouTube solo se carga al pulsarla */
+    .video-facade{position:relative;display:block;width:100%;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:linear-gradient(135deg,#a78bfa,#f472b6)}
+    .video-facade img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+    .video-facade:hover img{transform:scale(1.04)}
+    .video-facade:focus-visible{outline:4px solid #7c3aed;outline-offset:-4px}
+    .video-facade-play{position:absolute;top:50%;left:50%;width:68px;height:68px;margin:-34px 0 0 -34px;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:rgba(255,255,255,.95);color:#7c3aed;font-size:26px;padding-left:4px;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:transform .2s ease}
+    .video-facade:hover .video-facade-play{transform:scale(1.12)}
+    @media (prefers-reduced-motion:reduce){.video-facade img,.video-facade-play{transition:none}.video-facade:hover img,.video-facade:hover .video-facade-play{transform:none}}
   </style>
 </head>
 <body class="font-sans antialiased text-text bg-surface">
@@ -113,7 +121,7 @@
 
   <section id="videoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/DdED0CIRRS0" title="Pequeño Pez - Palo palito (Juego con dedos)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="DdED0CIRRS0" data-title="Pequeño Pez - Palo palito (Juego con dedos)" aria-label="Reproducir: Pequeño Pez - Palo palito (Juego con dedos)"><img src="https://i.ytimg.com/vi/DdED0CIRRS0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Palo palito · Juego con dedos</h3>
@@ -123,7 +131,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/F8sFFTJgyqw" title="Pequeño Pez - Pez tiburón (Juego de manos)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="F8sFFTJgyqw" data-title="Pequeño Pez - Pez tiburón (Juego de manos)" aria-label="Reproducir: Pequeño Pez - Pez tiburón (Juego de manos)"><img src="https://i.ytimg.com/vi/F8sFFTJgyqw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Pez tiburón · Juego de manos</h3>
@@ -133,7 +141,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/no_Z3VUuKs4" title="Abro y cierro - Canción infantil" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="no_Z3VUuKs4" data-title="Abro y cierro - Canción infantil" aria-label="Reproducir: Abro y cierro - Canción infantil"><img src="https://i.ytimg.com/vi/no_Z3VUuKs4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Abro y cierro · Canción infantil</h3>
@@ -143,7 +151,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/trSM6vdhbE0" title="Dedos rítmicos - Juego musical de coordinación" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="trSM6vdhbE0" data-title="Dedos rítmicos - Juego musical de coordinación" aria-label="Reproducir: Dedos rítmicos - Juego musical de coordinación"><img src="https://i.ytimg.com/vi/trSM6vdhbE0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Dedos rítmicos · Juego musical</h3>
@@ -153,7 +161,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/qXwUGm7odY0" title="Pequeño Pez - Con mis manos" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="qXwUGm7odY0" data-title="Pequeño Pez - Con mis manos" aria-label="Reproducir: Pequeño Pez - Con mis manos"><img src="https://i.ytimg.com/vi/qXwUGm7odY0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Con mis manos</h3>
@@ -163,7 +171,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/KwNNgdhXNSw" title="Mis dos dedos caminan - Canción de motricidad fina" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="KwNNgdhXNSw" data-title="Mis dos dedos caminan - Canción de motricidad fina" aria-label="Reproducir: Mis dos dedos caminan - Canción de motricidad fina"><img src="https://i.ytimg.com/vi/KwNNgdhXNSw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Mis dos dedos caminan</h3>
@@ -173,7 +181,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/pHyYn0fnRII" title="Pequeño Pez - En mi casa (Juego de manos)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="pHyYn0fnRII" data-title="Pequeño Pez - En mi casa (Juego de manos)" aria-label="Reproducir: Pequeño Pez - En mi casa (Juego de manos)"><img src="https://i.ytimg.com/vi/pHyYn0fnRII/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">En mi casa · Juego de manos</h3>
@@ -183,7 +191,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/1zP0Vnhd95E" title="Pequeño Pez - Me muevo (Canción para despertar el cuerpo)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="1zP0Vnhd95E" data-title="Pequeño Pez - Me muevo (Canción para despertar el cuerpo)" aria-label="Reproducir: Pequeño Pez - Me muevo (Canción para despertar el cuerpo)"><img src="https://i.ytimg.com/vi/1zP0Vnhd95E/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Me muevo · Despertar el cuerpo</h3>
@@ -193,7 +201,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/zlot8JGOonM" title="Pequeño Pez - Sube y baja (Juego corporal)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="zlot8JGOonM" data-title="Pequeño Pez - Sube y baja (Juego corporal)" aria-label="Reproducir: Pequeño Pez - Sube y baja (Juego corporal)"><img src="https://i.ytimg.com/vi/zlot8JGOonM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Sube y baja · Juego corporal</h3>
@@ -203,7 +211,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/LIhkeaGuUJQ" title="Los Meñiques De La Casa - Baila A Lo Loco" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="LIhkeaGuUJQ" data-title="Los Meñiques De La Casa - Baila A Lo Loco" aria-label="Reproducir: Los Meñiques De La Casa - Baila A Lo Loco"><img src="https://i.ytimg.com/vi/LIhkeaGuUJQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Baila a lo loco</h3>
@@ -213,7 +221,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/jUcQj90mJEI" title="Chikiti Pop - El baile del cuerpo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="jUcQj90mJEI" data-title="Chikiti Pop - El baile del cuerpo" aria-label="Reproducir: Chikiti Pop - El baile del cuerpo"><img src="https://i.ytimg.com/vi/jUcQj90mJEI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">El baile del cuerpo</h3>
@@ -223,7 +231,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/nWOCo_VlT78" title="Chikiti Pop - La Mané" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="nWOCo_VlT78" data-title="Chikiti Pop - La Mané" aria-label="Reproducir: Chikiti Pop - La Mané"><img src="https://i.ytimg.com/vi/nWOCo_VlT78/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">La Mané · Juego de manos y cuerpo</h3>
@@ -233,7 +241,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/3kgbBaKQgCk" title="Luli Pampín - Aram Sam Sam" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="3kgbBaKQgCk" data-title="Luli Pampín - Aram Sam Sam" aria-label="Reproducir: Luli Pampín - Aram Sam Sam"><img src="https://i.ytimg.com/vi/3kgbBaKQgCk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Aram Sam Sam</h3>
@@ -243,7 +251,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/cgEnBkmcpuQ" title="CantaJuego - Soy Una Taza" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="cgEnBkmcpuQ" data-title="CantaJuego - Soy Una Taza" aria-label="Reproducir: CantaJuego - Soy Una Taza"><img src="https://i.ytimg.com/vi/cgEnBkmcpuQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Soy una taza</h3>
@@ -253,7 +261,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/YzEO5rq2ZsM" title="Canta Maestra - Muévete (Canción infantil para bailar)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="YzEO5rq2ZsM" data-title="Canta Maestra - Muévete (Canción infantil para bailar)" aria-label="Reproducir: Canta Maestra - Muévete (Canción infantil para bailar)"><img src="https://i.ytimg.com/vi/YzEO5rq2ZsM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Muévete · Para bailar</h3>
@@ -263,7 +271,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/1x5OVLEqh4Y" title="Canta Maestra - Mis manos son (Rock)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="1x5OVLEqh4Y" data-title="Canta Maestra - Mis manos son (Rock)" aria-label="Reproducir: Canta Maestra - Mis manos son (Rock)"><img src="https://i.ytimg.com/vi/1x5OVLEqh4Y/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Mis manos son · Rock infantil</h3>
@@ -273,7 +281,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/CXx3wjd5SaE" title="Canta Maestra - ¿Qué día es hoy? (Días de la semana)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="CXx3wjd5SaE" data-title="Canta Maestra - ¿Qué día es hoy? (Días de la semana)" aria-label="Reproducir: Canta Maestra - ¿Qué día es hoy? (Días de la semana)"><img src="https://i.ytimg.com/vi/CXx3wjd5SaE/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">¿Qué día es hoy? · Días de la semana</h3>
@@ -283,7 +291,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/iC-9PKGI4Mk" title="Canta Maestra - Hola, hola con las manos (Canción de saludo)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="iC-9PKGI4Mk" data-title="Canta Maestra - Hola, hola con las manos (Canción de saludo)" aria-label="Reproducir: Canta Maestra - Hola, hola con las manos (Canción de saludo)"><img src="https://i.ytimg.com/vi/iC-9PKGI4Mk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Hola, hola con las manos · Saludo</h3>
@@ -293,7 +301,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/SdZFPvGhUyA" title="Canta Maestra - Mano abierta, mano cerrada" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="SdZFPvGhUyA" data-title="Canta Maestra - Mano abierta, mano cerrada" aria-label="Reproducir: Canta Maestra - Mano abierta, mano cerrada"><img src="https://i.ytimg.com/vi/SdZFPvGhUyA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Mano abierta, mano cerrada</h3>
@@ -303,7 +311,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/DXUHqOJYIQQ" title="Canta Maestra - Mis manos" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="DXUHqOJYIQQ" data-title="Canta Maestra - Mis manos" aria-label="Reproducir: Canta Maestra - Mis manos"><img src="https://i.ytimg.com/vi/DXUHqOJYIQQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Mis manos</h3>
@@ -313,7 +321,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/3jYCsXffUe4" title="Canta Maestra - Canción del Por Favor (Palabras mágicas)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="3jYCsXffUe4" data-title="Canta Maestra - Canción del Por Favor (Palabras mágicas)" aria-label="Reproducir: Canta Maestra - Canción del Por Favor (Palabras mágicas)"><img src="https://i.ytimg.com/vi/3jYCsXffUe4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Por favor · Palabras mágicas</h3>
@@ -323,7 +331,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/ebEDhHfXtWQ" title="Canta Maestra - Mano que mano y mano (Canción motriz)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="ebEDhHfXtWQ" data-title="Canta Maestra - Mano que mano y mano (Canción motriz)" aria-label="Reproducir: Canta Maestra - Mano que mano y mano (Canción motriz)"><img src="https://i.ytimg.com/vi/ebEDhHfXtWQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Mano que mano y mano</h3>
@@ -333,7 +341,7 @@
     </article>
 
     <article data-cat="motricidad" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/H-XH79VBFjY" title="Pequeño Pez - Chocolate (Juego de manos)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="H-XH79VBFjY" data-title="Pequeño Pez - Chocolate (Juego de manos)" aria-label="Reproducir: Pequeño Pez - Chocolate (Juego de manos)"><img src="https://i.ytimg.com/vi/H-XH79VBFjY/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Motricidad fina</span>
         <h3 class="font-bold text-gray-800">Chocolate · Juego de manos</h3>
@@ -344,7 +352,7 @@
 
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/sDBGBXyJaJg" title="Minders Psicología Infantil - Ejercicios de las vocales · Aprendiendo a leer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="sDBGBXyJaJg" data-title="Minders Psicología Infantil - Ejercicios de las vocales · Aprendiendo a leer" aria-label="Reproducir: Minders Psicología Infantil - Ejercicios de las vocales · Aprendiendo a leer"><img src="https://i.ytimg.com/vi/sDBGBXyJaJg/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">Ejercicios de las vocales · Aprendiendo a leer</h3>
@@ -354,7 +362,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/LNhnbvbwd6I" title="Tobi Guau - Aprende las vocales con palabras e imágenes" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="LNhnbvbwd6I" data-title="Tobi Guau - Aprende las vocales con palabras e imágenes" aria-label="Reproducir: Tobi Guau - Aprende las vocales con palabras e imágenes"><img src="https://i.ytimg.com/vi/LNhnbvbwd6I/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">Aprende las vocales con palabras e imágenes</h3>
@@ -364,7 +372,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/b_YV4GVDGSA" title="ChiquitinesTV - La Risa de las Vocales · Canción infantil" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="b_YV4GVDGSA" data-title="ChiquitinesTV - La Risa de las Vocales · Canción infantil" aria-label="Reproducir: ChiquitinesTV - La Risa de las Vocales · Canción infantil"><img src="https://i.ytimg.com/vi/b_YV4GVDGSA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">La Risa de las Vocales · Canción infantil</h3>
@@ -374,7 +382,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/t5Zv-gfjeV8" title="Alexander Cutire - La risa de las vocales · Melodía alegre" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="t5Zv-gfjeV8" data-title="Alexander Cutire - La risa de las vocales · Melodía alegre" aria-label="Reproducir: Alexander Cutire - La risa de las vocales · Melodía alegre"><img src="https://i.ytimg.com/vi/t5Zv-gfjeV8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">La risa de las vocales · Melodía alegre</h3>
@@ -384,7 +392,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/l5p6Ygd3gFo" title="Luli Pampín - La canción de las vocales · AEIOU" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="l5p6Ygd3gFo" data-title="Luli Pampín - La canción de las vocales · AEIOU" aria-label="Reproducir: Luli Pampín - La canción de las vocales · AEIOU"><img src="https://i.ytimg.com/vi/l5p6Ygd3gFo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">La canción de las vocales · AEIOU</h3>
@@ -394,7 +402,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/XK8mxT_f1gY" title="Babyradio - La canción de la vocal A" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="XK8mxT_f1gY" data-title="Babyradio - La canción de la vocal A" aria-label="Reproducir: Babyradio - La canción de la vocal A"><img src="https://i.ytimg.com/vi/XK8mxT_f1gY/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">La canción de la vocal A</h3>
@@ -404,7 +412,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/bAC92NAaYtM" title="Babyradio - La canción de la vocal E con Mon el dragón" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="bAC92NAaYtM" data-title="Babyradio - La canción de la vocal E con Mon el dragón" aria-label="Reproducir: Babyradio - La canción de la vocal E con Mon el dragón"><img src="https://i.ytimg.com/vi/bAC92NAaYtM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">La canción de la vocal E con Mon el dragón</h3>
@@ -414,7 +422,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/5BPY0OzPkjA" title="Babyradio - La canción de la vocal I con Mon" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="5BPY0OzPkjA" data-title="Babyradio - La canción de la vocal I con Mon" aria-label="Reproducir: Babyradio - La canción de la vocal I con Mon"><img src="https://i.ytimg.com/vi/5BPY0OzPkjA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">La canción de la vocal I con Mon</h3>
@@ -424,7 +432,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/pELHumPyCNw" title="Babyradio - La canción de la vocal O" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="pELHumPyCNw" data-title="Babyradio - La canción de la vocal O" aria-label="Reproducir: Babyradio - La canción de la vocal O"><img src="https://i.ytimg.com/vi/pELHumPyCNw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">La canción de la vocal O</h3>
@@ -434,7 +442,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/EiERKl8PYE8" title="Babyradio - Aprende la vocal U · Canción infantil" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="EiERKl8PYE8" data-title="Babyradio - Aprende la vocal U · Canción infantil" aria-label="Reproducir: Babyradio - Aprende la vocal U · Canción infantil"><img src="https://i.ytimg.com/vi/EiERKl8PYE8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">Aprende la vocal U · Canción infantil</h3>
@@ -444,7 +452,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/hKQ44eZNgoI" title="Babyradio - Las vocales · Aprende la A con Mon el dragón" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="hKQ44eZNgoI" data-title="Babyradio - Las vocales · Aprende la A con Mon el dragón" aria-label="Reproducir: Babyradio - Las vocales · Aprende la A con Mon el dragón"><img src="https://i.ytimg.com/vi/hKQ44eZNgoI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">Las vocales · Aprende la A con Mon el dragón</h3>
@@ -454,7 +462,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/DwIfD6zMrL8" title="El Mono Sílabo - Canción de la Letra O · El Mono Sílabo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="DwIfD6zMrL8" data-title="El Mono Sílabo - Canción de la Letra O · El Mono Sílabo" aria-label="Reproducir: El Mono Sílabo - Canción de la Letra O · El Mono Sílabo"><img src="https://i.ytimg.com/vi/DwIfD6zMrL8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">Canción de la Letra O · El Mono Sílabo</h3>
@@ -464,7 +472,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/4-qfdXzEbIE" title="El Mono Sílabo - Canción de la Letra E · El Mono Sílabo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="4-qfdXzEbIE" data-title="El Mono Sílabo - Canción de la Letra E · El Mono Sílabo" aria-label="Reproducir: El Mono Sílabo - Canción de la Letra E · El Mono Sílabo"><img src="https://i.ytimg.com/vi/4-qfdXzEbIE/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">Canción de la Letra E · El Mono Sílabo</h3>
@@ -474,7 +482,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/oQZdkPamNYM" title="El Mono Sílabo - Canción de la Letra I · El Mono Sílabo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="oQZdkPamNYM" data-title="El Mono Sílabo - Canción de la Letra I · El Mono Sílabo" aria-label="Reproducir: El Mono Sílabo - Canción de la Letra I · El Mono Sílabo"><img src="https://i.ytimg.com/vi/oQZdkPamNYM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">Canción de la Letra I · El Mono Sílabo</h3>
@@ -484,7 +492,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/8Sd04XNalDg" title="El Mono Sílabo - Canción de la Letra A · El Mono Sílabo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="8Sd04XNalDg" data-title="El Mono Sílabo - Canción de la Letra A · El Mono Sílabo" aria-label="Reproducir: El Mono Sílabo - Canción de la Letra A · El Mono Sílabo"><img src="https://i.ytimg.com/vi/8Sd04XNalDg/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">Canción de la Letra A · El Mono Sílabo</h3>
@@ -494,7 +502,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/DDg0cHSR1wY" title="El Mono Sílabo - La Canción de las Vocales · A E I O U" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="DDg0cHSR1wY" data-title="El Mono Sílabo - La Canción de las Vocales · A E I O U" aria-label="Reproducir: El Mono Sílabo - La Canción de las Vocales · A E I O U"><img src="https://i.ytimg.com/vi/DDg0cHSR1wY/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">La Canción de las Vocales · A E I O U</h3>
@@ -504,7 +512,7 @@
     </article>
 
     <article data-cat="vocales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/vV413yrc4ow" title="El Mono Sílabo - Canción de la Letra U · El Mono Sílabo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="vV413yrc4ow" data-title="El Mono Sílabo - Canción de la Letra U · El Mono Sílabo" aria-label="Reproducir: El Mono Sílabo - Canción de la Letra U · El Mono Sílabo"><img src="https://i.ytimg.com/vi/vV413yrc4ow/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">Vocales A E I O U</span>
         <h3 class="font-bold text-gray-800">Canción de la Letra U · El Mono Sílabo</h3>
@@ -515,7 +523,7 @@
 
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/ECxsXHItBZA" title="Pinkfong en español - Cinco Dedos · Números y Conteo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="ECxsXHItBZA" data-title="Pinkfong en español - Cinco Dedos · Números y Conteo" aria-label="Reproducir: Pinkfong en español - Cinco Dedos · Números y Conteo"><img src="https://i.ytimg.com/vi/ECxsXHItBZA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Cinco Dedos · Números y Conteo</h3>
@@ -525,7 +533,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/-10JqMW-29I" title="123 Andrés - Contemos hasta 5 · Preescolar (1, 2, 3, 4, 5)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="-10JqMW-29I" data-title="123 Andrés - Contemos hasta 5 · Preescolar (1, 2, 3, 4, 5)" aria-label="Reproducir: 123 Andrés - Contemos hasta 5 · Preescolar (1, 2, 3, 4, 5)"><img src="https://i.ytimg.com/vi/-10JqMW-29I/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Contemos hasta 5 · Preescolar (1, 2, 3, 4, 5)</h3>
@@ -535,7 +543,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/_8-jyBZE9_E" title="El Mono Sílabo - Los Números en Inglés · El Mono Sílabo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="_8-jyBZE9_E" data-title="El Mono Sílabo - Los Números en Inglés · El Mono Sílabo" aria-label="Reproducir: El Mono Sílabo - Los Números en Inglés · El Mono Sílabo"><img src="https://i.ytimg.com/vi/_8-jyBZE9_E/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Los Números en Inglés · El Mono Sílabo</h3>
@@ -545,7 +553,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/HUOCNHZvqxE" title="Babyradio - Aprende a contar del 1 al 10" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="HUOCNHZvqxE" data-title="Babyradio - Aprende a contar del 1 al 10" aria-label="Reproducir: Babyradio - Aprende a contar del 1 al 10"><img src="https://i.ytimg.com/vi/HUOCNHZvqxE/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Aprende a contar del 1 al 10</h3>
@@ -555,7 +563,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/kmPD4oAu8dE" title="Babyradio - La canción de los números del 1 al 10" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="kmPD4oAu8dE" data-title="Babyradio - La canción de los números del 1 al 10" aria-label="Reproducir: Babyradio - La canción de los números del 1 al 10"><img src="https://i.ytimg.com/vi/kmPD4oAu8dE/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">La canción de los números del 1 al 10</h3>
@@ -565,7 +573,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/qHkEDhTaPnk" title="Smile and Learn - Los números del 1 al 10 · Escribir y contar" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="qHkEDhTaPnk" data-title="Smile and Learn - Los números del 1 al 10 · Escribir y contar" aria-label="Reproducir: Smile and Learn - Los números del 1 al 10 · Escribir y contar"><img src="https://i.ytimg.com/vi/qHkEDhTaPnk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Los números del 1 al 10 · Escribir y contar</h3>
@@ -575,7 +583,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/_o20gG4qQ5Y" title="Hogi & Pinkfong - Aprende a Contar 123 · Niños pequeños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="_o20gG4qQ5Y" data-title="Hogi & Pinkfong - Aprende a Contar 123 · Niños pequeños" aria-label="Reproducir: Hogi & Pinkfong - Aprende a Contar 123 · Niños pequeños"><img src="https://i.ytimg.com/vi/_o20gG4qQ5Y/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Aprende a Contar 123 · Niños pequeños</h3>
@@ -585,7 +593,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/MFK5VpLPA9M" title="Babyradio - Los números · Aprende del 1 al 10" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="MFK5VpLPA9M" data-title="Babyradio - Los números · Aprende del 1 al 10" aria-label="Reproducir: Babyradio - Los números · Aprende del 1 al 10"><img src="https://i.ytimg.com/vi/MFK5VpLPA9M/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Los números · Aprende del 1 al 10</h3>
@@ -595,7 +603,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/cOIlFA97Qo4" title="Luli Pampín - Diez en la cama · Aprendemos los números" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="cOIlFA97Qo4" data-title="Luli Pampín - Diez en la cama · Aprendemos los números" aria-label="Reproducir: Luli Pampín - Diez en la cama · Aprendemos los números"><img src="https://i.ytimg.com/vi/cOIlFA97Qo4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Diez en la cama · Aprendemos los números</h3>
@@ -605,7 +613,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/evhIcITxrWM" title="Luli Pampín - Son los números del 1 al 10" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="evhIcITxrWM" data-title="Luli Pampín - Son los números del 1 al 10" aria-label="Reproducir: Luli Pampín - Son los números del 1 al 10"><img src="https://i.ytimg.com/vi/evhIcITxrWM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Son los números del 1 al 10</h3>
@@ -615,7 +623,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/stxJ7P-rZpg" title="Aprende con Miss Mimi - Números para Niños en Español e Inglés (1 al 10)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="stxJ7P-rZpg" data-title="Aprende con Miss Mimi - Números para Niños en Español e Inglés (1 al 10)" aria-label="Reproducir: Aprende con Miss Mimi - Números para Niños en Español e Inglés (1 al 10)"><img src="https://i.ytimg.com/vi/stxJ7P-rZpg/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Números para Niños en Español e Inglés (1 al 10)</h3>
@@ -625,7 +633,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/WhXZaxeZ5sg" title="Patico De Hule - Aprende a contar del 1 al 10 con los dedos" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="WhXZaxeZ5sg" data-title="Patico De Hule - Aprende a contar del 1 al 10 con los dedos" aria-label="Reproducir: Patico De Hule - Aprende a contar del 1 al 10 con los dedos"><img src="https://i.ytimg.com/vi/WhXZaxeZ5sg/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Aprende a contar del 1 al 10 con los dedos</h3>
@@ -635,7 +643,7 @@
     </article>
 
     <article data-cat="numeros" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/qeImLWYah9k" title="123 Andrés - Los Números del 1 al 20 · ¡Cuenta con nosotros!" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="qeImLWYah9k" data-title="123 Andrés - Los Números del 1 al 20 · ¡Cuenta con nosotros!" aria-label="Reproducir: 123 Andrés - Los Números del 1 al 20 · ¡Cuenta con nosotros!"><img src="https://i.ytimg.com/vi/qeImLWYah9k/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Números y Conteo</span>
         <h3 class="font-bold text-gray-800">Los Números del 1 al 20 · ¡Cuenta con nosotros!</h3>
@@ -648,7 +656,7 @@
 
     <!-- Categoría: Colores (18 videos) -->
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/oVr7NhOJOn0" title="Babyradio - Aprende los Colores Primarios con Mon el dragón y Lupito" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="oVr7NhOJOn0" data-title="Babyradio - Aprende los Colores Primarios con Mon el dragón y Lupito" aria-label="Reproducir: Babyradio - Aprende los Colores Primarios con Mon el dragón y Lupito"><img src="https://i.ytimg.com/vi/oVr7NhOJOn0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800"><i class="fa-solid fa-palette mr-1"></i> Colores Primarios</span>
         <h3 class="font-bold text-gray-800">Colores Primarios · Con Mon el dragón y Lupito</h3>
@@ -658,7 +666,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/zUHHtJmwaVs" title="Luli Pampín - Slime de Colores (Oficial)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="zUHHtJmwaVs" data-title="Luli Pampín - Slime de Colores (Oficial)" aria-label="Reproducir: Luli Pampín - Slime de Colores (Oficial)"><img src="https://i.ytimg.com/vi/zUHHtJmwaVs/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-700"><i class="fa-solid fa-palette mr-1"></i> Música y Baile</span>
         <h3 class="font-bold text-gray-800">Slime de Colores · Baile y diversión</h3>
@@ -668,7 +676,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/njE0f9JmWnQ" title="Smile and Learn - Los colores primarios y secundarios para niños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="njE0f9JmWnQ" data-title="Smile and Learn - Los colores primarios y secundarios para niños" aria-label="Reproducir: Smile and Learn - Los colores primarios y secundarios para niños"><img src="https://i.ytimg.com/vi/njE0f9JmWnQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700"><i class="fa-solid fa-palette mr-1"></i> Primarios y Secundarios</span>
         <h3 class="font-bold text-gray-800">Los colores para niños · Primarios y secundarios</h3>
@@ -678,7 +686,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/vsn5MuCuzJQ" title="Peques Aprenden Jugando - Colores primarios y secundarios para niños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="vsn5MuCuzJQ" data-title="Peques Aprenden Jugando - Colores primarios y secundarios para niños" aria-label="Reproducir: Peques Aprenden Jugando - Colores primarios y secundarios para niños"><img src="https://i.ytimg.com/vi/vsn5MuCuzJQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700"><i class="fa-solid fa-palette mr-1"></i> Aprende los Colores</span>
         <h3 class="font-bold text-gray-800">Colores primarios y secundarios para niños</h3>
@@ -688,7 +696,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/grhrRJVUHZQ" title="chikikids - ¡Aprende los Colores Jugando! Para Niños Pequeños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="grhrRJVUHZQ" data-title="chikikids - ¡Aprende los Colores Jugando! Para Niños Pequeños" aria-label="Reproducir: chikikids - ¡Aprende los Colores Jugando! Para Niños Pequeños"><img src="https://i.ytimg.com/vi/grhrRJVUHZQ/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-yellow-100 text-amber-900"><i class="fa-solid fa-palette mr-1"></i> Juegos con Colores</span>
         <h3 class="font-bold text-gray-800">¡Aprende los Colores Jugando! · Chikikids</h3>
@@ -698,7 +706,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/p8UJLmNMp_w" title="Smile and Learn - La canción de los colores para niños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="p8UJLmNMp_w" data-title="Smile and Learn - La canción de los colores para niños" aria-label="Reproducir: Smile and Learn - La canción de los colores para niños"><img src="https://i.ytimg.com/vi/p8UJLmNMp_w/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-rose-100 text-rose-700"><i class="fa-solid fa-palette mr-1"></i> Canción de Colores</span>
         <h3 class="font-bold text-gray-800">La canción de los colores para niños</h3>
@@ -708,7 +716,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/xDa22ECW7GY" title="Canta Con Jess - Canción de Los Colores en Español" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="xDa22ECW7GY" data-title="Canta Con Jess - Canción de Los Colores en Español" aria-label="Reproducir: Canta Con Jess - Canción de Los Colores en Español"><img src="https://i.ytimg.com/vi/xDa22ECW7GY/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700"><i class="fa-solid fa-palette mr-1"></i> Canción de Colores</span>
         <h3 class="font-bold text-gray-800">Canción de los Colores · Canta con Jess</h3>
@@ -718,7 +726,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/JR3fFeBFThI" title="Peques Aprenden Jugando - Los colores en inglés para niños con dibujos" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="JR3fFeBFThI" data-title="Peques Aprenden Jugando - Los colores en inglés para niños con dibujos" aria-label="Reproducir: Peques Aprenden Jugando - Los colores en inglés para niños con dibujos"><img src="https://i.ytimg.com/vi/JR3fFeBFThI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-teal-100 text-teal-800"><i class="fa-solid fa-palette mr-1"></i> Colores en Inglés</span>
         <h3 class="font-bold text-gray-800">Los colores en inglés con dibujos animados</h3>
@@ -728,7 +736,7 @@
     </article>
 
     <article data-cat="colores animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/qdqS0AMYdSM" title="Peques Aprenden Jugando - Aprende los Colores con Animales Asombrosos" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="qdqS0AMYdSM" data-title="Peques Aprenden Jugando - Aprende los Colores con Animales Asombrosos" data-no-embed aria-label="Reproducir: Peques Aprenden Jugando - Aprende los Colores con Animales Asombrosos"><img src="https://i.ytimg.com/vi/qdqS0AMYdSM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-indigo-100 text-indigo-700"><i class="fa-solid fa-palette mr-1"></i> Colores y Animales</span>
         <h3 class="font-bold text-gray-800">Aprende los colores con animales divertidos</h3>
@@ -738,7 +746,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/2n7CXoRMsG4" title="Amigo Mumu - Los Colores en Inglés para Niños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="2n7CXoRMsG4" data-title="Amigo Mumu - Los Colores en Inglés para Niños" aria-label="Reproducir: Amigo Mumu - Los Colores en Inglés para Niños"><img src="https://i.ytimg.com/vi/2n7CXoRMsG4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-teal-100 text-teal-800"><i class="fa-solid fa-palette mr-1"></i> Colores en Inglés</span>
         <h3 class="font-bold text-gray-800">Los Colores en Inglés con el Amigo Mumu</h3>
@@ -748,7 +756,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/RaDvlcIJ6ic" title="Smile and Learn - El color morado para niños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="RaDvlcIJ6ic" data-title="Smile and Learn - El color morado para niños" aria-label="Reproducir: Smile and Learn - El color morado para niños"><img src="https://i.ytimg.com/vi/RaDvlcIJ6ic/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700"><i class="fa-solid fa-palette mr-1"></i> Color Morado</span>
         <h3 class="font-bold text-gray-800">El color morado para niños · Cosas moradas</h3>
@@ -758,7 +766,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/pVXxsFChZk0" title="Smile and Learn - El color naranja para niños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="pVXxsFChZk0" data-title="Smile and Learn - El color naranja para niños" aria-label="Reproducir: Smile and Learn - El color naranja para niños"><img src="https://i.ytimg.com/vi/pVXxsFChZk0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-orange-100 text-orange-700"><i class="fa-solid fa-palette mr-1"></i> Color Naranja</span>
         <h3 class="font-bold text-gray-800">El color naranja para niños · Cosas naranjas</h3>
@@ -768,7 +776,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Hmp9xC0Of-4" title="Smile and Learn - El color rosa para niños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="Hmp9xC0Of-4" data-title="Smile and Learn - El color rosa para niños" aria-label="Reproducir: Smile and Learn - El color rosa para niños"><img src="https://i.ytimg.com/vi/Hmp9xC0Of-4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-700"><i class="fa-solid fa-palette mr-1"></i> Color Rosa</span>
         <h3 class="font-bold text-gray-800">El color rosa para niños · Cosas rosas</h3>
@@ -778,7 +786,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Di7A0PD0V7I" title="Smile and Learn - El color azul para niños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="Di7A0PD0V7I" data-title="Smile and Learn - El color azul para niños" aria-label="Reproducir: Smile and Learn - El color azul para niños"><img src="https://i.ytimg.com/vi/Di7A0PD0V7I/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700"><i class="fa-solid fa-palette mr-1"></i> Color Azul</span>
         <h3 class="font-bold text-gray-800">El color azul para niños · Cosas azules</h3>
@@ -788,7 +796,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/KGYtYFR5jEo" title="Smile and Learn - El color verde para niños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="KGYtYFR5jEo" data-title="Smile and Learn - El color verde para niños" aria-label="Reproducir: Smile and Learn - El color verde para niños"><img src="https://i.ytimg.com/vi/KGYtYFR5jEo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-green-100 text-green-700"><i class="fa-solid fa-palette mr-1"></i> Color Verde</span>
         <h3 class="font-bold text-gray-800">El color verde para niños · Cosas verdes</h3>
@@ -798,7 +806,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/GDCRp3S4K8U" title="Smile and Learn - El color blanco para niños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="GDCRp3S4K8U" data-title="Smile and Learn - El color blanco para niños" aria-label="Reproducir: Smile and Learn - El color blanco para niños"><img src="https://i.ytimg.com/vi/GDCRp3S4K8U/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-gray-100 text-gray-700"><i class="fa-solid fa-palette mr-1"></i> Color Blanco</span>
         <h3 class="font-bold text-gray-800">El color blanco para niños · Cosas blancas</h3>
@@ -808,7 +816,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/pmmVZJNV7JM" title="Smile and Learn - ¡Aprendemos los COLORES cantando!" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="pmmVZJNV7JM" data-title="Smile and Learn - ¡Aprendemos los COLORES cantando!" aria-label="Reproducir: Smile and Learn - ¡Aprendemos los COLORES cantando!"><img src="https://i.ytimg.com/vi/pmmVZJNV7JM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800"><i class="fa-solid fa-palette mr-1"></i> Canción de Colores</span>
         <h3 class="font-bold text-gray-800">¡Aprendemos los colores cantando! · Smile and Learn</h3>
@@ -818,7 +826,7 @@
     </article>
 
     <article data-cat="colores" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/mK4HGfaj3wU" title="TOPA - Colores Colores (Video Oficial)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="mK4HGfaj3wU" data-title="TOPA - Colores Colores (Video Oficial)" aria-label="Reproducir: TOPA - Colores Colores (Video Oficial)"><img src="https://i.ytimg.com/vi/mK4HGfaj3wU/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-violet-100 text-violet-700"><i class="fa-solid fa-palette mr-1"></i> Música y Ritmo</span>
         <h3 class="font-bold text-gray-800">Colores Colores · Diego Topa</h3>
@@ -830,7 +838,7 @@
 
     <!-- Categoría: Animales (16 videos) -->
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/kzouei9Hg3k" title="TOPA - Con Los Animales (Video Oficial)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="kzouei9Hg3k" data-title="TOPA - Con Los Animales (Video Oficial)" aria-label="Reproducir: TOPA - Con Los Animales (Video Oficial)"><img src="https://i.ytimg.com/vi/kzouei9Hg3k/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-orange-100 text-orange-800"><i class="fa-solid fa-paw mr-1"></i> Música y Movimiento</span>
         <h3 class="font-bold text-gray-800">Con Los Animales · Diego Topa</h3>
@@ -840,7 +848,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/PwM88h3YbRA" title="Plim Plim - Animales De La Selva Y La Granja" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="PwM88h3YbRA" data-title="Plim Plim - Animales De La Selva Y La Granja" aria-label="Reproducir: Plim Plim - Animales De La Selva Y La Granja"><img src="https://i.ytimg.com/vi/PwM88h3YbRA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800"><i class="fa-solid fa-paw mr-1"></i> Selva y Granja</span>
         <h3 class="font-bold text-gray-800">Animales de la Selva y la Granja · Plim Plim</h3>
@@ -850,7 +858,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Y_Qr50S0-B8" title="Luli Pampín - Camino por la Selva (Video Oficial)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="Y_Qr50S0-B8" data-title="Luli Pampín - Camino por la Selva (Video Oficial)" aria-label="Reproducir: Luli Pampín - Camino por la Selva (Video Oficial)"><img src="https://i.ytimg.com/vi/Y_Qr50S0-B8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-lime-100 text-lime-800"><i class="fa-solid fa-paw mr-1"></i> Aventura en la Selva</span>
         <h3 class="font-bold text-gray-800">Camino por la Selva · Luli Pampín</h3>
@@ -860,7 +868,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/yWpY2GlFoTM" title="Plim Plim - Como Los Animalitos (Especial de Canciones)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="yWpY2GlFoTM" data-title="Plim Plim - Como Los Animalitos (Especial de Canciones)" aria-label="Reproducir: Plim Plim - Como Los Animalitos (Especial de Canciones)"><img src="https://i.ytimg.com/vi/yWpY2GlFoTM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-700"><i class="fa-solid fa-paw mr-1"></i> Canciones de Animales</span>
         <h3 class="font-bold text-gray-800">Como Los Animalitos · Especial Plim Plim</h3>
@@ -870,7 +878,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/nf5tvAWmvIo" title="LiaChaCha en Español - Los Pollitos Dicen Pío Pío" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="nf5tvAWmvIo" data-title="LiaChaCha en Español - Los Pollitos Dicen Pío Pío" aria-label="Reproducir: LiaChaCha en Español - Los Pollitos Dicen Pío Pío"><img src="https://i.ytimg.com/vi/nf5tvAWmvIo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-yellow-100 text-amber-900"><i class="fa-solid fa-paw mr-1"></i> Animales de la Granja</span>
         <h3 class="font-bold text-gray-800">Los Pollitos Dicen Pío Pío · Canción de la Granja</h3>
@@ -880,7 +888,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/z1gFMujtH-o" title="Gallina Pintadita - Pollito Amarillito (Oficial)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="z1gFMujtH-o" data-title="Gallina Pintadita - Pollito Amarillito (Oficial)" aria-label="Reproducir: Gallina Pintadita - Pollito Amarillito (Oficial)"><img src="https://i.ytimg.com/vi/z1gFMujtH-o/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-yellow-100 text-amber-900"><i class="fa-solid fa-paw mr-1"></i> Canción Infantil</span>
         <h3 class="font-bold text-gray-800">Pollito Amarillito · Gallina Pintadita</h3>
@@ -890,7 +898,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/FutLOg7jsl4" title="Gallina Pintadita - Itsy Bitsy Araña" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="FutLOg7jsl4" data-title="Gallina Pintadita - Itsy Bitsy Araña" aria-label="Reproducir: Gallina Pintadita - Itsy Bitsy Araña"><img src="https://i.ytimg.com/vi/FutLOg7jsl4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700"><i class="fa-solid fa-paw mr-1"></i> Motricidad y Manos</span>
         <h3 class="font-bold text-gray-800">Itsy Bitsy Araña · Coordinación y canto</h3>
@@ -900,7 +908,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/ebz3jrVeBpE" title="Lolo&Frenchy ES - Dónde Viven Los Animales" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="ebz3jrVeBpE" data-title="Lolo&Frenchy ES - Dónde Viven Los Animales" aria-label="Reproducir: Lolo&Frenchy ES - Dónde Viven Los Animales"><img src="https://i.ytimg.com/vi/ebz3jrVeBpE/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-teal-100 text-teal-800"><i class="fa-solid fa-paw mr-1"></i> Hábitats de Animales</span>
         <h3 class="font-bold text-gray-800">¿Dónde viven los animales? · Video educativo</h3>
@@ -910,7 +918,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/PhDQNjtQIbk" title="Bebefinn en español - Adivina los Animales" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="PhDQNjtQIbk" data-title="Bebefinn en español - Adivina los Animales" aria-label="Reproducir: Bebefinn en español - Adivina los Animales"><img src="https://i.ytimg.com/vi/PhDQNjtQIbk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800"><i class="fa-solid fa-paw mr-1"></i> Juego de Adivinanzas</span>
         <h3 class="font-bold text-gray-800">Adivina los Animales · Bebefinn en español</h3>
@@ -920,7 +928,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/cNoMf8HgbIs" title="Plim Plim - Aprendemos Los Animales De La Granja" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="cNoMf8HgbIs" data-title="Plim Plim - Aprendemos Los Animales De La Granja" aria-label="Reproducir: Plim Plim - Aprendemos Los Animales De La Granja"><img src="https://i.ytimg.com/vi/cNoMf8HgbIs/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-800"><i class="fa-solid fa-paw mr-1"></i> Animales de la Granja</span>
         <h3 class="font-bold text-gray-800">Aprendemos los animales de la granja · Plim Plim</h3>
@@ -930,7 +938,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/6I75kfATxeU" title="Plim Plim - Aprendemos Los Animales De La Selva" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="6I75kfATxeU" data-title="Plim Plim - Aprendemos Los Animales De La Selva" aria-label="Reproducir: Plim Plim - Aprendemos Los Animales De La Selva"><img src="https://i.ytimg.com/vi/6I75kfATxeU/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800"><i class="fa-solid fa-paw mr-1"></i> Animales de la Selva</span>
         <h3 class="font-bold text-gray-800">Aprendemos los animales de la selva · Plim Plim</h3>
@@ -940,7 +948,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/dhsy6epaJGs" title="PULCINO PIO - El Pollito Pio (Video Oficial)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="dhsy6epaJGs" data-title="PULCINO PIO - El Pollito Pio (Video Oficial)" aria-label="Reproducir: PULCINO PIO - El Pollito Pio (Video Oficial)"><img src="https://i.ytimg.com/vi/dhsy6epaJGs/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-yellow-100 text-amber-900"><i class="fa-solid fa-paw mr-1"></i> Sonidos de Animales</span>
         <h3 class="font-bold text-gray-800">El Pollito Pío · Canción acumulativa y ritmo</h3>
@@ -950,7 +958,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/6fO2l9AgTnw" title="Plim Plim - Como Los Animalitos (Canciones Infantiles)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="6fO2l9AgTnw" data-title="Plim Plim - Como Los Animalitos (Canciones Infantiles)" aria-label="Reproducir: Plim Plim - Como Los Animalitos (Canciones Infantiles)"><img src="https://i.ytimg.com/vi/6fO2l9AgTnw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-700"><i class="fa-solid fa-paw mr-1"></i> Canción de Animales</span>
         <h3 class="font-bold text-gray-800">Como Los Animalitos · Ronda infantil</h3>
@@ -960,7 +968,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/ULzw9H7p-_M" title="Plim Plim - Cucú Cantaba La Rana" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="ULzw9H7p-_M" data-title="Plim Plim - Cucú Cantaba La Rana" aria-label="Reproducir: Plim Plim - Cucú Cantaba La Rana"><img src="https://i.ytimg.com/vi/ULzw9H7p-_M/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-green-100 text-green-700"><i class="fa-solid fa-paw mr-1"></i> Canción Tradicional</span>
         <h3 class="font-bold text-gray-800">Cucú Cantaba La Rana · Plim Plim</h3>
@@ -970,7 +978,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/FNUiHrFNZIM" title="Luli Pampín - La Lechuza (Video Oficial)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="FNUiHrFNZIM" data-title="Luli Pampín - La Lechuza (Video Oficial)" aria-label="Reproducir: Luli Pampín - La Lechuza (Video Oficial)"><img src="https://i.ytimg.com/vi/FNUiHrFNZIM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-indigo-100 text-indigo-700"><i class="fa-solid fa-paw mr-1"></i> Canción y Calma</span>
         <h3 class="font-bold text-gray-800">La Lechuza hace Shhh · Luli Pampín</h3>
@@ -980,7 +988,7 @@
     </article>
 
     <article data-cat="animales" class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
-      <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/Fe-AmoBtp_A" title="Smile and Learn - Los animales acuáticos para niños" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <button type="button" class="video-facade" data-video-id="Fe-AmoBtp_A" data-title="Smile and Learn - Los animales acuáticos para niños" aria-label="Reproducir: Smile and Learn - Los animales acuáticos para niños"><img src="https://i.ytimg.com/vi/Fe-AmoBtp_A/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span></button>
       <div class="p-5 flex flex-col gap-2 flex-1">
         <span class="self-start text-[11px] font-bold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800"><i class="fa-solid fa-paw mr-1"></i> Animales Acuáticos</span>
         <h3 class="font-bold text-gray-800">Los animales acuáticos para niños · Vocabulario</h3>
@@ -1021,6 +1029,47 @@
     m.classList.toggle('flex');
   });
 
+  // Reproductor bajo demanda: se muestra un solo video a la vez
+  const videoGrid = document.getElementById('videoGrid');
+  let activePlayer = null;
+
+  function closePlayer(){
+    if (!activePlayer) return;
+    activePlayer.iframe.replaceWith(activePlayer.facade);
+    activePlayer = null;
+  }
+
+  function playVideo(facade){
+    const id = facade.dataset.videoId;
+    // YouTube exige el encabezado Referer (Error 153 sin él) y file:// no lo envía.
+    // data-no-embed marca videos cuyo dueño no permite insertarlos en otras páginas.
+    if (location.protocol === 'file:' || 'noEmbed' in facade.dataset) {
+      window.open(`https://www.youtube.com/watch?v=${id}`, '_blank', 'noopener');
+      return;
+    }
+    closePlayer();
+    const iframe = document.createElement('iframe');
+    iframe.className = 'w-full aspect-video';
+    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+    iframe.title = facade.dataset.title;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    facade.replaceWith(iframe);
+    activePlayer = { iframe, facade };
+    iframe.focus();
+  }
+
+  videoGrid.addEventListener('click', e=>{
+    const facade = e.target.closest('.video-facade');
+    if (facade) playVideo(facade);
+  });
+
+  // Si una miniatura no carga, queda el fondo de color con el botón de play
+  videoGrid.addEventListener('error', e=>{
+    if (e.target.tagName === 'IMG') e.target.remove();
+  }, true);
+
   // Filtro por categoría: las tarjetas sin data-cat son de motricidad
   const pillActive = ['bg-purple-600','text-white','border-purple-800'];
   const pillInactive = ['bg-white','text-gray-700','border-gray-200'];
@@ -1031,6 +1080,7 @@
   }
   pills.forEach(btn=>{
     btn.addEventListener('click',()=>{
+      closePlayer();
       pills.forEach(b=>setPill(b,false));
       setPill(btn,true);
       const f = btn.dataset.filter;
