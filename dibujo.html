@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MotriKids | Actividades de Dibujo y Creatividad</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="description"
+    content="MotriKids - Fichas didácticas de dibujo, coloreo y arte para Educación Inicial 1 y 2. Pizarra digital interactiva y fichas limpias A4 para imprimir.">
+  <link href="assets/tailwind.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fcfcff;
+      color: #333333;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .35;
+      z-index: -1;
+      background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1.8' fill='%23ffb3ba' opacity='0.18'/%3E%3Cpath d='M50 20l2 3h3l-2 2 1 3-2.5-1.8-2.5 1.8 1-3-2-2h3z' fill='%23ffffba' opacity='0.22'/%3E%3Ccircle cx='80' cy='40' r='1.2' fill='%23bae1ff' opacity='0.18'/%3E%3Ccircle cx='30' cy='70' r='1.6' fill='%23baffc9' opacity='0.18'/%3E%3Ccircle cx='120' cy='15' r='1.4' fill='%23ffdfba' opacity='0.18'/%3E%3Ccircle cx='65' cy='110' r='1' fill='%23a7c7e7' opacity='0.14'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(244, 114, 182, .20) 0%, rgba(196, 181, 253, .22) 50%, rgba(254, 215, 170, .18) 100%);
+    }
+
+    .cloud-divider {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .cloud-divider svg {
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 38px;
+    }
+
+    .cloud-divider .shape-fill {
+      fill: #fcfcff;
+    }
+
+    .btn-squish:active {
+      transform: translateY(2px) scale(.98);
+    }
+
+    @keyframes floatY {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: .6;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.15);
+      }
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .float-slow {
+      animation: floatY 4s ease-in-out infinite;
+    }
+
+    .float-fast {
+      animation: floatY 3s ease-in-out infinite;
+    }
+
+    .twinkle {
+      animation: twinkle 2.2s ease-in-out infinite;
+    }
+
+    .pop-in {
+      animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Contenedor de lámina de dibujo optimizado para previsualización nítida y limpia */
+    .sheet-cover-container {
+      position: relative;
+      background: #ffffff;
+      border-radius: 1.25rem;
+      border: 1.5px solid #ede9fe;
+      box-shadow: 0 2px 8px -2px rgba(124, 58, 237, 0.08);
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .group:hover .sheet-cover-container {
+      position: relative;
+      background: #ffffff;
+      border-radius: 1.25rem;
+      border: 1.5px solid #ede9fe;
+      box-shadow: 0 2px 8px -2px rgba(124, 58, 237, 0.08);
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sheet-grid-bg {
+      background-color: #ffffff;
+    }
+
+    /* Las láminas de la biblioteca son verticales (A4); las SVG existentes siguen en 16:10 */
+    .sheet-cover-container.sheet-cover-portrait {
+      aspect-ratio: 3 / 4;
+    }
+
+    /* Los filtros se reparten en varias filas; no deben encogerse */
+    #categoryFilters>button {
+      flex-shrink: 0;
+    }
+
+    .crayon-cursor {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M2 30 L6 18 L18 6 L26 14 L14 26 L2 30 Z' fill='%23ec4899' stroke='%23ffffff' stroke-width='2'/%3E%3Cpolygon points='2,30 3,24 8,29' fill='%23ffdfba'/%3E%3Ccircle cx='2' cy='30' r='1.5' fill='%23333333'/%3E%3C/svg%3E") 2 30, crosshair !important;
+    }
+
+    .eraser-cursor {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect x='4' y='8' width='24' height='16' rx='4' fill='%23ec4899' stroke='%23ffffff' stroke-width='2' transform='rotate(-20 16 16)'/%3E%3C/svg%3E") 16 16, crosshair !important;
+    }
+
+    #visualPointerReticle {
+      position: absolute;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width 0.1s ease, height 0.1s ease, border-color 0.15s ease;
+      z-index: 30;
+      border-radius: 9999px;
+      display: none;
+      box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+
+      body::before,
+      header,
+      nav,
+      footer,
+      #heroSection,
+      #filterSection,
+      #seccionesDibujo,
+      #drawModal,
+      #mobileNav {
+        display: none !important;
+      }
+
+      #printContainer {
+        display: block !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .print-sheet {
+        height: 275mm;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Quicksand', sans-serif;
+        color: #111;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .print-sheet-area {
+        flex: 1;
+        min-height: 0;
+        border: 2px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .print-sheet-area img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .print-sheet-area svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .float-slow,
+      .float-fast,
+      .twinkle {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased text-text bg-surface">
+
+  <!-- Encabezado de Navegación -->
+  <header class="bg-white sticky top-0 z-40 shadow-sm px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 min-h-[44px] no-underline">
+      <img src="assets/nav-star.svg" alt="MotriKids" class="w-10 h-10 md:w-12 md:h-12">
+      <div>
+        <h1 class="text-2xl md:text-3xl font-bold text-purple-700 leading-none tracking-tight">
+          <span class="text-purple-600">M</span><span class="text-blue-400">o</span><span
+            class="text-teal-400">t</span><span class="text-green-500">r</span><span
+            class="text-yellow-400">i</span><span class="text-orange-400">K</span><span
+            class="text-rose-400">i</span><span class="text-pink-400">d</span><span class="text-purple-500">s</span>
+        </h1>
+        <p class="text-xs md:text-xs text-muted font-medium mt-0.5">Pequeños trazos, grandes logros <i
+            class="fa-solid fa-heart text-secondary text-xs"></i></p>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-5 text-sm font-semibold text-muted">
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors"
+        href="index.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors"
+        href="juegos.html"><i class="fa-solid fa-gamepad"></i><span>Juegos</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors"
+        href="recursos.html"><i class="fa-solid fa-book-open"></i><span>Recursos</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors"
+        href="videos.html"><i class="fa-solid fa-circle-play"></i><span>Videos</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] text-purple-700 border-b-2 border-purple-700 pb-1"
+        href="dibujo.html"><i class="fa-solid fa-palette"></i><span>Dibujo</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors"
+        href="ingles.html"><i class="fa-solid fa-language"></i><span>Inglés</span></a>
+    </nav>
+    <button id="menuBtn" class="lg:hidden w-12 h-12 flex items-center justify-center text-2xl text-purple-700"
+      aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+  </header>
+
+  <!-- Navegación móvil -->
+  <nav id="mobileNav"
+    class="hidden lg:hidden bg-white border-t shadow-md px-6 py-4 flex-col gap-3 text-sm font-semibold">
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="index.html"><i
+        class="fa-solid fa-house w-5"></i> Inicio</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="juegos.html"><i
+        class="fa-solid fa-gamepad w-5"></i> Juegos</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="recursos.html"><i
+        class="fa-solid fa-book-open w-5"></i> Recursos</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="videos.html"><i
+        class="fa-solid fa-circle-play w-5"></i> Videos educativos</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-purple-700 font-bold" href="dibujo.html"><i
+        class="fa-solid fa-palette w-5"></i> Dibujo</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="ingles.html"><i
+        class="fa-solid fa-language w-5"></i> Inglés</a>
+  </nav>
+
+  <!-- Sección Hero -->
+  <section id="heroSection" class="relative pt-7 md:pt-9 pb-12 md:pb-14 px-4 md:px-6 overflow-hidden hero-bg">
+    <div class="max-w-7xl mx-auto flex flex-col items-center gap-3 relative z-10 text-center">
+      <div
+        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-pink-700 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-sm border border-pink-200">
+        <i class="fa-solid fa-palette text-pink-500"></i> <span><span id="totalActividades">88</span> láminas para
+          colorear y crear</span>
+      </div>
+      <div class="flex items-center justify-center gap-3">
+        <img src="assets/mascota.svg" alt="" class="w-12 h-12 md:w-16 md:h-16 float-slow">
+        <h2
+          class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-purple-900 tracking-tight leading-tight max-w-3xl">
+          Rincón de Dibujo y Creatividad
+        </h2>
+      </div>
+      <p class="text-sm md:text-base text-gray-700 max-w-2xl font-medium">
+        Láminas limpias y despejadas para pintar en pantalla o imprimir.
+      </p>
+
+      <!-- Indicador de modalidades -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mt-1 text-xs font-bold">
+        <span
+          class="inline-flex items-center gap-1.5 bg-pink-100 text-pink-800 px-3.5 py-1.5 rounded-xl border border-pink-200 shadow-sm">
+          <i class="fa-solid fa-paintbrush"></i> Pizarra digital: pinta con variedad de colores y pinceles
+        </span>
+        <span
+          class="inline-flex items-center gap-1.5 bg-blue-100 text-blue-800 px-3.5 py-1.5 rounded-xl border border-blue-200 shadow-sm">
+          <i class="fa-solid fa-print"></i> Para imprimir: ficha A4 con nombre y fecha
+        </span>
+      </div>
+    </div>
+
+    <!-- Elementos flotantes de adorno -->
+    <div class="absolute top-6 left-6 md:left-10 text-yellow-400 text-2xl md:text-3xl opacity-60 float-slow"><i
+        class="fa-solid fa-star"></i></div>
+    <div class="absolute top-8 right-12 text-pink-400 text-lg opacity-60 float-fast"><i class="fa-solid fa-circle"></i>
+    </div>
+    <div class="absolute bottom-14 right-6 md:right-16 text-purple-400 text-2xl md:text-3xl opacity-60 float-slow"><i
+        class="fa-solid fa-star"></i></div>
+
+    <div class="cloud-divider">
+      <svg preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+        <path class="shape-fill"
+          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C79.86,122.9,161.4,117.82,238.4,94.9,268.21,86.08,295.6,71.21,321.39,56.44Z">
+        </path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Barra de Filtros de Categoría y Buscador en Tiempo Real -->
+  <section id="filterSection" class="max-w-7xl mx-auto px-4 md:px-6 pt-6 pb-2 relative isolate">
+    <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+      <i class="fa-solid fa-star absolute top-1 left-[5%] text-yellow-300 text-xl md:text-2xl opacity-70 twinkle"></i>
+      <i class="fa-solid fa-star absolute top-6 right-[7%] text-pink-300 text-2xl md:text-3xl opacity-50 float-slow hidden md:block"></i>
+      <i class="fa-solid fa-star absolute bottom-2 left-[20%] text-purple-300 text-lg opacity-50 float-fast hidden lg:block"></i>
+      <i class="fa-solid fa-star absolute bottom-4 right-[22%] text-sky-300 text-lg opacity-60 twinkle hidden lg:block"></i>
+    </div>
+    <div class="text-center mb-4 flex items-center justify-center gap-3">
+      <i class="fa-solid fa-star text-yellow-400 text-2xl md:text-3xl"></i>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Explora por categoría</h2>
+    </div>
+    <p class="text-center text-muted font-medium max-w-2xl mx-auto mb-6">Elige un tema y encuentra láminas para colorear,
+      repasar o pintar en la pizarra digital.</p>
+
+    <div id="categoryFilters" class="flex flex-wrap justify-center gap-2 md:gap-3">
+      <button onclick="filtrarCategoria('todas')" data-cat="todas"
+        class="cat-filter-btn btn-squish font-bold text-sm py-2.5 px-5 md:px-6 rounded-full shadow-sm transition-all hover:scale-105 border-b-4 bg-pink-600 text-white border-pink-800 flex items-center gap-1.5">
+        <i class="fa-solid fa-layer-group"></i> <span>Todas (<span id="count-todas">88</span>)</span>
+      </button>
+    </div>
+
+    <!-- Buscador en tiempo real -->
+    <div class="flex justify-center mt-4 md:mt-5">
+      <div class="relative w-full max-w-md">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-pink-400 text-xs"></i>
+        <input id="searchInput" type="text" oninput="buscarActividad(this.value)"
+          placeholder="Buscar: gato, flor, castillo..."
+          class="w-full min-h-[44px] pl-9 pr-4 py-2 bg-white hover:bg-pink-50/60 focus:bg-white text-base sm:text-sm font-semibold text-gray-700 rounded-full border border-pink-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400 transition-all">
+      </div>
+    </div>
+  </section>
+
+  <!-- Biblioteca de láminas para colorear (PDF e imágenes) -->
+  <main id="seccionesDibujo"
+    class="max-w-7xl mx-auto px-4 md:px-6 pt-4 pb-16 relative overflow-hidden space-y-10 md:space-y-12">
+
+    <p id="catalogoVacio" class="hidden text-center text-muted font-medium py-10">No encontramos actividades con esa
+      búsqueda. Prueba con otra palabra.</p>
+
+  </main>
+
+
+  <!-- MODAL DE PIZARRA MÁGICA DIGITAL PARA PINTAR -->
+  <!-- MODAL INTERACTIVO DE PIZARRA PARA PINTAR -->
+  <div id="drawModal"
+    class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+    <div
+      class="bg-white w-full max-w-4xl rounded-[28px] shadow-2xl flex flex-col max-h-[96dvh] border border-purple-200 pop-in overflow-hidden">
+
+      <!-- Fila 1: Encabezado del Modal con Título, Instrucción y Botón Cerrar -->
+      <div
+        class="px-4 py-3 bg-gradient-to-r from-purple-50 via-pink-50 to-amber-50 border-b border-purple-100 flex items-center justify-between gap-3 shrink-0">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div
+            class="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center text-lg shadow-sm shrink-0">
+            <i class="fa-solid fa-palette"></i>
+          </div>
+          <div class="truncate">
+            <h3 id="modalActivityTitle" class="text-base sm:text-lg font-bold text-purple-900 leading-tight truncate">
+              Pizarra de Dibujo y Pintura
+            </h3>
+            <p id="modalActivityDesc" class="text-xs text-muted truncate">
+              Pinta libremente con tu crayón o dedo sobre la lámina.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <button id="modalPrintBtn" onclick="imprimirDesdeModal()"
+            title="Imprimir esta lámina con datos del estudiante"
+            class="btn-squish bg-white hover:bg-purple-50 text-purple-700 border border-purple-200 text-xs font-bold min-h-[40px] px-3 py-1.5 rounded-xl shadow-sm inline-flex items-center justify-center gap-1.5 transition-all"
+            aria-label="Imprimir lámina">
+            <i class="fa-solid fa-print"></i> <span id="modalPrintLabel" class="hidden sm:inline">Imprimir A4</span>
+          </button>
+          <button onclick="cerrarPizarra()"
+            class="w-10 h-10 rounded-xl bg-white hover:bg-red-50 text-gray-500 hover:text-red-500 border border-gray-200 flex items-center justify-center transition-all shrink-0"
+            aria-label="Cerrar pizarra">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Fila 2: BARRA DE COLORES COMPLETA CON SCROLL HORIZONTAL SUAVE (SALEN TODOS LOS COLORES) -->
+      <div class="px-4 py-2 bg-purple-50/70 border-b border-purple-100/80 flex items-center gap-2 shrink-0 select-none">
+        <span class="text-xs font-bold text-gray-700 shrink-0 flex items-center gap-1 mr-1">
+          <i class="fa-solid fa-paintbrush text-purple-600"></i> <span class="hidden sm:inline">Colores:</span>
+        </span>
+
+        <!-- Contenedor con overflow-x-auto y flex-nowrap: NUNCA se cortan los colores -->
+        <div id="colorPalette"
+          class="flex items-center gap-2 overflow-x-auto py-1 px-1 flex-nowrap scrollbar-thin scrollbar-thumb-purple-200 w-full">
+          <button onclick="seleccionarColor('#ef4444')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-red-500 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Rojo" aria-label="Rojo"></button>
+          <button onclick="seleccionarColor('#f97316')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-orange-500 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Naranja" aria-label="Naranja"></button>
+          <button onclick="seleccionarColor('#f59e0b')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-amber-500 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Ámbar" aria-label="Ámbar"></button>
+          <button onclick="seleccionarColor('#eab308')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-yellow-400 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Amarillo" aria-label="Amarillo"></button>
+          <button onclick="seleccionarColor('#84cc16')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-lime-500 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Lima" aria-label="Lima"></button>
+          <button onclick="seleccionarColor('#22c55e')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-green-500 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Verde" aria-label="Verde"></button>
+          <button onclick="seleccionarColor('#10b981')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-emerald-500 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Esmeralda" aria-label="Esmeralda"></button>
+          <button onclick="seleccionarColor('#06b6d4')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-cyan-500 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Celeste" aria-label="Celeste"></button>
+          <button onclick="seleccionarColor('#3b82f6')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-500 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Azul" aria-label="Azul"></button>
+          <button onclick="seleccionarColor('#6366f1')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-indigo-500 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Índigo" aria-label="Índigo"></button>
+          <button onclick="seleccionarColor('#8b5cf6')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-purple-500 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105 ring-2 ring-offset-2 ring-purple-600"
+            title="Morado" aria-label="Morado"></button>
+          <button onclick="seleccionarColor('#ec4899')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-pink-500 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Rosa" aria-label="Rosa"></button>
+          <button onclick="seleccionarColor('#78350f')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-amber-900 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Marrón" aria-label="Marrón"></button>
+          <button onclick="seleccionarColor('#1e293b')"
+            class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-800 transition-transform active:scale-90 shrink-0 shadow-sm border-2 border-white ring-2 ring-transparent hover:scale-105"
+            title="Negro" aria-label="Negro"></button>
+        </div>
+      </div>
+
+      <!-- Fila 3: Grosores de Trazo, Borrador y Acciones -->
+      <div
+        class="px-4 py-2 bg-white border-b border-gray-100 flex flex-wrap items-center justify-between gap-2 text-xs select-none shrink-0">
+        <!-- Selector de grosor de trazo -->
+        <div class="flex items-center gap-2">
+          <div class="inline-flex rounded-xl bg-gray-50 border border-gray-200 p-0.5 shadow-sm">
+            <button id="sizeThinBtn" onclick="seleccionarGrosor(8)"
+              class="min-h-[34px] px-3 rounded-lg text-xs font-bold text-gray-600 hover:text-purple-600 transition-colors"
+              title="Pincel fino">Fino</button>
+            <button id="sizeMediumBtn" onclick="seleccionarGrosor(16)"
+              class="min-h-[34px] px-3 rounded-lg text-xs font-bold bg-purple-100 text-purple-700 transition-colors"
+              title="Pincel mediano">Medio</button>
+            <button id="sizeThickBtn" onclick="seleccionarGrosor(28)"
+              class="min-h-[34px] px-3 rounded-lg text-xs font-bold text-gray-600 hover:text-purple-600 transition-colors"
+              title="Pincel grueso">Grueso</button>
+          </div>
+
+          <button id="eraserBtn" onclick="activarBorrador()"
+            class="min-h-[34px] px-3 rounded-xl border border-gray-200 bg-white hover:bg-purple-50 text-gray-700 font-bold flex items-center gap-1.5 shadow-sm transition-all text-xs"
+            title="Borrador">
+            <i class="fa-solid fa-eraser text-purple-500"></i> <span>Borrador</span>
+          </button>
+        </div>
+
+        <!-- Acciones: Limpiar, Guardar y Celebrar -->
+        <div class="flex items-center gap-1.5 ml-auto">
+          <button onclick="limpiarTrazos()"
+            class="btn-squish min-h-[34px] px-3 rounded-xl border border-gray-200 bg-white hover:bg-amber-50 text-gray-700 font-bold flex items-center gap-1 shadow-sm transition-all text-xs"
+            title="Reiniciar pintura">
+            <i class="fa-solid fa-rotate-left text-amber-500"></i> <span class="hidden sm:inline">Limpiar</span>
+          </button>
+          <button onclick="descargarDibujo()"
+            class="btn-squish min-h-[34px] px-3 rounded-xl bg-purple-100 hover:bg-purple-200 text-purple-700 font-bold flex items-center gap-1 transition-all text-xs"
+            title="Descargar lámina pintada">
+            <i class="fa-solid fa-download"></i> <span class="hidden sm:inline">Guardar</span>
+          </button>
+          <button onclick="celebrarExito()"
+            class="btn-squish min-h-[34px] px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold flex items-center gap-1.5 shadow-sm transition-all text-xs">
+            <i class="fa-solid fa-star text-yellow-300"></i> <span>¡Terminé!</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- CUERPO DEL MODAL CON BARRA VERTICAL PARA BAJAR (SCROLL VERTICAL SEGURO) -->
+      <div
+        class="flex-1 min-h-0 overflow-y-auto overscroll-contain p-3 sm:p-5 flex flex-col items-center justify-start bg-slate-50/70 scrollbar-thin scrollbar-thumb-purple-200">
+        <div id="canvasWrapper"
+          class="relative w-full max-w-[800px] aspect-[16/10] shrink-0 bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden select-none my-auto">
+
+          <!-- Capa 1: Plantilla didáctica SVG de fondo (inmutable, nítida y limpia) -->
+          <div id="canvasBackgroundSvg"
+            class="absolute inset-0 pointer-events-none flex items-center justify-center bg-white">
+            <!-- Inyectado dinámicamente vía JS -->
+          </div>
+
+          <!-- Capa 2: Canvas interactivo para pintar con dedo o ratón -->
+          <canvas id="paintCanvas" class="absolute inset-0 w-full h-full crayon-cursor touch-none z-10"></canvas>
+
+          <!-- Capa 2.5: Mirilla flotante de puntero -->
+          <div id="visualPointerReticle"></div>
+
+          <!-- Capa 3: Overlay de felicitación -->
+          <div id="celebrationOverlay"
+            class="absolute inset-0 z-20 pointer-events-none hidden items-center justify-center bg-purple-900/20 backdrop-blur-[2px]">
+            <div
+              class="bg-white text-center rounded-3xl p-6 sm:p-8 max-w-sm shadow-2xl pop-in border-4 border-yellow-300">
+              <div class="text-5xl sm:text-6xl mb-3 animate-bounce">🎨 ⭐ 👏</div>
+              <h4 class="text-xl sm:text-2xl font-extrabold text-purple-900 mb-1">¡Qué Obra de Arte!</h4>
+              <p class="text-xs sm:text-sm text-gray-600 mb-4">
+                Pintaste con mucha dedicación, alegría y creatividad. ¡Eres un gran artista!
+              </p>
+              <div class="flex flex-col gap-2">
+                <button onclick="descargarDibujo()"
+                  class="btn-squish w-full py-2.5 px-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-md flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-download"></i> Guardar mi lámina
+                </button>
+                <button onclick="cerrarPizarra()"
+                  class="btn-squish w-full py-2 px-4 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs">
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- CONTENEDOR EXCLUSIVO PARA IMPRESIÓN (A4 LIMPIO) -->
+  <div id="printContainer" class="hidden">
+    <p
+      style="font-family:'Quicksand',sans-serif; font-size:18px; font-weight:700; text-align:center; padding-top:40px;">
+      Para imprimir una lámina, pulsa «Imprimir ficha A4» en la lámina que elijas.
+    </p>
+  </div>
+
+
+  <!-- Footer Escolar -->
+  <footer class="bg-purple-700 text-white py-8 px-6 mt-16">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-4 text-sm opacity-95 text-center md:text-left">
+        <i class="fa-solid fa-star text-yellow-400 text-2xl"></i>
+        <div>
+          <p class="font-bold">MotriKids © 2026 | Unidad Educativa Ecuatoriana Austriaca</p>
+          <p class="text-purple-200">Aprender, crecer y crear juntos.</p>
+        </div>
+      </div>
+      <div class="text-sm text-purple-200 flex items-center gap-2 font-medium text-center">
+        <i class="fa-solid fa-heart text-secondary"></i> Con amor, dedicación y paciencia todo es posible.
+      </div>
+      <div class="flex gap-1 text-xl">
+        <a class="w-11 h-11 inline-flex items-center justify-center hover:text-purple-300 transition-colors"
+          href="videos.html" aria-label="Videos"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- SCRIPT LÓGICO: CATÁLOGO DE ACTIVIDADES DE DIBUJO Y CANVAS -->
+  <script>
+    // Menú móvil
+    document.getElementById('menuBtn')?.addEventListener('click', () => {
+      const m = document.getElementById('mobileNav');
+      m.classList.toggle('hidden');
+      m.classList.toggle('flex');
+    });
+
+    // Catálogo global de actividades de dibujo
+    const ACTIVIDADES = {};
+
+    // ==============================================================
+    // BIBLIOTECA DE LÁMINAS DESCARGABLES (PDF e imágenes)
+    // ==============================================================
+    const CATEGORIAS_BIBLIOTECA = [
+      { key: "pdf_colorear", label: "Colorear", title: "1. Colorear", desc: "Gatos, flores, dragones, Bluey, perritos, mariposas y Acción de Gracias para colorear y desarrollar la precisión del trazo.", icon: "fa-palette", accent: "bg-pink-100 text-pink-700", badge: "bg-pink-50 text-pink-700 border-pink-200", suffix: "láminas para colorear" },
+      { key: "puntos_marcadores", label: "Puntos", title: "3. Puntos y Marcadores", desc: "Fichas con círculos para rellenar con marcadores, adhesivos o pintura y trabajar la precisión.", icon: "fa-circle-dot", accent: "bg-teal-100 text-teal-700", badge: "bg-teal-50 text-teal-700 border-teal-200", suffix: "láminas" },
+      { key: "colorear_numeros", label: "Números", title: "2. Colorear por Números", desc: "Láminas con código de colores para asociar números, tonos y zonas.", icon: "fa-sort-numeric-up", accent: "bg-indigo-100 text-indigo-700", badge: "bg-indigo-50 text-indigo-700 border-indigo-200", suffix: "láminas" },
+      { key: "repasar_trazos", label: "Trazos", title: "4. Repasar Trazos con Animales", desc: "Animales con líneas punteadas para repasar el trazo y luego colorear.", icon: "fa-pencil", accent: "bg-emerald-100 text-emerald-700", badge: "bg-emerald-50 text-emerald-700 border-emerald-200", suffix: "láminas" },
+    ];
+
+    const RECURSOS_BIBLIOTECA = [
+      { "id": "pdf-cat-baker", "categoria": "pdf_colorear", "titulo": "Gatito chef", "descripcion": "Un gatito repostero amasa y decora un pastel.", "instrucciones": "Colorea al gatito chef, su gorro y el pastel con colores cálidos.", "tag": "Gatos", "emoji": "🐱", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-pink-100 text-pink-700 border-pink-200", "keywords": "gatos gatito gata mascota animales chef cocina", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/cat-baker.png", "pdf": "assets/dibujo/pdf/cat-baker.pdf" },
+      { "id": "pdf-cat-color-by-number", "categoria": "pdf_colorear", "titulo": "Gato por números", "descripcion": "Colorea al gato siguiendo el código de colores.", "instrucciones": "Observa los números de cada zona y pinta con el color que corresponde.", "tag": "Gatos", "emoji": "🐱", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-pink-100 text-pink-700 border-pink-200", "keywords": "gatos gatito gata mascota animales chef cocina", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/cat-color-by-number.png", "pdf": "assets/dibujo/pdf/cat-color-by-number.pdf" },
+      { "id": "pdf-cat-ball-play", "categoria": "pdf_colorear", "titulo": "Gatito y pelota", "descripcion": "Un gatito juega con una pelota.", "instrucciones": "Colorea al gatito y su pelota; puedes inventar un fondo lleno de juguetes.", "tag": "Gatos", "emoji": "🐱", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-pink-100 text-pink-700 border-pink-200", "keywords": "gatos gatito gata mascota animales chef cocina", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/cat-ball-play.png", "pdf": "assets/dibujo/pdf/cat-ball-play.pdf" },
+      { "id": "pdf-cat-mom-kitten", "categoria": "pdf_colorear", "titulo": "Mamá gata y gatito", "descripcion": "Una mamá gata acompaña a su pequeño.", "instrucciones": "Colorea a la mamá y al gatito con tonos suaves y cálidos.", "tag": "Gatos", "emoji": "🐱", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-pink-100 text-pink-700 border-pink-200", "keywords": "gatos gatito gata mascota animales chef cocina", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/cat-mom-kitten.png", "pdf": "assets/dibujo/pdf/cat-mom-kitten.pdf" },
+      { "id": "pdf-cat-window-plants", "categoria": "pdf_colorear", "titulo": "Gato en la ventana", "descripcion": "Un gato curioso mira las plantas de la ventana.", "instrucciones": "Pinta al gato, las macetas y la ventana con los colores que prefieras.", "tag": "Gatos", "emoji": "🐱", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-pink-100 text-pink-700 border-pink-200", "keywords": "gatos gatito gata mascota animales chef cocina", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/cat-window-plants.png", "pdf": "assets/dibujo/pdf/cat-window-plants.pdf" },
+      { "id": "pdf-cat-box", "categoria": "pdf_colorear", "titulo": "Gatito en la caja", "descripcion": "Un gatito se esconde dentro de una caja.", "instrucciones": "Colorea la caja y decora el fondo con juguetes o cojines.", "tag": "Gatos", "emoji": "🐱", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-pink-100 text-pink-700 border-pink-200", "keywords": "gatos gatito gata mascota animales chef cocina", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/cat-box.png", "pdf": "assets/dibujo/pdf/cat-box.pdf" },
+      { "id": "pdf-cat-playing-yarn", "categoria": "pdf_colorear", "titulo": "Gatito con ovillo", "descripcion": "Un gatito persigue un ovillo de lana.", "instrucciones": "Pinta el ovillo de varios colores y añade líneas de movimiento.", "tag": "Gatos", "emoji": "🐱", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-pink-100 text-pink-700 border-pink-200", "keywords": "gatos gatito gata mascota animales chef cocina", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/cat-playing-yarn.png", "pdf": "assets/dibujo/pdf/cat-playing-yarn.pdf" },
+      { "id": "pdf-cat-sleeping-curled", "categoria": "pdf_colorear", "titulo": "Gatito dormilón", "descripcion": "Un gatito duerme enroscado.", "instrucciones": "Usa colores tranquilos para acompañar el sueño del gatito.", "tag": "Gatos", "emoji": "🐱", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-pink-100 text-pink-700 border-pink-200", "keywords": "gatos gatito gata mascota animales chef cocina", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/cat-sleeping-curled.png", "pdf": "assets/dibujo/pdf/cat-sleeping-curled.pdf" },
+      { "id": "pdf-thanksgiving-pie-slice-cream", "categoria": "pdf_colorear", "titulo": "Porción de tarta", "descripcion": "Una porción de tarta con crema para celebrar.", "instrucciones": "Colorea la tarta y la crema con tonos cálidos de otoño.", "tag": "Acción de Gracias", "emoji": "🦃", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-amber-100 text-amber-700 border-amber-200", "keywords": "thanksgiving accion de gracias otono pavo calabaza cosecha", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/thanksgiving-pie-slice-cream.png", "pdf": "assets/dibujo/pdf/thanksgiving-pie-slice-cream.pdf" },
+      { "id": "pdf-thanksgiving-corn-cob", "categoria": "pdf_colorear", "titulo": "Mazorca de maíz", "descripcion": "Una mazorca de maíz tierno.", "instrucciones": "Pinta los granos del maíz y las hojas que lo envuelven.", "tag": "Acción de Gracias", "emoji": "🦃", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-amber-100 text-amber-700 border-amber-200", "keywords": "thanksgiving accion de gracias otono pavo calabaza cosecha", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/thanksgiving-corn-cob.png", "pdf": "assets/dibujo/pdf/thanksgiving-corn-cob.pdf" },
+      { "id": "pdf-thanksgiving-pie-window", "categoria": "pdf_colorear", "titulo": "Tarta en la ventana", "descripcion": "Una tarta enfriándose junto a la ventana.", "instrucciones": "Colorea la tarta, la ventana y el paisaje del exterior.", "tag": "Acción de Gracias", "emoji": "🦃", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-amber-100 text-amber-700 border-amber-200", "keywords": "thanksgiving accion de gracias otono pavo calabaza cosecha", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/thanksgiving-pie-window.png", "pdf": "assets/dibujo/pdf/thanksgiving-pie-window.pdf" },
+      { "id": "pdf-thanksgiving-gourds-trio", "categoria": "pdf_colorear", "titulo": "Calabazas de otoño", "descripcion": "Tres calabazas decorativas.", "instrucciones": "Usa naranjas, verdes y marrones para dar volumen a las calabazas.", "tag": "Acción de Gracias", "emoji": "🦃", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-amber-100 text-amber-700 border-amber-200", "keywords": "thanksgiving accion de gracias otono pavo calabaza cosecha", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/thanksgiving-gourds-trio.png", "pdf": "assets/dibujo/pdf/thanksgiving-gourds-trio.pdf" },
+      { "id": "pdf-thanksgiving-cranberry-bowl", "categoria": "pdf_colorear", "titulo": "Bol de arándanos", "descripcion": "Un bol de arándanos rojos.", "instrucciones": "Pinta los arándanos con rojos y morados; el bol puede ser de otro color.", "tag": "Acción de Gracias", "emoji": "🦃", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-amber-100 text-amber-700 border-amber-200", "keywords": "thanksgiving accion de gracias otono pavo calabaza cosecha", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/thanksgiving-cranberry-bowl.png", "pdf": "assets/dibujo/pdf/thanksgiving-cranberry-bowl.pdf" },
+      { "id": "pdf-thanksgiving-bread-rolls", "categoria": "pdf_colorear", "titulo": "Panecillos horneados", "descripcion": "Una cesta de panecillos recién hechos.", "instrucciones": "Colorea los panecillos con tonos dorados y la cesta con líneas de mimbre.", "tag": "Acción de Gracias", "emoji": "🦃", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-amber-100 text-amber-700 border-amber-200", "keywords": "thanksgiving accion de gracias otono pavo calabaza cosecha", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/thanksgiving-bread-rolls.png", "pdf": "assets/dibujo/pdf/thanksgiving-bread-rolls.pdf" },
+      { "id": "pdf-thanksgiving-apple-basket", "categoria": "pdf_colorear", "titulo": "Cesta de manzanas", "descripcion": "Una cesta llena de manzanas.", "instrucciones": "Pinta cada manzana de un color distinto y decora la cesta.", "tag": "Acción de Gracias", "emoji": "🦃", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-amber-100 text-amber-700 border-amber-200", "keywords": "thanksgiving accion de gracias otono pavo calabaza cosecha", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/thanksgiving-apple-basket.png", "pdf": "assets/dibujo/pdf/thanksgiving-apple-basket.pdf" },
+      { "id": "pdf-thanksgiving-easy-turkey", "categoria": "pdf_colorear", "titulo": "Pavo de Acción de Gracias", "descripcion": "Un pavo simpático para los más pequeños.", "instrucciones": "Colorea el pavo con colores vivos y añade un fondo de hojas.", "tag": "Acción de Gracias", "emoji": "🦃", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-amber-100 text-amber-700 border-amber-200", "keywords": "thanksgiving accion de gracias otono pavo calabaza cosecha", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/thanksgiving-easy-turkey.png", "pdf": "assets/dibujo/pdf/thanksgiving-easy-turkey.pdf" },
+      { "id": "pdf-flower-toddler-flower", "categoria": "pdf_colorear", "titulo": "Flor para peques", "descripcion": "Una flor grande y sencilla.", "instrucciones": "Colorea la flor con pocos colores y trazos amplios.", "tag": "Flores", "emoji": "🌸", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-rose-100 text-rose-700 border-rose-200", "keywords": "flores flor jardin naturaleza planta primavera", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/flower-toddler-flower.png", "pdf": "assets/dibujo/pdf/flower-toddler-flower.pdf" },
+      { "id": "pdf-flower-pot-windowsill", "categoria": "pdf_colorear", "titulo": "Flores en la repisa", "descripcion": "Macetas con flores en una ventana.", "instrucciones": "Pinta las macetas, las flores y el paisaje de la ventana.", "tag": "Flores", "emoji": "🌸", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-rose-100 text-rose-700 border-rose-200", "keywords": "flores flor jardin naturaleza planta primavera", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/flower-pot-windowsill.png", "pdf": "assets/dibujo/pdf/flower-pot-windowsill.pdf" },
+      { "id": "pdf-flower-lotus-pond", "categoria": "pdf_colorear", "titulo": "Loto en el estanque", "descripcion": "Una flor de loto flotando en el agua.", "instrucciones": "Usa rosas y lilas para el loto y azules para el agua.", "tag": "Flores", "emoji": "🌸", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-rose-100 text-rose-700 border-rose-200", "keywords": "flores flor jardin naturaleza planta primavera", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/flower-lotus-pond.png", "pdf": "assets/dibujo/pdf/flower-lotus-pond.pdf" },
+      { "id": "pdf-flower-waterlily-pond", "categoria": "pdf_colorear", "titulo": "Nenúfar en el estanque", "descripcion": "Nenúfares y hojas sobre el agua.", "instrucciones": "Colorea las hojas, la flor y las ondas del estanque.", "tag": "Flores", "emoji": "🌸", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-rose-100 text-rose-700 border-rose-200", "keywords": "flores flor jardin naturaleza planta primavera", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/flower-waterlily-pond.png", "pdf": "assets/dibujo/pdf/flower-waterlily-pond.pdf" },
+      { "id": "pdf-flower-sunflower-ladybug", "categoria": "pdf_colorear", "titulo": "Girasol y mariquita", "descripcion": "Un girasol con una mariquita.", "instrucciones": "Pinta el girasol de amarillo y la mariquita de rojo con lunares.", "tag": "Flores", "emoji": "🌸", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-rose-100 text-rose-700 border-rose-200", "keywords": "flores flor jardin naturaleza planta primavera", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/flower-sunflower-ladybug.png", "pdf": "assets/dibujo/pdf/flower-sunflower-ladybug.pdf" },
+      { "id": "pdf-bluey-color-by-number", "categoria": "pdf_colorear", "titulo": "Bluey por números", "descripcion": "Colorea a Bluey siguiendo el código de colores.", "instrucciones": "Observa los números y pinta cada zona con el color indicado.", "tag": "Bluey", "emoji": "🐶", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-blue-100 text-blue-700 border-blue-200", "keywords": "bluey perro familia primos playa almohadas tienda", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/bluey-color-by-number.png", "pdf": "assets/dibujo/pdf/bluey-color-by-number.pdf" },
+      { "id": "pdf-bluey-cousins-beach-shells", "categoria": "pdf_colorear", "titulo": "Primos en la playa", "descripcion": "Bluey y sus primos buscan conchas.", "instrucciones": "Colorea la playa, las conchas y a los primos jugando.", "tag": "Bluey", "emoji": "🐶", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-blue-100 text-blue-700 border-blue-200", "keywords": "bluey perro familia primos playa almohadas tienda", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/bluey-cousins-beach-shells.png", "pdf": "assets/dibujo/pdf/bluey-cousins-beach-shells.pdf" },
+      { "id": "pdf-bluey-cousins-pillow-fort", "categoria": "pdf_colorear", "titulo": "Fuerte de almohadas", "descripcion": "Bluey y sus primos construyen un fuerte.", "instrucciones": "Pinta las almohadas y añade cojines de colores.", "tag": "Bluey", "emoji": "🐶", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-blue-100 text-blue-700 border-blue-200", "keywords": "bluey perro familia primos playa almohadas tienda", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/bluey-cousins-pillow-fort.png", "pdf": "assets/dibujo/pdf/bluey-cousins-pillow-fort.pdf" },
+      { "id": "pdf-bluey-orange-sister-shop", "categoria": "pdf_colorear", "titulo": "La tienda de Bluey", "descripcion": "Bluey y su hermana juegan a la tienda.", "instrucciones": "Colorea la tienda y los productos que venden.", "tag": "Bluey", "emoji": "🐶", "edad": "3 a 6 años", "edadCorta": "3-6", "colorBadge": "bg-blue-100 text-blue-700 border-blue-200", "keywords": "bluey perro familia primos playa almohadas tienda", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/bluey-orange-sister-shop.png", "pdf": "assets/dibujo/pdf/bluey-orange-sister-shop.pdf" },
+      { "id": "pdf-puppy-camping-night", "categoria": "pdf_colorear", "titulo": "Perrito de campamento", "descripcion": "Un perrito junto a la hoguera.", "instrucciones": "Colorea la noche, la hoguera y al perrito con colores contrastantes.", "tag": "Perros", "emoji": "🐕", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-orange-100 text-orange-700 border-orange-200", "keywords": "perros perrito cachorro mascota camping familia", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/puppy-camping-night.png", "pdf": "assets/dibujo/pdf/puppy-camping-night.pdf" },
+      { "id": "pdf-puppy-dad-piggyback", "categoria": "pdf_colorear", "titulo": "Perrito a caballito", "descripcion": "Un cachorro viaja sobre su papá.", "instrucciones": "Pinta a los dos perritos y añade un camino o paisaje.", "tag": "Perros", "emoji": "🐕", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-orange-100 text-orange-700 border-orange-200", "keywords": "perros perrito cachorro mascota camping familia", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/puppy-dad-piggyback.png", "pdf": "assets/dibujo/pdf/puppy-dad-piggyback.pdf" },
+      { "id": "pdf-puppy-backyard-ball", "categoria": "pdf_colorear", "titulo": "Perrito en el jardín", "descripcion": "Un perrito juega con una pelota.", "instrucciones": "Colorea el jardín, la pelota y al perrito en movimiento.", "tag": "Perros", "emoji": "🐕", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-orange-100 text-orange-700 border-orange-200", "keywords": "perros perrito cachorro mascota camping familia", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/puppy-backyard-ball.png", "pdf": "assets/dibujo/pdf/puppy-backyard-ball.pdf" },
+      { "id": "pdf-puppy-family-dance", "categoria": "pdf_colorear", "titulo": "Familia de perritos", "descripcion": "Una familia de perritos baila junta.", "instrucciones": "Usa muchos colores para la fiesta y decora el fondo con música.", "tag": "Perros", "emoji": "🐕", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-orange-100 text-orange-700 border-orange-200", "keywords": "perros perrito cachorro mascota camping familia", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/puppy-family-dance.png", "pdf": "assets/dibujo/pdf/puppy-family-dance.pdf" },
+      { "id": "pdf-dragon-birthday-party", "categoria": "pdf_colorear", "titulo": "Dragón de cumpleaños", "descripcion": "Un dragón celebra con globos y pastel.", "instrucciones": "Colorea la fiesta y decora el fondo con globos y confeti.", "tag": "Dragones", "emoji": "🐉", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-purple-100 text-purple-700 border-purple-200", "keywords": "dragon dragones fantasia castillo aventura cumpleanos", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/dragon-birthday-party.png", "pdf": "assets/dibujo/pdf/dragon-birthday-party.pdf" },
+      { "id": "pdf-dragon-rider-child", "categoria": "pdf_colorear", "titulo": "Niño jinete de dragón", "descripcion": "Un pequeño héroe vuela sobre su dragón.", "instrucciones": "Pinta al jinete, al dragón y el cielo por el que vuelan.", "tag": "Dragones", "emoji": "🐉", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-purple-100 text-purple-700 border-purple-200", "keywords": "dragon dragones fantasia castillo aventura cumpleanos", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/dragon-rider-child.png", "pdf": "assets/dibujo/pdf/dragon-rider-child.pdf" },
+      { "id": "pdf-dragon-underwater-reef", "categoria": "pdf_colorear", "titulo": "Dragón bajo el mar", "descripcion": "Un dragón explora el arrecife.", "instrucciones": "Usa azules y verdes para el mar y colores vivos para el dragón.", "tag": "Dragones", "emoji": "🐉", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-purple-100 text-purple-700 border-purple-200", "keywords": "dragon dragones fantasia castillo aventura cumpleanos", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/dragon-underwater-reef.png", "pdf": "assets/dibujo/pdf/dragon-underwater-reef.pdf" },
+      { "id": "pdf-dragon-marshmallow-campfire", "categoria": "pdf_colorear", "titulo": "Dragón y malvaviscos", "descripcion": "Un dragón asa malvaviscos junto al fuego.", "instrucciones": "Colorea la fogata, los malvaviscos y las estrellas.", "tag": "Dragones", "emoji": "🐉", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-purple-100 text-purple-700 border-purple-200", "keywords": "dragon dragones fantasia castillo aventura cumpleanos", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/dragon-marshmallow-campfire.png", "pdf": "assets/dibujo/pdf/dragon-marshmallow-campfire.pdf" },
+      { "id": "pdf-dragon-easy-toddler", "categoria": "pdf_colorear", "titulo": "Dragón para peques", "descripcion": "Un dragón sencillo y amigable.", "instrucciones": "Pinta al dragón con dos o tres colores y trazos amplios.", "tag": "Dragones", "emoji": "🐉", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-purple-100 text-purple-700 border-purple-200", "keywords": "dragon dragones fantasia castillo aventura cumpleanos", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/dragon-easy-toddler.png", "pdf": "assets/dibujo/pdf/dragon-easy-toddler.pdf" },
+      { "id": "pdf-dragon-baby-hatching", "categoria": "pdf_colorear", "titulo": "Bebé dragón", "descripcion": "Un dragón sale de su huevo.", "instrucciones": "Colorea el huevo y el bebé dragón con tonos suaves.", "tag": "Dragones", "emoji": "🐉", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-purple-100 text-purple-700 border-purple-200", "keywords": "dragon dragones fantasia castillo aventura cumpleanos", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/dragon-baby-hatching.png", "pdf": "assets/dibujo/pdf/dragon-baby-hatching.pdf" },
+      { "id": "pdf-butterfly-caterpillar", "categoria": "pdf_colorear", "titulo": "Mariposa y oruga", "descripcion": "El ciclo de la mariposa.", "instrucciones": "Colorea la oruga y la mariposa; conversa sobre cómo cambian.", "tag": "Mariposas", "emoji": "🦋", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200", "keywords": "mariposas mariposa oruga jardin flores simetria", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/butterfly-caterpillar.png", "pdf": "assets/dibujo/pdf/butterfly-caterpillar.pdf" },
+      { "id": "pdf-butterfly-big-bloom", "categoria": "pdf_colorear", "titulo": "Mariposa en la flor", "descripcion": "Una mariposa sobre una flor grande.", "instrucciones": "Pinta las alas con simetría y la flor con colores contrastantes.", "tag": "Mariposas", "emoji": "🦋", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200", "keywords": "mariposas mariposa oruga jardin flores simetria", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/butterfly-big-bloom.png", "pdf": "assets/dibujo/pdf/butterfly-big-bloom.pdf" },
+      { "id": "pdf-butterfly-friends-pair", "categoria": "pdf_colorear", "titulo": "Mariposas amigas", "descripcion": "Dos mariposas vuelan juntas.", "instrucciones": "Usa dos combinaciones de colores para distinguir a las mariposas.", "tag": "Mariposas", "emoji": "🦋", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200", "keywords": "mariposas mariposa oruga jardin flores simetria", "vertical": true, "tipo": "pdf", "preview": "assets/dibujo/previews/butterfly-friends-pair.png", "pdf": "assets/dibujo/pdf/butterfly-friends-pair.pdf" },
+      { "id": "img-dot-globo", "categoria": "puntos_marcadores", "titulo": "Globo de puntos", "descripcion": "Rellena los círculos del globo.", "instrucciones": "Usa marcadores, pintura o adhesivos para completar cada círculo.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-globo.jpg", "fondo": "assets/dibujo/imagenes/dot-globo.jpg", "pdf": "assets/dibujo/pdf/dot-globo.pdf" },
+      { "id": "img-dot-manzana", "categoria": "puntos_marcadores", "titulo": "Manzana de puntos", "descripcion": "Una manzana llena de círculos.", "instrucciones": "Rellena los círculos con rojo y verde; pinta el tallo y la hoja.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-manzana.jpg", "fondo": "assets/dibujo/imagenes/dot-manzana.jpg", "pdf": "assets/dibujo/pdf/dot-manzana.pdf" },
+      { "id": "img-dot-pollito", "categoria": "puntos_marcadores", "titulo": "Pollito de puntos", "descripcion": "Un pollito para rellenar con puntos.", "instrucciones": "Usa amarillo para el pollito y colores vivos para los círculos.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-pollito.jpg", "fondo": "assets/dibujo/imagenes/dot-pollito.jpg", "pdf": "assets/dibujo/pdf/dot-pollito.pdf" },
+      { "id": "img-dot-rana", "categoria": "puntos_marcadores", "titulo": "Rana de puntos", "descripcion": "Una rana saltarina.", "instrucciones": "Rellena los círculos con verde y decora el fondo con agua.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-rana.jpg", "fondo": "assets/dibujo/imagenes/dot-rana.jpg", "pdf": "assets/dibujo/pdf/dot-rana.pdf" },
+      { "id": "img-dot-arcoiris", "categoria": "puntos_marcadores", "titulo": "Arcoíris de puntos", "descripcion": "Un arcoíris para llenar de color.", "instrucciones": "Pinta cada franja del arcoíris con un color diferente.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-arcoiris.jpg", "fondo": "assets/dibujo/imagenes/dot-arcoiris.jpg", "pdf": "assets/dibujo/pdf/dot-arcoiris.pdf" },
+      { "id": "img-dot-helado", "categoria": "puntos_marcadores", "titulo": "Helado de puntos", "descripcion": "Un helado dulce y redondo.", "instrucciones": "Usa colores pastel para el helado y marrones para el cono.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-helado.jpg", "fondo": "assets/dibujo/imagenes/dot-helado.jpg", "pdf": "assets/dibujo/pdf/dot-helado.pdf" },
+      { "id": "img-dot-pera", "categoria": "puntos_marcadores", "titulo": "Pera de puntos", "descripcion": "Una pera con muchos círculos.", "instrucciones": "Rellena los círculos con verdes y amarillos; pinta la hoja.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-pera.jpg", "fondo": "assets/dibujo/imagenes/dot-pera.jpg", "pdf": "assets/dibujo/pdf/dot-pera.pdf" },
+      { "id": "img-dot-flor", "categoria": "puntos_marcadores", "titulo": "Flor de puntos", "descripcion": "Una flor con pétalos de círculos.", "instrucciones": "Usa un color para cada pétalo y otro para el centro.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-flor.jpg", "fondo": "assets/dibujo/imagenes/dot-flor.jpg", "pdf": "assets/dibujo/pdf/dot-flor.pdf" },
+      { "id": "img-dot-cerdito", "categoria": "puntos_marcadores", "titulo": "Cerdito de puntos", "descripcion": "Un cerdito sonriente.", "instrucciones": "Rellena los círculos con rosa y decora el barro con marrón.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-cerdito.jpg", "fondo": "assets/dibujo/imagenes/dot-cerdito.jpg", "pdf": "assets/dibujo/pdf/dot-cerdito.pdf" },
+      { "id": "img-dot-caracol", "categoria": "puntos_marcadores", "titulo": "Caracol de puntos", "descripcion": "Un caracol con hojas de otoño.", "instrucciones": "Pinta el caparazón, las hojas y los círculos con tonos de otoño.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-caracol.jpg", "fondo": "assets/dibujo/imagenes/dot-caracol.jpg", "pdf": "assets/dibujo/pdf/dot-caracol.pdf" },
+      { "id": "img-dot-buho", "categoria": "puntos_marcadores", "titulo": "Búho de puntos", "descripcion": "Un búho posado en una rama.", "instrucciones": "Rellena los círculos y colorea la rama y las hojas.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-buho.jpg", "fondo": "assets/dibujo/imagenes/dot-buho.jpg", "pdf": "assets/dibujo/pdf/dot-buho.pdf" },
+      { "id": "img-dot-elefante", "categoria": "puntos_marcadores", "titulo": "Elefante de puntos", "descripcion": "Un elefante con huellas de pintura.", "instrucciones": "Usa azul para el elefante y completa cada huella con un color.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-elefante.jpg", "fondo": "assets/dibujo/imagenes/dot-elefante.jpg", "pdf": "assets/dibujo/pdf/dot-elefante.pdf" },
+      { "id": "img-dot-robot", "categoria": "puntos_marcadores", "titulo": "Robot de puntos", "descripcion": "Un robot amistoso.", "instrucciones": "Rellena los círculos con colores metálicos y brillantes.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-robot.jpg", "fondo": "assets/dibujo/imagenes/dot-robot.jpg", "pdf": "assets/dibujo/pdf/dot-robot.pdf" },
+      { "id": "img-dot-cohete", "categoria": "puntos_marcadores", "titulo": "Cohete de puntos", "descripcion": "Un cohete listo para despegar.", "instrucciones": "Pinta el cohete y añade estrellas alrededor.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-cohete.jpg", "fondo": "assets/dibujo/imagenes/dot-cohete.jpg", "pdf": "assets/dibujo/pdf/dot-cohete.pdf" },
+      { "id": "img-dot-calabaza", "categoria": "puntos_marcadores", "titulo": "Calabaza de puntos", "descripcion": "Una calabaza de otoño.", "instrucciones": "Usa naranjas y verdes para la calabaza y el tallo.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-calabaza.jpg", "fondo": "assets/dibujo/imagenes/dot-calabaza.jpg", "pdf": "assets/dibujo/pdf/dot-calabaza.pdf" },
+      { "id": "img-dot-pinguino", "categoria": "puntos_marcadores", "titulo": "Pingüino de puntos", "descripcion": "Un pingüino con muchos círculos.", "instrucciones": "Rellena los círculos con blanco, negro y naranja.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-pinguino.jpg", "fondo": "assets/dibujo/imagenes/dot-pinguino.jpg", "pdf": "assets/dibujo/pdf/dot-pinguino.pdf" },
+      { "id": "img-dot-koala", "categoria": "puntos_marcadores", "titulo": "Koala de puntos", "descripcion": "Un koala abrazado a su rama.", "instrucciones": "Pinta el koala con grises y la rama con marrones.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-koala.jpg", "fondo": "assets/dibujo/imagenes/dot-koala.jpg", "pdf": "assets/dibujo/pdf/dot-koala.pdf" },
+      { "id": "img-dot-jirafa", "categoria": "puntos_marcadores", "titulo": "Jirafa de puntos", "descripcion": "Una jirafa alta y manchada.", "instrucciones": "Rellena los círculos con amarillo y naranja; pinta las hojas.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-jirafa.jpg", "fondo": "assets/dibujo/imagenes/dot-jirafa.jpg", "pdf": "assets/dibujo/pdf/dot-jirafa.pdf" },
+      { "id": "img-dot-gallo", "categoria": "puntos_marcadores", "titulo": "Gallo de puntos", "descripcion": "Un gallo sobre el corral.", "instrucciones": "Usa rojos, naranjas y amarillos para las plumas.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-gallo.jpg", "fondo": "assets/dibujo/imagenes/dot-gallo.jpg", "pdf": "assets/dibujo/pdf/dot-gallo.pdf" },
+      { "id": "img-dot-flor-marcadores", "categoria": "puntos_marcadores", "titulo": "Flor para marcadores", "descripcion": "Una flor grande con pétalos llenos de círculos.", "instrucciones": "Usa un marcador distinto para cada pétalo.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-flor-marcadores.jpg", "fondo": "assets/dibujo/imagenes/dot-flor-marcadores.jpg", "pdf": "assets/dibujo/pdf/dot-flor-marcadores.pdf" },
+      { "id": "img-dot-sol", "categoria": "puntos_marcadores", "titulo": "Sol de puntos", "descripcion": "Un sol radiante.", "instrucciones": "Rellena los círculos con amarillo y naranja.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-sol.jpg", "fondo": "assets/dibujo/imagenes/dot-sol.jpg", "pdf": "assets/dibujo/pdf/dot-sol.pdf" },
+      { "id": "img-dot-pina", "categoria": "puntos_marcadores", "titulo": "Piña de puntos", "descripcion": "Una piña tropical.", "instrucciones": "Pinta la piña con amarillos y verdes; decora los círculos.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-pina.jpg", "fondo": "assets/dibujo/imagenes/dot-pina.jpg", "pdf": "assets/dibujo/pdf/dot-pina.pdf" },
+      { "id": "img-dot-nube", "categoria": "puntos_marcadores", "titulo": "Nube de lluvia", "descripcion": "Una nube con gotas para completar.", "instrucciones": "Rellena los círculos de la nube y de las gotas con azules.", "tag": "Puntos", "emoji": "🎯", "edad": "2 a 4 años", "edadCorta": "2-4", "colorBadge": "bg-teal-100 text-teal-700 border-teal-200", "keywords": "puntos marcadores circulos adhesivos pintura dedos animales", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/dot-nube.jpg", "fondo": "assets/dibujo/imagenes/dot-nube.jpg", "pdf": "assets/dibujo/pdf/dot-nube.pdf" },
+      { "id": "img-num-castillo", "categoria": "colorear_numeros", "titulo": "Castillo mágico", "descripcion": "Un castillo con torres y banderas.", "instrucciones": "Pinta cada zona con el color que indica su número.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-castillo.jpg", "fondo": "assets/dibujo/imagenes/num-castillo.jpg", "pdf": "assets/dibujo/pdf/num-castillo.pdf" },
+      { "id": "img-num-granja", "categoria": "colorear_numeros", "titulo": "Granja mágica", "descripcion": "Una granja con sol, árbol y establo.", "instrucciones": "Sigue el código de colores para pintar la granja.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-granja.jpg", "fondo": "assets/dibujo/imagenes/num-granja.jpg", "pdf": "assets/dibujo/pdf/num-granja.pdf" },
+      { "id": "img-num-primavera", "categoria": "colorear_numeros", "titulo": "Primavera mágica", "descripcion": "Mariposa, sol, regadera y flores.", "instrucciones": "Colorea cada elemento según su número.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-primavera.jpg", "fondo": "assets/dibujo/imagenes/num-primavera.jpg", "pdf": "assets/dibujo/pdf/num-primavera.pdf" },
+      { "id": "img-num-conejo", "categoria": "colorear_numeros", "titulo": "Conejito mágico", "descripcion": "Un conejito con flores.", "instrucciones": "Pinta al conejito y las flores siguiendo los números.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-conejo.jpg", "fondo": "assets/dibujo/imagenes/num-conejo.jpg", "pdf": "assets/dibujo/pdf/num-conejo.pdf" },
+      { "id": "img-num-ballena", "categoria": "colorear_numeros", "titulo": "Ballena mágica", "descripcion": "Una ballena sonriente en el mar.", "instrucciones": "Usa el código para pintar la ballena y las olas.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-ballena.jpg", "fondo": "assets/dibujo/imagenes/num-ballena.jpg", "pdf": "assets/dibujo/pdf/num-ballena.pdf" },
+      { "id": "img-num-buho", "categoria": "colorear_numeros", "titulo": "Búho por números", "descripcion": "Un búho en una rama.", "instrucciones": "Pinta cada zona del búho con el color indicado.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-buho.jpg", "fondo": "assets/dibujo/imagenes/num-buho.jpg", "pdf": "assets/dibujo/pdf/num-buho.pdf" },
+      { "id": "img-num-setas", "categoria": "colorear_numeros", "titulo": "Setas de otoño", "descripcion": "Setas, hojas y bellotas.", "instrucciones": "Colorea las setas y las hojas siguiendo el código.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-setas.jpg", "fondo": "assets/dibujo/imagenes/num-setas.jpg", "pdf": "assets/dibujo/pdf/num-setas.pdf" },
+      { "id": "img-num-pajarito", "categoria": "colorear_numeros", "titulo": "Pajarito por números", "descripcion": "Un pajarito entre flores.", "instrucciones": "Pinta el pájaro, las flores y el fondo con el código.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-pajarito.jpg", "fondo": "assets/dibujo/imagenes/num-pajarito.jpg", "pdf": "assets/dibujo/pdf/num-pajarito.pdf" },
+      { "id": "img-num-erizo", "categoria": "colorear_numeros", "titulo": "Erizo de otoño", "descripcion": "Un erizo con una manzana.", "instrucciones": "Usa marrones, naranjas y verdes para el erizo y las hojas.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-erizo.jpg", "fondo": "assets/dibujo/imagenes/num-erizo.jpg", "pdf": "assets/dibujo/pdf/num-erizo.pdf" },
+      { "id": "img-num-payaso", "categoria": "colorear_numeros", "titulo": "Payaso por números", "descripcion": "Un payaso con globos.", "instrucciones": "Colorea al payaso y los globos según los números.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-payaso.jpg", "fondo": "assets/dibujo/imagenes/num-payaso.jpg", "pdf": "assets/dibujo/pdf/num-payaso.pdf" },
+      { "id": "img-num-marciano", "categoria": "colorear_numeros", "titulo": "Marciano por números", "descripcion": "Un marciano en su nave.", "instrucciones": "Pinta el marciano y la nave con colores brillantes.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-marciano.jpg", "fondo": "assets/dibujo/imagenes/num-marciano.jpg", "pdf": "assets/dibujo/pdf/num-marciano.pdf" },
+      { "id": "img-num-huevo", "categoria": "colorear_numeros", "titulo": "Huevo decorado", "descripcion": "Un huevo con franjas y círculos.", "instrucciones": "Usa el código para crear un huevo lleno de color.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-huevo.jpg", "fondo": "assets/dibujo/imagenes/num-huevo.jpg", "pdf": "assets/dibujo/pdf/num-huevo.pdf" },
+      { "id": "img-num-caballito", "categoria": "colorear_numeros", "titulo": "Caballito de mar", "descripcion": "Un caballito de mar bajo el agua.", "instrucciones": "Pinta el caballito y las burbujas con el código.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-caballito.jpg", "fondo": "assets/dibujo/imagenes/num-caballito.jpg", "pdf": "assets/dibujo/pdf/num-caballito.pdf" },
+      { "id": "img-num-pulpo", "categoria": "colorear_numeros", "titulo": "Pulpo por números", "descripcion": "Un pulpo de ocho brazos.", "instrucciones": "Colorea cada brazo y la cabeza siguiendo el código.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-pulpo.jpg", "fondo": "assets/dibujo/imagenes/num-pulpo.jpg", "pdf": "assets/dibujo/pdf/num-pulpo.pdf" },
+      { "id": "img-num-flor", "categoria": "colorear_numeros", "titulo": "Flor por números", "descripcion": "Una flor sonriente.", "instrucciones": "Pinta los pétalos, las hojas y la tierra según los números.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-flor.jpg", "fondo": "assets/dibujo/imagenes/num-flor.jpg", "pdf": "assets/dibujo/pdf/num-flor.pdf" },
+      { "id": "img-num-casa", "categoria": "colorear_numeros", "titulo": "Casa por números", "descripcion": "Una casa con chimenea y jardín.", "instrucciones": "Sigue el código para pintar la casa, el cielo y los arbustos.", "tag": "Números", "emoji": "🔢", "edad": "4 a 6 años", "edadCorta": "4-6", "colorBadge": "bg-indigo-100 text-indigo-700 border-indigo-200", "keywords": "numeros colores codigo pintar contar", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/num-casa.jpg", "fondo": "assets/dibujo/imagenes/num-casa.jpg", "pdf": "assets/dibujo/pdf/num-casa.pdf" },
+      { "id": "img-trazo-buho", "categoria": "repasar_trazos", "titulo": "Búho para repasar", "descripcion": "Repasa el contorno del búho y colorea.", "instrucciones": "Sigue las líneas punteadas con el dedo o el lápiz y luego colorea.", "tag": "Trazos", "emoji": "✏️", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-emerald-100 text-emerald-700 border-emerald-200", "keywords": "trazos animales repasar lineas punteadas motricidad", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/trazo-buho.jpg", "fondo": "assets/dibujo/imagenes/trazo-buho.jpg", "pdf": "assets/dibujo/pdf/trazo-buho.pdf" },
+      { "id": "img-trazo-cebra", "categoria": "repasar_trazos", "titulo": "Cebra para repasar", "descripcion": "Repasa las rayas y el contorno de la cebra.", "instrucciones": "Sigue las líneas punteadas y colorea las rayas de la cebra.", "tag": "Trazos", "emoji": "✏️", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-emerald-100 text-emerald-700 border-emerald-200", "keywords": "trazos animales repasar lineas punteadas motricidad", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/trazo-cebra.jpg", "fondo": "assets/dibujo/imagenes/trazo-cebra.jpg", "pdf": "assets/dibujo/pdf/trazo-cebra.pdf" },
+      { "id": "img-trazo-elefante", "categoria": "repasar_trazos", "titulo": "Elefante para repasar", "descripcion": "Repasa el contorno del elefante.", "instrucciones": "Sigue las líneas punteadas y colorea al elefante.", "tag": "Trazos", "emoji": "✏️", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-emerald-100 text-emerald-700 border-emerald-200", "keywords": "trazos animales repasar lineas punteadas motricidad", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/trazo-elefante.jpg", "fondo": "assets/dibujo/imagenes/trazo-elefante.jpg", "pdf": "assets/dibujo/pdf/trazo-elefante.pdf" },
+      { "id": "img-trazo-jirafa", "categoria": "repasar_trazos", "titulo": "Jirafa para repasar", "descripcion": "Repasa las manchas y el contorno de la jirafa.", "instrucciones": "Sigue las líneas punteadas y colorea las manchas.", "tag": "Trazos", "emoji": "✏️", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-emerald-100 text-emerald-700 border-emerald-200", "keywords": "trazos animales repasar lineas punteadas motricidad", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/trazo-jirafa.jpg", "fondo": "assets/dibujo/imagenes/trazo-jirafa.jpg", "pdf": "assets/dibujo/pdf/trazo-jirafa.pdf" },
+      { "id": "img-trazo-leon", "categoria": "repasar_trazos", "titulo": "León para repasar", "descripcion": "Repasa la melena y el contorno del león.", "instrucciones": "Sigue las líneas punteadas y colorea la melena.", "tag": "Trazos", "emoji": "✏️", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-emerald-100 text-emerald-700 border-emerald-200", "keywords": "trazos animales repasar lineas punteadas motricidad", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/trazo-leon.jpg", "fondo": "assets/dibujo/imagenes/trazo-leon.jpg", "pdf": "assets/dibujo/pdf/trazo-leon.pdf" },
+      { "id": "img-trazo-mono", "categoria": "repasar_trazos", "titulo": "Mono para repasar", "descripcion": "Repasa el contorno del mono.", "instrucciones": "Sigue las líneas punteadas y colorea al mono.", "tag": "Trazos", "emoji": "✏️", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-emerald-100 text-emerald-700 border-emerald-200", "keywords": "trazos animales repasar lineas punteadas motricidad", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/trazo-mono.jpg", "fondo": "assets/dibujo/imagenes/trazo-mono.jpg", "pdf": "assets/dibujo/pdf/trazo-mono.pdf" },
+      { "id": "img-trazo-oso", "categoria": "repasar_trazos", "titulo": "Oso para repasar", "descripcion": "Repasa el contorno del oso y su tarro de miel.", "instrucciones": "Sigue las líneas punteadas y colorea al oso.", "tag": "Trazos", "emoji": "✏️", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-emerald-100 text-emerald-700 border-emerald-200", "keywords": "trazos animales repasar lineas punteadas motricidad", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/trazo-oso.jpg", "fondo": "assets/dibujo/imagenes/trazo-oso.jpg", "pdf": "assets/dibujo/pdf/trazo-oso.pdf" },
+      { "id": "img-trazo-pinguino", "categoria": "repasar_trazos", "titulo": "Pingüino para repasar", "descripcion": "Repasa el contorno del pingüino.", "instrucciones": "Sigue las líneas punteadas y colorea al pingüino.", "tag": "Trazos", "emoji": "✏️", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-emerald-100 text-emerald-700 border-emerald-200", "keywords": "trazos animales repasar lineas punteadas motricidad", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/trazo-pinguino.jpg", "fondo": "assets/dibujo/imagenes/trazo-pinguino.jpg", "pdf": "assets/dibujo/pdf/trazo-pinguino.pdf" },
+      { "id": "img-trazo-tucan", "categoria": "repasar_trazos", "titulo": "Tucán para repasar", "descripcion": "Repasa el pico y el contorno del tucán.", "instrucciones": "Sigue las líneas punteadas y colorea al tucán.", "tag": "Trazos", "emoji": "✏️", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-emerald-100 text-emerald-700 border-emerald-200", "keywords": "trazos animales repasar lineas punteadas motricidad", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/trazo-tucan.jpg", "fondo": "assets/dibujo/imagenes/trazo-tucan.jpg", "pdf": "assets/dibujo/pdf/trazo-tucan.pdf" },
+      { "id": "img-trazo-ballena", "categoria": "repasar_trazos", "titulo": "Ballena para repasar", "descripcion": "Repasa el contorno de la ballena.", "instrucciones": "Sigue las líneas punteadas y colorea la ballena y el agua.", "tag": "Trazos", "emoji": "✏️", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-emerald-100 text-emerald-700 border-emerald-200", "keywords": "trazos animales repasar lineas punteadas motricidad", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/trazo-ballena.jpg", "fondo": "assets/dibujo/imagenes/trazo-ballena.jpg", "pdf": "assets/dibujo/pdf/trazo-ballena.pdf" },
+      { "id": "img-trazo-unicornio", "categoria": "repasar_trazos", "titulo": "Unicornio para repasar", "descripcion": "Repasa el cuerno y el contorno del unicornio.", "instrucciones": "Sigue las líneas punteadas y colorea al unicornio.", "tag": "Trazos", "emoji": "✏️", "edad": "3 a 5 años", "edadCorta": "3-5", "colorBadge": "bg-emerald-100 text-emerald-700 border-emerald-200", "keywords": "trazos animales repasar lineas punteadas motricidad", "vertical": true, "tipo": "imagen", "preview": "assets/dibujo/previews/trazo-unicornio.jpg", "fondo": "assets/dibujo/imagenes/trazo-unicornio.jpg", "pdf": "assets/dibujo/pdf/trazo-unicornio.pdf" },
+    ];
+
+    // Se incorporan al catálogo existente para reutilizar filtros, búsqueda y pizarra
+    RECURSOS_BIBLIOTECA.forEach(recurso => { ACTIVIDADES[recurso.id] = recurso; });
+
+
+    // Busca sin distinguir mayúsculas ni tildes: "arcoiris" encuentra "Arcoíris"
+    function normalizarTexto(texto) {
+      return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
+    function escapeHtml(texto) {
+      return String(texto ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    // Paneles pastel por categoría (fondo suave tipo inicio)
+    const PANELES_BIBLIOTECA = {
+      pdf_colorear: 'border-pink-200/70 from-pink-50 via-white to-rose-50',
+      colorear_numeros: 'border-indigo-200/70 from-indigo-50 via-white to-sky-50',
+      puntos_marcadores: 'border-teal-200/70 from-teal-50 via-white to-emerald-50',
+      repasar_trazos: 'border-emerald-200/70 from-emerald-50 via-white to-lime-50'
+    };
+
+    // Estrellas decorativas por categoría
+    const ESTRELLAS_BIBLIOTECA = {
+      pdf_colorear: 'text-pink-300',
+      colorear_numeros: 'text-indigo-300',
+      puntos_marcadores: 'text-teal-300',
+      repasar_trazos: 'text-emerald-300'
+    };
+
+    function crearSeccionesBiblioteca() {
+      const filterWrap = document.getElementById('categoryFilters');
+      const main = document.getElementById('seccionesDibujo');
+      const vacio = document.getElementById('catalogoVacio');
+      if (!filterWrap || !main) return;
+
+      // Ordena por el número que abre el título: 5, 6, ... 14
+      CATEGORIAS_BIBLIOTECA.sort((a, b) => parseInt(a.title, 10) - parseInt(b.title, 10));
+
+      CATEGORIAS_BIBLIOTECA.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.dataset.cat = cat.key;
+        btn.setAttribute('onclick', `filtrarCategoria('${cat.key}')`);
+        btn.className = 'cat-filter-btn btn-squish font-bold text-sm py-2.5 px-5 md:px-6 rounded-full shadow-sm transition-all hover:scale-105 border-b-4 bg-white text-gray-700 border-gray-200 hover:border-pink-300 hover:text-pink-800 flex items-center gap-1.5';
+        btn.innerHTML = `<i class="fa-solid ${cat.icon}"></i> <span>${cat.label} (<span id="count-${cat.key}">0</span>)</span>`;
+        filterWrap.appendChild(btn);
+
+        const section = document.createElement('section');
+        section.id = `sec-${cat.key}`;
+        section.className = 'category-block isolate relative overflow-hidden rounded-[32px] border bg-gradient-to-br p-4 sm:p-6 md:p-8 shadow-sm space-y-6 ' + (PANELES_BIBLIOTECA[cat.key] || 'border-pink-200/70 from-pink-50 via-white to-rose-50');
+        section.dataset.category = cat.key;
+        section.innerHTML = `
+          <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+            <i class="fa-solid fa-star absolute top-3 right-7 ${ESTRELLAS_BIBLIOTECA[cat.key] || 'text-pink-300'} text-2xl opacity-40 float-slow"></i>
+            <i class="fa-solid fa-star absolute bottom-5 left-6 text-yellow-300 text-xl opacity-50 twinkle"></i>
+            <i class="fa-solid fa-star absolute top-1/2 right-2 text-pink-200 text-sm opacity-50 hidden lg:block"></i>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/5 pb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl ${cat.accent} flex items-center justify-center text-2xl shadow-sm">
+                <i class="fa-solid ${cat.icon}"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-gray-800">${cat.title}</h3>
+                <p class="text-xs md:text-sm text-muted">${cat.desc}</p>
+              </div>
+            </div>
+            <span class="category-count self-start sm:self-auto text-xs font-bold px-3 py-1.5 rounded-full ${cat.badge} border"
+              data-count-cat="${cat.key}" data-count-suffix="${cat.suffix}">0 ${cat.suffix}</span>
+          </div>
+          <div id="grid-${cat.key}" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+        `;
+        main.insertBefore(section, vacio);
+      });
+    }
+
+    function renderizarCatalogo(filtro = 'todas', busqueda = '') {
+      const grids = {};
+      document.querySelectorAll('.category-block').forEach(sec => {
+        const cat = sec.dataset.category;
+        const grid = sec.querySelector(`[id="grid-${cat}"]`);
+        if (cat && grid) grids[cat] = grid;
+      });
+
+      Object.values(grids).forEach(g => { g.innerHTML = ''; });
+
+      const term = normalizarTexto(busqueda.trim());
+      let visibles = 0;
+      const counts = { todas: 0 };
+      Object.keys(grids).forEach(cat => { counts[cat] = 0; });
+
+      Object.values(ACTIVIDADES).forEach(act => {
+        counts.todas++;
+        if (counts[act.categoria] !== undefined) counts[act.categoria]++;
+      });
+
+      // Actualizar contadores de filtros, total del hero e insignias de sección
+      Object.keys(counts).forEach(k => {
+        const el = document.getElementById(`count-${k}`);
+        if (el) el.textContent = counts[k] || 0;
+      });
+      const totalHero = document.getElementById('totalActividades');
+      if (totalHero) totalHero.textContent = counts.todas;
+
+      document.querySelectorAll('.category-count').forEach(badge => {
+        const cat = badge.dataset.countCat;
+        const suffix = badge.dataset.countSuffix || 'láminas';
+        badge.textContent = `${counts[cat] || 0} ${suffix}`;
+      });
+
+      Object.values(ACTIVIDADES).forEach(act => {
+        if (filtro !== 'todas' && act.categoria !== filtro) return;
+
+        if (term) {
+          const campos = [act.titulo, act.descripcion, act.tag, act.instrucciones, act.keywords];
+          const match = campos.some(campo => normalizarTexto(campo || '').includes(term));
+          if (!match) return;
+        }
+
+        const grid = grids[act.categoria];
+        if (!grid) return;
+        visibles++;
+
+        const card = document.createElement('article');
+        card.className = 'bg-white rounded-[32px] p-4 sm:p-5 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 border border-pink-100 flex flex-col justify-between group';
+
+        const portada = act.svg
+          ? `<div class="w-full h-full flex items-center justify-center p-1.5 pointer-events-none transition-transform duration-300 group-hover:scale-[1.03]">
+               ${act.svg}
+             </div>`
+          : `<div class="w-full h-full flex items-center justify-center p-1 pointer-events-none transition-transform duration-300 group-hover:scale-[1.03]">
+               <img src="${act.preview}" alt="${escapeHtml(act.titulo)}" loading="lazy" decoding="async"
+                 class="w-full h-full object-contain">
+             </div>`;
+
+        const botonImprimir = `<button onclick="imprimirFichaDirecta('${act.id}')"
+               class="btn-squish w-full min-h-[48px] bg-purple-50 hover:bg-purple-100 text-purple-700 text-sm font-bold py-2 px-4 rounded-xl border border-purple-200 transition-all flex items-center justify-center gap-2">
+               <i class="fa-solid fa-print"></i> Imprimir ficha A4
+             </button>`;
+
+        card.innerHTML = `
+            <div>
+              <!-- Portada de la lámina (SVG vectorial o imagen de la biblioteca) -->
+              <div class="sheet-cover-container bg-white mb-4 cursor-pointer relative ${act.vertical ? 'sheet-cover-portrait' : ''}"
+                onclick="abrirPizarra('${act.id}')" title="Clic para practicar en pantalla">
+                ${portada}
+
+                <!-- Insignia temática superior izquierda -->
+                <span class="absolute top-2.5 left-2.5 text-xs font-bold px-2 py-0.5 rounded-lg border shadow-sm bg-white/95 ${act.colorBadge}">
+                  ${escapeHtml(act.tag)}
+                </span>
+
+                <!-- Insignia de edad recomendada -->
+                <span class="absolute top-2.5 right-2.5 text-xs font-extrabold bg-purple-100/90 text-purple-800 px-2 py-0.5 rounded-lg border border-purple-200/80 shadow-sm">
+                  ${escapeHtml(act.edadCorta)}
+                </span>
+
+                <!-- Indicador al pasar el ratón -->
+                <div class="absolute bottom-2 left-2 right-2 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span class="text-xs font-bold bg-purple-700/90 text-white px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1 backdrop-blur-sm">
+                    <i class="fa-solid fa-pen-to-square text-xs"></i> Practicar en pantalla
+                  </span>
+                </div>
+              </div>
+
+              <!-- Título y descripción alineados -->
+              <h4 class="font-bold text-gray-800 text-base sm:text-lg leading-snug group-hover:text-purple-700 transition-colors flex items-center gap-1.5 min-h-[2.5rem]">
+                <span>${act.emoji}</span> <span>${escapeHtml(act.titulo)}</span>
+              </h4>
+              <p class="text-sm text-muted leading-relaxed mt-1 mb-4 line-clamp-2">
+                ${escapeHtml(act.descripcion)}
+              </p>
+            </div>
+
+            <!-- Botones de acción: practicar en pantalla e imprimir -->
+            <div class="flex flex-col gap-2 pt-3 border-t border-gray-100 mt-auto">
+              <button onclick="abrirPizarra('${act.id}')"
+                class="btn-squish w-full min-h-[48px] bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white text-sm font-bold py-2.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-pen-to-square"></i> Practicar en pantalla
+              </button>
+              ${botonImprimir}
+            </div>
+          `;
+
+        grid.appendChild(card);
+      });
+
+      document.querySelectorAll('.category-block').forEach(sec => {
+        const cat = sec.getAttribute('data-category');
+        const grid = grids[cat];
+        if (filtro === 'todas') {
+          sec.classList.remove('hidden');
+        } else if (cat === filtro) {
+          sec.classList.remove('hidden');
+        } else {
+          sec.classList.add('hidden');
+        }
+
+        if (term && grid && grid.children.length === 0) {
+          sec.classList.add('hidden');
+        }
+      });
+
+      document.getElementById('catalogoVacio')?.classList.toggle('hidden', visibles > 0);
+    }
+
+    let currentFilter = 'todas';
+    const pillActivo = ['bg-pink-600', 'text-white', 'border-pink-800'];
+    const pillInactivo = ['bg-white', 'text-gray-700', 'border-gray-200', 'hover:border-pink-300', 'hover:text-pink-800'];
+    function filtrarCategoria(cat) {
+      currentFilter = cat;
+      document.querySelectorAll('.cat-filter-btn').forEach(btn => {
+        const activo = btn.getAttribute('data-cat') === cat;
+        btn.classList.remove(...(activo ? pillInactivo : pillActivo));
+        btn.classList.add(...(activo ? pillActivo : pillInactivo));
+      });
+      const query = document.getElementById('searchInput')?.value || '';
+      renderizarCatalogo(cat, query);
+      document.querySelector(`.cat-filter-btn[data-cat="${cat}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      playSound('pop');
+    }
+
+    function buscarActividad(query) {
+      renderizarCatalogo(currentFilter, query);
+    }
+
+
+    // ==============================================================
+    // MOTOR DE PINTURA DIGITAL CON SINCRONIZACIÓN
+    // ==============================================================
+    let currentActivityKey = null;
+    let currentOrientation = 'horizontal';
+    let canvas, ctx;
+    let isDrawing = false;
+    let currentColor = '#ec4899';
+    let currentSize = 18;
+    let isEraser = false;
+    let lastPoint = null;
+
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playSound(type) {
+      try {
+        const ctxA = getAudioContext();
+        if (ctxA.state === 'suspended') ctxA.resume();
+        const osc = ctxA.createOscillator();
+        const gain = ctxA.createGain();
+        osc.connect(gain);
+        gain.connect(ctxA.destination);
+
+        if (type === 'pop') {
+          osc.frequency.setValueAtTime(450, ctxA.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(820, ctxA.currentTime + 0.08);
+          gain.gain.setValueAtTime(0.12, ctxA.currentTime);
+          gain.gain.linearRampToValueAtTime(0.01, ctxA.currentTime + 0.08);
+          osc.start();
+          osc.stop(ctxA.currentTime + 0.08);
+        } else if (type === 'fanfare') {
+          const notes = [523.25, 659.25, 783.99, 1046.50];
+          notes.forEach((freq, i) => {
+            const o = ctxA.createOscillator();
+            const g = ctxA.createGain();
+            o.connect(g);
+            g.connect(ctxA.destination);
+            o.frequency.value = freq;
+            g.gain.setValueAtTime(0.15, ctxA.currentTime + i * 0.09);
+            g.gain.linearRampToValueAtTime(0.01, ctxA.currentTime + i * 0.09 + 0.18);
+            o.start(ctxA.currentTime + i * 0.09);
+            o.stop(ctxA.currentTime + i * 0.09 + 0.2);
+          });
+        }
+      } catch (e) { }
+    }
+
+    function initCanvas() {
+      canvas = document.getElementById('paintCanvas');
+      if (!canvas) return;
+      ctx = canvas.getContext('2d');
+
+      canvas.width = currentOrientation === 'vertical' ? 600 : 800;
+      canvas.height = currentOrientation === 'vertical' ? 800 : 500;
+
+      canvas.removeEventListener('pointerdown', startDraw);
+      canvas.removeEventListener('pointermove', drawMove);
+      canvas.removeEventListener('pointerup', endDraw);
+      canvas.removeEventListener('pointercancel', endDraw);
+      canvas.removeEventListener('pointerleave', hideReticle);
+
+      canvas.addEventListener('pointerdown', startDraw);
+      canvas.addEventListener('pointermove', drawMove);
+      canvas.addEventListener('pointerup', endDraw);
+      canvas.addEventListener('pointercancel', endDraw);
+      canvas.addEventListener('pointerleave', hideReticle);
+
+      actualizarMirillaPuntero();
+    }
+
+    function getCanvasCoords(e) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      return {
+        x: (e.clientX - rect.left) * scaleX,
+        y: (e.clientY - rect.top) * scaleY,
+        cssX: e.clientX - rect.left,
+        cssY: e.clientY - rect.top
+      };
+    }
+
+    function actualizarMirillaPuntero() {
+      const reticle = document.getElementById('visualPointerReticle');
+      if (!reticle || !canvas) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const scaleRatio = rect.width / (canvas.width || 800);
+      const diametroVisual = Math.max(14, (isEraser ? currentSize * 2 : currentSize) * scaleRatio);
+
+      reticle.style.width = `${diametroVisual}px`;
+      reticle.style.height = `${diametroVisual}px`;
+
+      if (isEraser) {
+        reticle.style.backgroundColor = 'rgba(244, 114, 182, 0.4)';
+        reticle.style.border = '2px dashed #ec4899';
+        canvas.classList.remove('crayon-cursor');
+        canvas.classList.add('eraser-cursor');
+      } else {
+        reticle.style.backgroundColor = `${currentColor}55`;
+        reticle.style.border = `2.5px solid ${currentColor}`;
+        canvas.classList.add('crayon-cursor');
+        canvas.classList.remove('eraser-cursor');
+      }
+    }
+
+    function moverMirillaPuntero(pos) {
+      const reticle = document.getElementById('visualPointerReticle');
+      if (!reticle) return;
+      reticle.style.display = 'block';
+      reticle.style.left = `${pos.cssX}px`;
+      reticle.style.top = `${pos.cssY}px`;
+    }
+
+    function hideReticle() {
+      const reticle = document.getElementById('visualPointerReticle');
+      if (reticle && !isDrawing) reticle.style.display = 'none';
+    }
+
+    function startDraw(e) {
+      isDrawing = true;
+      canvas.setPointerCapture(e.pointerId);
+      const pos = getCanvasCoords(e);
+      moverMirillaPuntero(pos);
+
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      if (isEraser) {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.lineWidth = currentSize * 2;
+      } else {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.strokeStyle = currentColor;
+        ctx.lineWidth = currentSize;
+      }
+      ctx.lineTo(pos.x + 0.1, pos.y + 0.1);
+      ctx.stroke();
+      lastPoint = pos;
+    }
+
+    function drawMove(e) {
+      const pos = getCanvasCoords(e);
+      moverMirillaPuntero(pos);
+
+      if (!isDrawing) return;
+      ctx.beginPath();
+      ctx.moveTo(lastPoint.x, lastPoint.y);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+      lastPoint = pos;
+    }
+
+    function endDraw(e) {
+      if (!isDrawing) return;
+      isDrawing = false;
+    }
+
+    function abrirPizarra(key) {
+      const act = ACTIVIDADES[key];
+      if (!act) return;
+      currentActivityKey = key;
+      currentOrientation = act.vertical ? 'vertical' : 'horizontal';
+
+      document.getElementById('modalActivityTitle').textContent = act.titulo;
+      document.getElementById('modalActivityDesc').textContent = act.instrucciones;
+
+      // Fondo: SVG vectorial o imagen de la biblioteca (siempre encajada y centrada)
+      const bg = document.getElementById('canvasBackgroundSvg');
+      if (act.svg) {
+        bg.innerHTML = act.svg;
+      } else {
+        bg.innerHTML = `<img src="${act.fondo || act.preview}" alt="${escapeHtml(act.titulo)}" class="w-full h-full object-contain">`;
+      }
+
+      // Las láminas de la biblioteca son verticales (3:4); las SVG siguen en 16:10
+      const wrapper = document.getElementById('canvasWrapper');
+      if (wrapper) {
+        if (currentOrientation === 'vertical') {
+          wrapper.style.maxWidth = '440px';
+          wrapper.style.aspectRatio = '3 / 4';
+        } else {
+          wrapper.style.maxWidth = '';
+          wrapper.style.aspectRatio = '';
+        }
+      }
+
+      // Todas las impresiones incluyen la cabecera con los datos del estudiante
+      const printLabel = document.getElementById('modalPrintLabel');
+      if (printLabel) printLabel.textContent = 'Imprimir A4';
+      const printBtn = document.getElementById('modalPrintBtn');
+      if (printBtn) printBtn.title = 'Imprimir esta lámina con datos del estudiante';
+
+      document.getElementById('celebrationOverlay').classList.add('hidden');
+      document.getElementById('celebrationOverlay').classList.remove('flex');
+
+      const modal = document.getElementById('drawModal');
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+
+      if (isEraser) activarCrayon(currentColor);
+
+      setTimeout(() => {
+        initCanvas();
+        limpiarTrazos();
+      }, 30);
+
+      playSound('pop');
+    }
+
+    function cerrarPizarra() {
+      const modal = document.getElementById('drawModal');
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      currentActivityKey = null;
+      hideReticle();
+    }
+
+    function activarCrayon(hex) {
+      isEraser = false;
+      currentColor = hex;
+      document.getElementById('eraserBtn')?.classList.remove('bg-purple-100', 'border-purple-400');
+
+      document.querySelectorAll('.color-btn').forEach(btn => {
+        btn.classList.remove('ring-2', 'ring-offset-2', 'ring-purple-600');
+      });
+      document.querySelector(`.color-btn[onclick*="${hex}"]`)?.classList.add('ring-2', 'ring-offset-2', 'ring-purple-600');
+      actualizarMirillaPuntero();
+    }
+
+    function seleccionarColor(hex) {
+      activarCrayon(hex);
+      playSound('pop');
+    }
+
+    function seleccionarGrosor(px) {
+      currentSize = px;
+      ['sizeThinBtn', 'sizeMediumBtn', 'sizeThickBtn'].forEach(id => {
+        const b = document.getElementById(id);
+        b?.classList.remove('bg-pink-100', 'text-pink-700');
+        b?.classList.add('text-gray-600');
+      });
+
+      if (px === 8) document.getElementById('sizeThinBtn')?.classList.add('bg-pink-100', 'text-pink-700');
+      else if (px === 18) document.getElementById('sizeMediumBtn')?.classList.add('bg-pink-100', 'text-pink-700');
+      else if (px === 32) document.getElementById('sizeThickBtn')?.classList.add('bg-pink-100', 'text-pink-700');
+      actualizarMirillaPuntero();
+      playSound('pop');
+    }
+
+    function activarBorrador() {
+      isEraser = true;
+      document.querySelectorAll('.color-btn').forEach(btn => {
+        btn.classList.remove('ring-2', 'ring-offset-2', 'ring-pink-500');
+      });
+      document.getElementById('eraserBtn')?.classList.add('bg-pink-100', 'border-pink-400');
+      actualizarMirillaPuntero();
+      playSound('pop');
+    }
+
+    function limpiarTrazos() {
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function celebrarExito() {
+      playSound('fanfare');
+      const cel = document.getElementById('celebrationOverlay');
+      cel.classList.remove('hidden');
+      cel.classList.add('flex');
+      setTimeout(() => {
+        cel.classList.add('hidden');
+        cel.classList.remove('flex');
+      }, 2800);
+    }
+
+    function descargarDibujo() {
+      if (!canvas || !currentActivityKey) return;
+      const act = ACTIVIDADES[currentActivityKey];
+      const vertical = currentOrientation === 'vertical';
+
+      // Hoja de descarga: vertical 3:4 o apaisada 16:10, igual que el lienzo en pantalla
+      const outW = vertical ? 900 : 1200;
+      const outH = vertical ? 1200 : 750;
+      const pad = 30;
+      const boxW = outW - pad * 2;
+      const boxH = outH - pad * 2;
+      const boxAspect = vertical ? 3 / 4 : 16 / 10;
+
+      let drawW = boxW;
+      let drawH = drawW / boxAspect;
+      if (drawH > boxH) {
+        drawH = boxH;
+        drawW = drawH * boxAspect;
+      }
+      const drawX = (outW - drawW) / 2;
+      const drawY = (outH - drawH) / 2;
+
+      const offCanvas = document.createElement('canvas');
+      offCanvas.width = outW;
+      offCanvas.height = outH;
+      const offCtx = offCanvas.getContext('2d');
+
+      offCtx.fillStyle = '#ffffff';
+      offCtx.fillRect(0, 0, outW, outH);
+
+      const finish = () => {
+        // El canvas ocupa exactamente el mismo rectángulo que la lámina de fondo
+        offCtx.drawImage(canvas, drawX, drawY, drawW, drawH);
+
+        const a = document.createElement('a');
+        a.download = `MotriKids_Dibujo_${currentActivityKey}.png`;
+        a.href = offCanvas.toDataURL('image/png');
+        a.click();
+      };
+
+      const drawBackground = (img) => {
+        const iw = img.naturalWidth || img.width;
+        const ih = img.naturalHeight || img.height;
+        if (!iw || !ih) return;
+        const scale = Math.min(drawW / iw, drawH / ih);
+        const w = iw * scale;
+        const h = ih * scale;
+        offCtx.drawImage(img, drawX + (drawW - w) / 2, drawY + (drawH - h) / 2, w, h);
+      };
+
+      if (act.svg) {
+        const svgBlob = new Blob([act.svg], { type: 'image/svg+xml;charset=utf-8' });
+        const URL = window.URL || window.webkitURL || window;
+        const blobURL = URL.createObjectURL(svgBlob);
+        const img = new Image();
+
+        img.onload = function () {
+          drawBackground(img);
+          URL.revokeObjectURL(blobURL);
+          finish();
+        };
+        img.src = blobURL;
+      } else {
+        const img = new Image();
+        img.onload = function () {
+          drawBackground(img);
+          finish();
+        };
+        img.src = act.fondo || act.preview;
+      }
+    }
+
+    function imprimirDesdeModal() {
+      if (currentActivityKey) {
+        imprimirFichaDirecta(currentActivityKey);
+      }
+    }
+
+
+    // ==============================================================
+    // MOTOR DE IMPRESIÓN DIRECTA DE LÁMINAS DIDÁCTICAS (A4 LIMPIO)
+    // ==============================================================
+    function imprimirFichaDirecta(key) {
+      const act = ACTIVIDADES[key];
+      if (!act) return;
+
+      const printContainer = document.getElementById('printContainer');
+
+      // Todas las láminas se imprimen con la cabecera de datos del estudiante.
+      // Para la biblioteca se usa su imagen de alta calidad (o el preview del PDF).
+      const lamina = act.svg
+        ? act.svg
+        : `<img src="${act.fondo || act.preview}" alt="${escapeHtml(act.titulo)}">`;
+
+      printContainer.innerHTML = `
+      <div class="print-sheet">
+        <!-- Cabecera Institucional y Datos del Alumno -->
+        <div style="border-bottom: 2px dashed #db2777; padding-bottom: 8px; margin-bottom: 8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h1 style="font-size:24px; font-weight:800; color:#be185d; margin:0; line-height:1;">MotriKids · Área de Dibujo y Creatividad</h1>
+              <p style="font-size:11px; color:#555; margin:2px 0 0 0;">Unidad Educativa Ecuatoriana Austriaca · Expresión Artística y Motricidad Fina</p>
+            </div>
+            <div style="text-align:right;">
+              <span style="font-size:11px; font-weight:700; background:#fce7f3; color:#9d174d; padding:4px 10px; border-radius:12px;">
+                ${act.edad}
+              </span>
+            </div>
+          </div>
+
+          <!-- Campos de datos del niño -->
+          <div style="display:flex; justify-content:space-between; gap:20px; margin-top:8px; font-size:13px; font-weight:600;">
+            <div style="flex:1;">
+              Nombre del niño/a: <span style="display:inline-block; border-bottom:1.5px solid #333; width:65%; min-width:180px;">&nbsp;</span>
+            </div>
+            <div style="width:200px;">
+              Fecha: <span style="display:inline-block; border-bottom:1.5px solid #333; width:120px;">&nbsp;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Título e Instrucción Didáctica -->
+        <div style="margin-bottom: 8px;">
+          <h2 style="font-size:18px; font-weight:800; color:#1f2937; margin:0 0 2px 0;">${escapeHtml(act.titulo)}</h2>
+          <p style="font-size:13px; color:#374151; margin:0; line-height:1.4;">
+            <strong>Instrucciones:</strong> ${escapeHtml(act.instrucciones)}
+          </p>
+        </div>
+
+        <!-- Área de la Lámina Limpia -->
+        <div class="print-sheet-area">
+          ${lamina}
+        </div>
+
+        <!-- Pie de página escolar -->
+        <div style="margin-top: 6px; display:flex; justify-content:space-between; align-items:center; font-size:11px; color:#6b7280;">
+          <div>
+            ⭐ <em>¡Felicidades por tu esfuerzo, imaginación y creatividad!</em>
+          </div>
+          <div>
+            MotriKids © 2026 · Recursos de Expresión Artística para el aula y el hogar
+          </div>
+        </div>
+      </div>
+    `;
+
+      document.title = `MotriKids - Dibujo - ${act.titulo}`;
+
+      // Esperar a que la lámina cargue antes de abrir el diálogo de impresión
+      const lanzarImpresion = () => setTimeout(() => window.print(), 150);
+      const img = printContainer.querySelector('.print-sheet-area img');
+      if (img && !img.complete) {
+        img.addEventListener('load', lanzarImpresion, { once: true });
+        img.addEventListener('error', lanzarImpresion, { once: true });
+      } else {
+        lanzarImpresion();
+      }
+    }
+
+    const tituloPagina = document.title;
+    window.addEventListener('afterprint', () => {
+      document.title = tituloPagina;
+    });
+
+    // Inicializar catálogo al cargar
+    crearSeccionesBiblioteca();
+    renderizarCatalogo();
+
+    // Enlace directo si viene con ?dibujar=id
+    const fichaEnlazada = new URLSearchParams(location.search).get('dibujar');
+    if (fichaEnlazada && ACTIVIDADES[fichaEnlazada]) {
+      abrirPizarra(fichaEnlazada);
+    }
+
+    // Redimensionado de ventana
+    window.addEventListener('resize', () => {
+      if (!document.getElementById('drawModal').classList.contains('hidden')) {
+        actualizarMirillaPuntero();
+      }
+    });
+  </script>
+
+</body>
+
+</html>

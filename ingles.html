@@ -1,0 +1,4042 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MotriKids | Inglés para peques</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="description"
+    content="MotriKids - Inglés para peques: 20 juegos, fichas para imprimir y videos para aprender emociones, preposiciones, vocales, animales y familia.">
+  <link href="assets/tailwind.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fcfcff;
+      color: #333333;
+      position: relative
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .35;
+      z-index: -1;
+      background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1.8' fill='%23ffb3ba' opacity='0.18'/%3E%3Cpath d='M50 20l2 3h3l-2 2 1 3-2.5-1.8-2.5 1.8 1-3-2-2h3z' fill='%23ffffba' opacity='0.22'/%3E%3Ccircle cx='80' cy='40' r='1.2' fill='%23bae1ff' opacity='0.18'/%3E%3Ccircle cx='30' cy='70' r='1.6' fill='%23baffc9' opacity='0.18'/%3E%3Ccircle cx='120' cy='15' r='1.4' fill='%23ffdfba' opacity='0.18'/%3E%3Ccircle cx='65' cy='110' r='1' fill='%23a7c7e7' opacity='0.14'/%3E%3C/svg%3E");
+      background-repeat: repeat
+    }
+
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(129, 140, 248, .24) 0%, rgba(125, 211, 252, .20) 48%, rgba(253, 224, 71, .18) 100%)
+    }
+
+    .cloud-divider {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0
+    }
+
+    .cloud-divider svg {
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 60px
+    }
+
+    .cloud-divider .shape-fill {
+      fill: #fcfcff
+    }
+
+    .card-pill {
+      border-radius: 32px
+    }
+
+    .btn-squish:active {
+      transform: translateY(2px) scale(.98)
+    }
+
+    @keyframes floatY {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-8px)
+      }
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: .6;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.15)
+      }
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0)
+      }
+
+      25% {
+        transform: translateX(-6px)
+      }
+
+      75% {
+        transform: translateX(6px)
+      }
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(.94) translateY(8px)
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0)
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes confettiFall {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px) rotate(0)
+      }
+
+      20% {
+        opacity: 1
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(120px) rotate(160deg)
+      }
+    }
+
+    .float-slow {
+      animation: floatY 4s ease-in-out infinite
+    }
+
+    .float-fast {
+      animation: floatY 3s ease-in-out infinite
+    }
+
+    .twinkle {
+      animation: twinkle 2.2s ease-in-out infinite
+    }
+
+    .tab-view {
+      animation: fadeIn .25s ease
+    }
+
+    /* Tarjetas del hub: Juegos / Recursos / Videos */
+    .view-tab {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-align: left;
+      padding: 16px 18px;
+      border-radius: 28px;
+      border: 2px solid #f3f4f6;
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, .05);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+      cursor: pointer;
+      min-height: 88px
+    }
+
+    .view-tab:hover {
+      transform: translateY(-2px);
+      border-color: #c7d2fe
+    }
+
+    .view-tab:focus-visible {
+      outline: 4px solid #a5b4fc;
+      outline-offset: 3px
+    }
+
+    .view-tab[aria-selected="true"] {
+      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+      border-color: #4338ca;
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(79, 70, 229, .28)
+    }
+
+    .view-tab[aria-selected="true"] .view-tab-desc {
+      color: rgba(255, 255, 255, .88)
+    }
+
+    .view-tab[aria-selected="true"] .view-tab-icon {
+      background: rgba(255, 255, 255, .22);
+      color: #fff
+    }
+
+    .view-tab[aria-selected="true"] .view-tab-count {
+      background: rgba(255, 255, 255, .22);
+      color: #fff
+    }
+
+    .view-tab-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0
+    }
+
+    .view-tab-title {
+      font-weight: 800;
+      font-size: 18px;
+      line-height: 1.1
+    }
+
+    .view-tab-desc {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b7280;
+      line-height: 1.25;
+      margin-top: 2px
+    }
+
+    .view-tab-count {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4338ca;
+      white-space: nowrap
+    }
+
+    /* Portada de los juegos */
+    .game-cover {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden
+    }
+
+    .game-cover::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .38);
+      top: -70px;
+      right: -45px
+    }
+
+    .game-cover::after {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .24);
+      bottom: -55px;
+      left: -30px
+    }
+
+    .game-cover-emoji {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+      line-height: 1;
+      filter: drop-shadow(0 8px 6px rgba(15, 23, 42, .16));
+      transition: transform .35s ease
+    }
+
+    .game-card:hover .game-cover-emoji {
+      transform: scale(1.08) rotate(-3deg)
+    }
+
+    .game-mini {
+      position: absolute;
+      font-size: 22px;
+      line-height: 1;
+      opacity: .92;
+      filter: drop-shadow(0 3px 2px rgba(15, 23, 42, .12))
+    }
+
+    .game-mini-1 {
+      top: 34%;
+      left: 7%;
+      animation: floatY 4s ease-in-out infinite
+    }
+
+    .game-mini-2 {
+      bottom: 16%;
+      right: 9%;
+      animation: floatY 3.4s ease-in-out infinite
+    }
+
+    .game-mini-3 {
+      top: 18%;
+      right: 18%;
+      font-size: 17px;
+      animation: twinkle 2.4s ease-in-out infinite
+    }
+
+    .game-card {
+      transition: transform .2s ease, box-shadow .2s ease;
+      cursor: pointer
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px)
+    }
+
+    .game-card:focus-visible {
+      outline: 4px solid #a5b4fc;
+      outline-offset: 3px
+    }
+
+    /* Opciones de los juegos */
+    .game-option {
+      border: 3px solid #e5e7eb;
+      border-radius: 22px;
+      background: #fff;
+      padding: 14px 10px;
+      min-height: 96px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-weight: 800;
+      color: #374151;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      cursor: pointer;
+      width: 100%
+    }
+
+    .game-option:hover {
+      transform: translateY(-2px);
+      border-color: #a5b4fc;
+      background: #eef2ff
+    }
+
+    .game-option:focus-visible {
+      outline: 4px solid #a5b4fc;
+      outline-offset: 2px
+    }
+
+    .game-option.option-correct {
+      border-color: #10b981;
+      background: #ecfdf5;
+      color: #065f46;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, .16)
+    }
+
+    .game-option.option-wrong {
+      border-color: #f43f5e;
+      background: #fff1f2;
+      color: #9f1239;
+      animation: shake .35s
+    }
+
+    .game-option:disabled {
+      cursor: default
+    }
+
+    .option-emoji {
+      font-size: 42px;
+      line-height: 1
+    }
+
+    .option-label {
+      font-size: 17px;
+      line-height: 1.15;
+      text-transform: capitalize
+    }
+
+    .option-sub {
+      font-size: 11px;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: none
+    }
+
+    .option-letter {
+      font-size: 34px;
+      line-height: 1
+    }
+
+    /* Escenas para preposiciones */
+    .scene-stage {
+      display: block;
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      height: 190px;
+      margin: 0 auto;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #e0f2fe 0%, #e0f2fe 62%, #dcfce7 62%, #dcfce7 100%);
+      overflow: hidden;
+      border: 2px solid #bae6fd
+    }
+
+    .scene-floor {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 10px;
+      background: rgba(34, 197, 94, .18)
+    }
+
+    .scene-box {
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      width: 120px;
+      height: 80px;
+      transform: translateX(-50%);
+      background: #fbbf24;
+      border: 4px solid #d97706;
+      border-radius: 10px;
+      box-shadow: inset 0 8px 0 rgba(255, 255, 255, .35), 0 8px 0 rgba(15, 23, 42, .08);
+      z-index: 2
+    }
+
+    .scene-box::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: -18px;
+      width: 62px;
+      height: 26px;
+      background: #fcd34d;
+      border: 4px solid #d97706;
+      border-radius: 6px;
+      transform: rotate(-8deg)
+    }
+
+    .scene-box::after {
+      content: "";
+      position: absolute;
+      right: -10px;
+      top: -18px;
+      width: 62px;
+      height: 26px;
+      background: #fbbf24;
+      border: 4px solid #d97706;
+      border-radius: 6px;
+      transform: rotate(8deg)
+    }
+
+    .scene-box-front {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 38px;
+      background: #f59e0b;
+      border-top: 3px solid #d97706;
+      border-radius: 0 0 8px 8px;
+      z-index: 3
+    }
+
+    .scene-object {
+      position: absolute;
+      left: 50%;
+      font-size: 44px;
+      line-height: 1;
+      transform: translateX(-50%);
+      z-index: 4;
+      filter: drop-shadow(0 4px 3px rgba(15, 23, 42, .18))
+    }
+
+    .scene-in {
+      bottom: 38px;
+      z-index: 2;
+      font-size: 40px
+    }
+
+    .scene-on {
+      bottom: 112px
+    }
+
+    .scene-under {
+      bottom: 4px;
+      font-size: 36px
+    }
+
+    .scene-next,
+    .scene-next-to {
+      bottom: 6px;
+      left: 78%
+    }
+
+    .scene-behind {
+      bottom: 46px;
+      z-index: 1;
+      font-size: 38px;
+      opacity: .88
+    }
+
+    .scene-front {
+      bottom: 8px;
+      font-size: 50px
+    }
+
+    .scene-sm {
+      max-width: 190px;
+      height: 140px;
+      border-radius: 18px
+    }
+
+    .scene-sm .scene-box {
+      width: 96px;
+      height: 62px;
+      bottom: 26px;
+      border-width: 3px;
+      border-radius: 8px;
+      box-shadow: inset 0 6px 0 rgba(255, 255, 255, .35), 0 6px 0 rgba(15, 23, 42, .08)
+    }
+
+    .scene-sm .scene-box::before,
+    .scene-sm .scene-box::after {
+      width: 48px;
+      height: 18px;
+      top: -13px;
+      border-width: 3px
+    }
+
+    .scene-sm .scene-box::before {
+      left: -8px
+    }
+
+    .scene-sm .scene-box::after {
+      right: -8px
+    }
+
+    .scene-sm .scene-box-front {
+      height: 30px;
+      border-top-width: 2px;
+      border-radius: 0 0 6px 6px
+    }
+
+    .scene-sm .scene-object {
+      font-size: 34px
+    }
+
+    .scene-sm .scene-in {
+      bottom: 32px;
+      font-size: 32px
+    }
+
+    .scene-sm .scene-on {
+      bottom: 88px
+    }
+
+    .scene-sm .scene-under {
+      bottom: 2px;
+      font-size: 30px
+    }
+
+    .scene-sm .scene-next,
+    .scene-sm .scene-next-to {
+      bottom: 4px;
+      left: 84%
+    }
+
+    .scene-sm .scene-behind {
+      bottom: 40px;
+      font-size: 30px
+    }
+
+    .scene-sm .scene-front {
+      bottom: 4px;
+      font-size: 38px
+    }
+
+    /* Memoria */
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px
+    }
+
+    @media (min-width: 640px) {
+      .memory-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px
+      }
+    }
+
+    .memory-card {
+      position: relative;
+      perspective: 800px;
+      aspect-ratio: 3 / 4;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      min-height: 96px
+    }
+
+    .memory-card:focus-visible {
+      outline: 4px solid #a5b4fc;
+      outline-offset: 3px;
+      border-radius: 18px
+    }
+
+    .memory-inner {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transition: transform .4s ease
+    }
+
+    .memory-card.flipped .memory-inner,
+    .memory-card.matched .memory-inner {
+      transform: rotateY(180deg)
+    }
+
+    .memory-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      overflow: hidden
+    }
+
+    .memory-front {
+      background: linear-gradient(135deg, #6366f1, #0ea5e9 55%, #34d399);
+      color: #fff;
+      font-size: 26px;
+      gap: 2px
+    }
+
+    .memory-front small {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .85
+    }
+
+    .memory-back {
+      background: #fff;
+      border: 3px solid #e0e7ff;
+      transform: rotateY(180deg);
+      color: #3730a3
+    }
+
+    .memory-card.matched .memory-back {
+      border-color: #10b981;
+      background: #ecfdf5;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, .14)
+    }
+
+    .memory-card.wrong .memory-back {
+      border-color: #f43f5e;
+      animation: shake .35s
+    }
+
+    .memory-word {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.05;
+      text-align: center;
+      text-transform: capitalize;
+      word-break: break-word
+    }
+
+    .memory-es {
+      font-size: 9px;
+      font-weight: 700;
+      color: #6b7280;
+      margin-top: 2px
+    }
+
+    .memory-emoji {
+      font-size: 42px;
+      line-height: 1
+    }
+
+    .memory-card.matched {
+      cursor: default
+    }
+
+    /* Clasificar */
+    .sort-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 14px 18px;
+      border-radius: 24px;
+      background: #f8fafc;
+      border: 3px dashed #c7d2fe;
+      min-height: 140px;
+      justify-content: center
+    }
+
+    .sort-item-emoji {
+      font-size: 54px;
+      line-height: 1
+    }
+
+    .sort-item-label {
+      font-size: 22px;
+      font-weight: 800;
+      color: #3730a3;
+      text-align: center;
+      text-transform: capitalize
+    }
+
+    .sort-item-sub {
+      font-size: 12px;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: none
+    }
+
+    .sort-item-frase {
+      font-size: 24px;
+      font-weight: 800;
+      color: #3730a3;
+      text-align: center;
+      line-height: 1.2;
+      text-transform: none
+    }
+
+    .sort-blank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 54px;
+      height: 36px;
+      margin: 0 4px;
+      border-bottom: 4px dashed #818cf8;
+      color: #818cf8;
+      vertical-align: middle
+    }
+
+    .sort-bin {
+      border: 3px solid #e5e7eb;
+      border-radius: 22px;
+      background: #fff;
+      padding: 14px 10px;
+      min-height: 104px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      font-weight: 800;
+      color: #374151;
+      cursor: pointer;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease
+    }
+
+    .sort-bin:hover {
+      transform: translateY(-2px);
+      border-color: #a5b4fc;
+      background: #eef2ff
+    }
+
+    .sort-bin:focus-visible {
+      outline: 4px solid #a5b4fc;
+      outline-offset: 2px
+    }
+
+    .sort-bin.bin-correct {
+      border-color: #10b981;
+      background: #ecfdf5;
+      color: #065f46;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, .14)
+    }
+
+    .sort-bin.bin-wrong {
+      border-color: #f43f5e;
+      background: #fff1f2;
+      color: #9f1239;
+      animation: shake .35s
+    }
+
+    .sort-bin-emoji {
+      font-size: 34px;
+      line-height: 1
+    }
+
+    .sort-bin-label {
+      font-size: 15px
+    }
+
+    /* Construir palabras */
+    .letter-slots {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin: 10px 0 14px
+    }
+
+    .letter-slot {
+      width: 44px;
+      height: 54px;
+      border-radius: 12px;
+      border: 3px dashed #c7d2fe;
+      background: #f8fafc;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      color: #3730a3;
+      cursor: default
+    }
+
+    @media (min-width: 640px) {
+      .letter-slot {
+        width: 52px;
+        height: 62px;
+        font-size: 28px
+      }
+    }
+
+    .letter-slot.filled {
+      border-style: solid;
+      border-color: #818cf8;
+      background: #eef2ff;
+      cursor: pointer
+    }
+
+    .letter-slot.correct {
+      border-color: #10b981;
+      background: #ecfdf5;
+      color: #065f46
+    }
+
+    .letter-slot.wrong {
+      border-color: #f43f5e;
+      background: #fff1f2;
+      color: #9f1239;
+      animation: shake .35s
+    }
+
+    .letter-pool {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px
+    }
+
+    .letter-tile {
+      width: 46px;
+      height: 52px;
+      border-radius: 12px;
+      border: 2px solid #c7d2fe;
+      border-bottom-width: 4px;
+      background: #fff;
+      font-size: 22px;
+      font-weight: 800;
+      color: #4338ca;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease
+    }
+
+    .letter-tile:hover:not(:disabled) {
+      transform: translateY(-2px);
+      background: #eef2ff
+    }
+
+    .letter-tile:focus-visible {
+      outline: 4px solid #a5b4fc;
+      outline-offset: 2px
+    }
+
+    .letter-tile:disabled {
+      opacity: .3;
+      cursor: default;
+      transform: none
+    }
+
+    /* Feedback y final */
+    .feedback-ok {
+      background: #ecfdf5;
+      border: 2px solid #6ee7b7;
+      color: #065f46
+    }
+
+    .feedback-no {
+      background: #fff1f2;
+      border: 2px solid #fda4af;
+      color: #9f1239
+    }
+
+    .final-screen {
+      animation: popIn .35s ease
+    }
+
+    .confetti-piece {
+      position: absolute;
+      top: 10px;
+      font-size: 20px;
+      animation: confettiFall 1.8s ease-in-out infinite;
+      pointer-events: none
+    }
+
+    /* Detalles de recursos y videos */
+    .resource-cover {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden
+    }
+
+    .resource-cover::before {
+      content: "";
+      position: absolute;
+      inset: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .55);
+      border: 2px dashed rgba(255, 255, 255, .9)
+    }
+
+    .resource-cover-emoji {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      line-height: 1;
+      filter: drop-shadow(0 6px 5px rgba(15, 23, 42, .14))
+    }
+
+    .resource-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2
+    }
+
+    .resource-paper {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      z-index: 2;
+      font-size: 10px
+    }
+
+    .video-facade {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(135deg, #a78bfa, #f472b6)
+    }
+
+    .video-facade img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease
+    }
+
+    .video-facade:hover img {
+      transform: scale(1.04)
+    }
+
+    .video-facade:focus-visible {
+      outline: 4px solid #4f46e5;
+      outline-offset: -4px
+    }
+
+    .video-facade-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 64px;
+      height: 64px;
+      margin: -32px 0 0 -32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, .96);
+      color: #e11d48;
+      font-size: 24px;
+      padding-left: 4px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
+      transition: transform .2s ease
+    }
+
+    .video-facade:hover .video-facade-play {
+      transform: scale(1.12)
+    }
+
+    /* Vista previa e impresión de fichas */
+    .resource-preview {
+      background: #eef2ff;
+      border-radius: 20px;
+      padding: 14px;
+      max-height: 64vh;
+      overflow: auto
+    }
+
+    @media (max-width: 640px) {
+      .resource-preview {
+        padding: 6px;
+        border-radius: 14px
+      }
+    }
+
+    .print-sheet {
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+      background: #fff;
+      color: #1f2937;
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, .12);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact
+    }
+
+    .print-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 3px solid #c7d2fe;
+      padding-bottom: 12px;
+      margin-bottom: 18px
+    }
+
+    .print-brand {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #6366f1;
+      margin: 0
+    }
+
+    .print-head h1 {
+      font-size: 24px;
+      line-height: 1.1;
+      font-weight: 800;
+      color: #312e81;
+      margin: 3px 0 5px
+    }
+
+    .print-head p {
+      font-size: 12px;
+      color: #4b5563;
+      max-width: 560px;
+      line-height: 1.4;
+      margin: 0
+    }
+
+    .print-star {
+      font-size: 34px;
+      color: #fbbf24;
+      line-height: 1
+    }
+
+    .print-grid {
+      display: grid;
+      gap: 12px
+    }
+
+    .print-grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    .print-grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+
+    .print-grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr))
+    }
+
+    .print-card {
+      border: 2px solid #e0e7ff;
+      border-radius: 16px;
+      padding: 10px 8px;
+      text-align: center;
+      background: #f8faff;
+      break-inside: avoid;
+      position: relative;
+      min-height: 132px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center
+    }
+
+    .print-card-top {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .print-emoji {
+      font-size: 46px;
+      line-height: 1
+    }
+
+    .print-card-en {
+      font-size: 19px;
+      font-weight: 800;
+      color: #3730a3;
+      text-transform: capitalize;
+      line-height: 1.1
+    }
+
+    .print-card-es {
+      font-size: 11px;
+      color: #6b7280;
+      font-weight: 600;
+      text-transform: none
+    }
+
+    .print-card-star {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+      color: #fbbf24;
+      font-size: 12px
+    }
+
+    .poster-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 2px solid #e0e7ff;
+      border-radius: 18px;
+      padding: 10px 14px;
+      background: #f8faff;
+      break-inside: avoid;
+      min-height: 94px
+    }
+
+    .poster-visual {
+      width: 68px;
+      height: 68px;
+      border-radius: 16px;
+      background: #fff;
+      border: 2px solid #e0e7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .poster-emoji {
+      font-size: 38px;
+      line-height: 1
+    }
+
+    .poster-big {
+      font-size: 40px;
+      line-height: 1;
+      font-weight: 800;
+      color: #4338ca
+    }
+
+    .color-dot {
+      display: block;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #cbd5e1
+    }
+
+    .poster-en {
+      display: block;
+      font-size: 22px;
+      font-weight: 800;
+      color: #312e81;
+      text-transform: capitalize;
+      line-height: 1.1
+    }
+
+    .poster-es {
+      display: block;
+      font-size: 12px;
+      color: #6b7280;
+      font-weight: 700
+    }
+
+    .trace-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .trace-row {
+      border: 2px solid #e0e7ff;
+      border-radius: 16px;
+      padding: 10px 14px;
+      background: #f8faff;
+      break-inside: avoid
+    }
+
+    .trace-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px
+    }
+
+    .trace-emoji {
+      font-size: 26px
+    }
+
+    .trace-model {
+      font-size: 20px;
+      font-weight: 800;
+      color: #312e81;
+      text-transform: capitalize
+    }
+
+    .trace-es {
+      font-size: 11px;
+      font-weight: 700;
+      color: #6b7280
+    }
+
+    .trace-line {
+      border-bottom: 2px dashed #c7d2fe;
+      height: 38px;
+      display: flex;
+      align-items: flex-end;
+      padding-left: 6px;
+      overflow: hidden
+    }
+
+    .trace-word {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1.5px #cbd5e1;
+      text-transform: lowercase;
+      white-space: nowrap
+    }
+
+    .trace-long .trace-word {
+      font-size: 30px;
+      letter-spacing: 2px
+    }
+
+    .bingo-board {
+      border: 3px solid #c7d2fe;
+      border-radius: 18px;
+      padding: 10px;
+      break-inside: avoid;
+      background: #f8faff
+    }
+
+    .bingo-board h3 {
+      text-align: center;
+      font-size: 15px;
+      font-weight: 800;
+      color: #312e81;
+      margin: 0 0 8px
+    }
+
+    .bingo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px
+    }
+
+    .bingo-cell {
+      min-height: 62px;
+      border: 2px solid #c7d2fe;
+      border-radius: 10px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+      text-align: center
+    }
+
+    .bingo-cell span:first-child {
+      font-size: 26px;
+      line-height: 1
+    }
+
+    .bingo-cell span:last-child {
+      font-size: 9px;
+      font-weight: 800;
+      color: #4338ca;
+      text-transform: capitalize
+    }
+
+    .bingo-bank {
+      margin-top: 14px;
+      border: 2px dashed #c7d2fe;
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: #fff;
+      font-size: 11px;
+      color: #4b5563;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px
+    }
+
+    .bingo-bank strong {
+      color: #312e81
+    }
+
+    .bingo-bank span {
+      font-weight: 700
+    }
+
+    .print-memory {
+      min-height: 110px;
+      border: 2px dashed #c7d2fe;
+      border-radius: 14px;
+      background: #f8faff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      text-align: center;
+      break-inside: avoid;
+      padding: 6px
+    }
+
+    .print-memory-emoji {
+      font-size: 42px;
+      line-height: 1
+    }
+
+    .print-memory-word {
+      font-size: 16px;
+      font-weight: 800;
+      color: #312e81;
+      text-transform: capitalize
+    }
+
+    .print-memory-es {
+      font-size: 9px;
+      color: #6b7280;
+      font-weight: 700
+    }
+
+    .print-section {
+      margin-top: 16px
+    }
+
+    .print-sub {
+      font-size: 13px;
+      font-weight: 800;
+      color: #4338ca;
+      margin: 0 0 8px
+    }
+
+    .print-foot {
+      margin-top: 18px;
+      border-top: 2px solid #e0e7ff;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 9px;
+      color: #6b7280;
+      font-weight: 700
+    }
+
+    #printContainer {
+      display: none
+    }
+
+    @media (max-width: 640px) {
+      .resource-preview .print-grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .resource-preview .print-grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .resource-preview .print-sheet {
+        padding: 14px;
+        border-radius: 12px
+      }
+
+      .resource-preview .print-foot {
+        flex-wrap: wrap;
+        gap: 4px 10px;
+        font-size: 8px
+      }
+
+      .resource-preview .print-head h1 {
+        font-size: 19px
+      }
+
+      .resource-preview .poster-item {
+        min-height: 76px;
+        padding: 8px
+      }
+
+      .resource-preview .poster-visual {
+        width: 52px;
+        height: 52px
+      }
+
+      .resource-preview .poster-en {
+        font-size: 17px
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm
+      }
+
+      body {
+        background: #fff !important
+      }
+
+      body::before {
+        display: none !important
+      }
+
+      body>* {
+        display: none !important
+      }
+
+      #printContainer {
+        display: block !important
+      }
+
+      #printContainer .print-sheet {
+        max-width: none;
+        width: auto;
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none
+      }
+
+      #printContainer .print-grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+      }
+
+      #printContainer .print-grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+
+      #printContainer .print-grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      #printContainer .print-card,
+      #printContainer .poster-item,
+      #printContainer .trace-row,
+      #printContainer .bingo-board,
+      #printContainer .print-memory {
+        break-inside: avoid
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .float-slow,
+      .float-fast,
+      .twinkle,
+      .game-mini,
+      .tab-view,
+      .final-screen,
+      .confetti-piece {
+        animation: none
+      }
+
+      .game-cover-emoji,
+      .game-card,
+      .view-tab,
+      .video-facade img,
+      .video-facade-play,
+      .memory-inner {
+        transition: none
+      }
+
+      .game-card:hover {
+        transform: none
+      }
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased text-text bg-surface">
+  <header class="bg-white sticky top-0 z-50 shadow-sm px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 min-h-[44px] no-underline">
+      <img src="assets/nav-star.svg" alt="MotriKids" class="w-10 h-10 md:w-12 md:h-12">
+      <div>
+        <h1 class="text-2xl md:text-3xl font-bold text-purple-700 leading-none tracking-tight"><span
+            class="text-purple-600">M</span><span class="text-blue-400">o</span><span
+            class="text-teal-400">t</span><span class="text-green-500">r</span><span
+            class="text-yellow-400">i</span><span class="text-orange-400">K</span><span
+            class="text-rose-400">i</span><span class="text-pink-400">d</span><span class="text-purple-500">s</span>
+        </h1>
+        <p class="text-xs md:text-xs text-muted font-medium mt-0.5">Pequeños trazos, grandes logros <i
+            class="fa-solid fa-heart text-secondary text-xs"></i></p>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-5 text-sm font-semibold text-muted">
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="index.html"><i
+          class="fa-solid fa-house"></i><span>Inicio</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors"
+        href="juegos.html"><i class="fa-solid fa-gamepad"></i><span>Juegos</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="recursos.html"><i
+          class="fa-solid fa-book-open"></i><span>Recursos</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="videos.html"><i
+          class="fa-solid fa-circle-play"></i><span>Videos</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="dibujo.html"><i class="fa-solid fa-palette"></i><span>Dibujo</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] text-purple-700 border-b-2 border-purple-700 pb-1" href="ingles.html"><i
+          class="fa-solid fa-language"></i><span>Inglés</span></a>
+    </nav>
+    <button id="menuBtn" class="lg:hidden w-12 h-12 flex items-center justify-center text-2xl text-purple-700" aria-label="Abrir menú"><i
+        class="fa-solid fa-bars"></i></button>
+  </header>
+  <nav id="mobileNav"
+    class="hidden lg:hidden bg-white border-t shadow-md px-6 py-4 flex-col gap-3 text-sm font-semibold">
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="index.html"><i
+        class="fa-solid fa-house w-5"></i> Inicio</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="juegos.html"><i
+        class="fa-solid fa-gamepad w-5"></i> Juegos</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="recursos.html"><i
+        class="fa-solid fa-book-open w-5"></i> Recursos</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="videos.html"><i
+        class="fa-solid fa-circle-play w-5"></i> Videos educativos</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="dibujo.html"><i class="fa-solid fa-palette w-5"></i> Dibujo</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-purple-700 font-bold" href="ingles.html"><i
+        class="fa-solid fa-language w-5"></i> Inglés</a>
+  </nav>
+
+  <section class="relative pt-8 md:pt-10 pb-16 md:pb-20 px-6 overflow-hidden hero-bg">
+    <div class="max-w-7xl mx-auto flex flex-col items-center gap-4 relative z-10 text-center">
+      <p class="text-xs md:text-xs font-bold tracking-widest uppercase text-indigo-800 bg-white/75 px-4 py-1.5 rounded-full">
+        <i class="fa-solid fa-language mr-1"></i> MotriKids · Inglés
+      </p>
+      <div class="flex items-center justify-center gap-3">
+        <img src="assets/mascota.svg" alt="" class="w-12 h-12 md:w-16 md:h-16 float-slow">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-indigo-800 tracking-tight">Inglés para peques</h2>
+      </div>
+      <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl leading-relaxed">
+        <span class="font-extrabold text-indigo-700">Hello!</span> Juega, imprime y canta para aprender
+        <strong>emociones, preposiciones, vocales, animales y familia</strong> en inglés.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto">
+        <button type="button" data-ir-vista="juegos"
+          class="btn-squish bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-7 rounded-full shadow-md transition-all hover:scale-105 flex items-center justify-center gap-2 min-h-[56px] border-b-4 border-indigo-800">
+          <i class="fa-solid fa-gamepad"></i> Empezar a jugar
+        </button>
+        <button type="button" data-ir-vista="recursos"
+          class="btn-squish bg-white hover:bg-indigo-50 text-indigo-700 font-bold py-3.5 px-7 rounded-full shadow-sm transition-all hover:scale-105 flex items-center justify-center gap-2 min-h-[56px] border-2 border-indigo-200 border-b-4">
+          <i class="fa-solid fa-print"></i> Ver fichas
+        </button>
+      </div>
+    </div>
+
+    <div class="absolute top-8 left-5 md:left-10 text-yellow-400 text-2xl md:text-3xl opacity-70 float-slow"><i
+        class="fa-solid fa-star"></i></div>
+    <div class="absolute top-10 right-10 md:right-14 text-indigo-300 text-2xl md:text-3xl opacity-60 twinkle"><i
+        class="fa-solid fa-star"></i></div>
+    <div class="absolute bottom-28 left-[12%] hidden md:block text-sky-300 text-xl opacity-70 float-fast"><i
+        class="fa-solid fa-star"></i></div>
+    <div class="absolute bottom-20 right-[8%] hidden lg:block text-rose-300 text-2xl opacity-60 twinkle"><i
+        class="fa-solid fa-star"></i></div>
+
+    <div class="absolute top-[18%] left-[6%] hidden md:flex flex-col gap-2" aria-hidden="true">
+      <span class="bg-white/85 text-indigo-700 font-extrabold text-sm px-3 py-1.5 rounded-full shadow-sm rotate-[-6deg]">Hello!</span>
+      <span class="bg-yellow-200/90 text-amber-800 font-extrabold text-xs px-3 py-1.5 rounded-full shadow-sm rotate-[4deg] ml-6">ABC</span>
+    </div>
+    <div class="absolute top-[22%] right-[5%] hidden lg:flex flex-col items-end gap-2" aria-hidden="true">
+      <span class="bg-emerald-100/90 text-emerald-800 font-extrabold text-sm px-3 py-1.5 rounded-full shadow-sm rotate-[5deg]">Let's play!</span>
+      <span class="bg-rose-100/90 text-rose-700 text-2xl px-3 py-1 rounded-full shadow-sm rotate-[-4deg]">😊</span>
+    </div>
+
+    <div class="cloud-divider">
+      <svg preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+        <path class="shape-fill"
+          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C79.86,122.9,161.4,117.82,238.4,94.9,268.21,86.08,295.6,71.21,321.39,56.44Z">
+        </path>
+      </svg>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
+    <!-- Selector Juegos / Recursos / Videos -->
+    <section id="hubIngles" class="relative isolate scroll-mt-24 mb-8 md:mb-10">
+      <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+        <i class="fa-solid fa-star absolute top-1 left-[4%] text-yellow-300 text-xl md:text-2xl opacity-70 twinkle"></i>
+        <i class="fa-solid fa-star absolute top-8 right-[6%] text-indigo-300 text-2xl md:text-3xl opacity-50 float-slow hidden md:block"></i>
+        <i class="fa-solid fa-star absolute bottom-3 left-[22%] text-sky-300 text-lg opacity-50 float-fast hidden lg:block"></i>
+        <i class="fa-solid fa-star absolute bottom-5 right-[21%] text-rose-300 text-lg opacity-60 twinkle hidden lg:block"></i>
+      </div>
+      <div class="text-center mb-4 flex items-center justify-center gap-3">
+        <i class="fa-solid fa-star text-yellow-400 text-2xl md:text-3xl"></i>
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Elige tu aventura</h2>
+      </div>
+      <p class="text-center text-muted font-medium max-w-2xl mx-auto mb-6">
+        Tres formas de aprender inglés: juegos interactivos, fichas para imprimir y videos para cantar.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4" role="tablist" aria-label="Secciones de Inglés">
+        <button type="button" class="view-tab" data-view="juegos" id="tab-juegos" role="tab" aria-selected="true"
+          aria-controls="view-juegos">
+          <span class="view-tab-icon bg-teal-100 text-teal-700"><i class="fa-solid fa-gamepad"></i></span>
+          <span class="min-w-0">
+            <span class="view-tab-title block">Juegos</span>
+            <span class="view-tab-desc block">20 juegos con voz y estrellas</span>
+          </span>
+          <span class="view-tab-count" id="count-juegos">20</span>
+        </button>
+        <button type="button" class="view-tab" data-view="recursos" id="tab-recursos" role="tab" aria-selected="false"
+          aria-controls="view-recursos">
+          <span class="view-tab-icon bg-purple-100 text-purple-700"><i class="fa-solid fa-print"></i></span>
+          <span class="min-w-0">
+            <span class="view-tab-title block">Recursos</span>
+            <span class="view-tab-desc block">Fichas y pósters listos para A4</span>
+          </span>
+          <span class="view-tab-count" id="count-recursos">12</span>
+        </button>
+        <button type="button" class="view-tab" data-view="videos" id="tab-videos" role="tab" aria-selected="false"
+          aria-controls="view-videos">
+          <span class="view-tab-icon bg-rose-100 text-rose-700"><i class="fa-solid fa-circle-play"></i></span>
+          <span class="min-w-0">
+            <span class="view-tab-title block">Videos</span>
+            <span class="view-tab-desc block">Canciones y lecciones en inglés</span>
+          </span>
+          <span class="view-tab-count" id="count-videos">13</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= JUEGOS ================= -->
+    <div id="view-juegos" class="tab-view" role="tabpanel" aria-labelledby="tab-juegos">
+      <section id="filtrosJuegos" class="mb-8 md:mb-10 relative isolate">
+        <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+          <i class="fa-solid fa-star absolute top-1 left-[5%] text-yellow-300 text-xl md:text-2xl opacity-70 twinkle"></i>
+          <i class="fa-solid fa-star absolute top-6 right-[7%] text-teal-300 text-2xl md:text-3xl opacity-50 float-slow hidden md:block"></i>
+          <i class="fa-solid fa-star absolute bottom-2 left-[20%] text-sky-300 text-lg opacity-50 float-fast hidden lg:block"></i>
+          <i class="fa-solid fa-star absolute bottom-4 right-[22%] text-pink-300 text-lg opacity-60 twinkle hidden lg:block"></i>
+        </div>
+        <div class="text-center mb-4 flex items-center justify-center gap-3">
+          <i class="fa-solid fa-star text-yellow-400 text-2xl md:text-3xl"></i>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Explora por categoría</h2>
+        </div>
+        <p class="text-center text-muted font-medium max-w-2xl mx-auto mb-6">
+          Elige un tema, toca «Jugar» y aprende inglés con juegos cortos, visuales y sin prisa.
+        </p>
+        <div id="gameFilters" class="flex flex-wrap justify-center gap-2 md:gap-3"></div>
+      </section>
+      <div id="juegos-linea" class="space-y-10 md:space-y-12"></div>
+    </div>
+
+    <!-- ================= RECURSOS ================= -->
+    <div id="view-recursos" class="tab-view hidden" role="tabpanel" aria-labelledby="tab-recursos">
+      <section id="filtrosRecursos" class="mb-8 md:mb-10 relative isolate">
+        <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+          <i class="fa-solid fa-star absolute top-1 left-[5%] text-yellow-300 text-xl md:text-2xl opacity-70 twinkle"></i>
+          <i class="fa-solid fa-star absolute top-6 right-[7%] text-purple-300 text-2xl md:text-3xl opacity-50 float-slow hidden md:block"></i>
+          <i class="fa-solid fa-star absolute bottom-2 left-[20%] text-fuchsia-300 text-lg opacity-50 float-fast hidden lg:block"></i>
+          <i class="fa-solid fa-star absolute bottom-4 right-[22%] text-amber-300 text-lg opacity-60 twinkle hidden lg:block"></i>
+        </div>
+        <div class="text-center mb-4 flex items-center justify-center gap-3">
+          <i class="fa-solid fa-star text-yellow-400 text-2xl md:text-3xl"></i>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Fichas listas para imprimir</h2>
+        </div>
+        <p class="text-center text-muted font-medium max-w-2xl mx-auto mb-6">
+          Abre una ficha, mírala en grande y envíala a la impresora. Están pensadas para A4 y para usar en el aula o en casa.
+        </p>
+        <div id="recursoFilters" class="flex flex-wrap justify-center gap-2 md:gap-3"></div>
+      </section>
+      <div id="recursos-linea" class="space-y-10 md:space-y-12"></div>
+    </div>
+
+    <!-- ================= VIDEOS ================= -->
+    <div id="view-videos" class="tab-view hidden" role="tabpanel" aria-labelledby="tab-videos">
+      <section id="filtrosVideos" class="mb-8 md:mb-10 relative isolate">
+        <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+          <i class="fa-solid fa-star absolute top-1 left-[5%] text-yellow-300 text-xl md:text-2xl opacity-70 twinkle"></i>
+          <i class="fa-solid fa-star absolute top-6 right-[7%] text-rose-300 text-2xl md:text-3xl opacity-50 float-slow hidden md:block"></i>
+          <i class="fa-solid fa-star absolute bottom-2 left-[20%] text-indigo-300 text-lg opacity-50 float-fast hidden lg:block"></i>
+          <i class="fa-solid fa-star absolute bottom-4 right-[22%] text-sky-300 text-lg opacity-60 twinkle hidden lg:block"></i>
+        </div>
+        <div class="text-center mb-4 flex items-center justify-center gap-3">
+          <i class="fa-solid fa-star text-yellow-400 text-2xl md:text-3xl"></i>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Videos para cantar y aprender</h2>
+        </div>
+        <p class="text-center text-muted font-medium max-w-2xl mx-auto mb-6">
+          Videos seleccionados de YouTube. Elige un tema y dale play: el reproductor se abre dentro de esta página.
+        </p>
+        <div id="videoFilters" class="flex flex-wrap justify-center gap-2 md:gap-3"></div>
+      </section>
+      <div id="videos-linea" class="space-y-10 md:space-y-12"></div>
+    </div>
+  </main>
+
+  <footer class="bg-purple-700 text-white py-8 px-6 mt-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-4 text-sm opacity-95 text-center md:text-left">
+        <i class="fa-solid fa-star text-yellow-400 text-2xl"></i>
+        <div>
+          <p class="font-bold">MotriKids © 2026 | Unidad Educativa Ecuatoriana Austriaca</p>
+          <p class="text-purple-200">Aprender, crecer y crear juntos.</p>
+        </div>
+      </div>
+      <div class="text-sm text-purple-200 flex items-center gap-2 font-medium text-center">
+        <i class="fa-solid fa-heart text-secondary"></i> Con amor, dedicación y paciencia todo es posible.
+      </div>
+      <div class="flex gap-1 text-xl">
+        <a class="w-11 h-11 inline-flex items-center justify-center hover:text-purple-300 transition-colors" href="videos.html" aria-label="Videos"><i
+            class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DE JUEGO -->
+  <div id="gameModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="gameModalTitle">
+    <div class="absolute inset-0 bg-indigo-950/50 backdrop-blur-sm" data-cerrar-juego></div>
+    <div class="relative z-10 h-full overflow-y-auto p-3 sm:p-6 flex items-start sm:items-center justify-center">
+      <div class="w-full max-w-3xl bg-white rounded-[32px] shadow-2xl border border-indigo-100 overflow-hidden my-auto">
+        <div class="bg-gradient-to-r from-indigo-600 via-sky-500 to-teal-400 text-white px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 min-w-0">
+            <span id="gameModalEmoji" class="text-3xl sm:text-4xl shrink-0" aria-hidden="true">🎮</span>
+            <div class="min-w-0">
+              <p id="gameModalCat" class="text-[10px] sm:text-[11px] uppercase tracking-widest font-bold text-white/80"></p>
+              <h2 id="gameModalTitle" class="text-lg sm:text-2xl font-extrabold leading-tight truncate"></h2>
+            </div>
+          </div>
+          <button type="button" data-cerrar-juego class="w-11 h-11 rounded-full bg-white/20 hover:bg-white/30 transition-colors flex items-center justify-center shrink-0" aria-label="Cerrar juego">
+            <i class="fa-solid fa-xmark text-xl"></i>
+          </button>
+        </div>
+        <div class="px-4 sm:px-6 py-4">
+          <div class="flex items-center justify-between gap-2 text-xs font-bold text-gray-500 mb-2">
+            <span id="gameProgressLabel">Ronda 1 de 8</span>
+            <span id="gameScoreLabel">⭐ 0</span>
+          </div>
+          <div class="h-2.5 rounded-full bg-gray-100 overflow-hidden mb-4">
+            <div id="gameProgressBar" class="h-full rounded-full bg-gradient-to-r from-pink-400 via-amber-400 to-teal-400 transition-all" style="width:0%"></div>
+          </div>
+          <div id="gameStage" class="min-h-[300px]"></div>
+          <div id="gameFeedback" class="mt-3 min-h-[52px]" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE RECURSO -->
+  <div id="resourceModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="resourceModalTitle">
+    <div class="absolute inset-0 bg-indigo-950/50 backdrop-blur-sm" data-cerrar-recurso></div>
+    <div class="relative z-10 h-full overflow-y-auto p-3 sm:p-6 flex items-start sm:items-center justify-center">
+      <div class="w-full max-w-4xl bg-white rounded-[32px] shadow-2xl border border-purple-100 overflow-hidden my-auto">
+        <div class="bg-gradient-to-r from-purple-700 via-indigo-600 to-sky-500 text-white px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 min-w-0">
+            <span id="resourceModalEmoji" class="text-3xl sm:text-4xl shrink-0" aria-hidden="true">🖨️</span>
+            <div class="min-w-0">
+              <p class="text-[10px] sm:text-[11px] uppercase tracking-widest font-bold text-white/80">Ficha imprimible · Inglés</p>
+              <h2 id="resourceModalTitle" class="text-lg sm:text-2xl font-extrabold leading-tight truncate"></h2>
+            </div>
+          </div>
+          <button type="button" data-cerrar-recurso class="w-11 h-11 rounded-full bg-white/20 hover:bg-white/30 transition-colors flex items-center justify-center shrink-0" aria-label="Cerrar ficha">
+            <i class="fa-solid fa-xmark text-xl"></i>
+          </button>
+        </div>
+        <div class="px-3 sm:px-6 py-4">
+          <div id="resourcePreview" class="resource-preview"></div>
+          <div class="flex flex-col sm:flex-row gap-3 justify-end mt-4">
+            <button type="button" data-cerrar-recurso class="btn-squish min-h-[48px] bg-white text-gray-600 font-bold py-2.5 px-6 rounded-full border-2 border-gray-200 hover:border-gray-300 transition-colors">
+              Cerrar
+            </button>
+            <button type="button" id="printResourceBtn" class="btn-squish min-h-[48px] bg-purple-700 hover:bg-purple-800 text-white font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center justify-center gap-2">
+              <i class="fa-solid fa-print"></i> Imprimir ficha
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="printContainer" aria-hidden="true"></div>
+
+  <script>
+    // ==============================================================
+    // INGLÉS · MOTRIKIDS
+    // Juegos, fichas imprimibles y videos en una sola página.
+    // ==============================================================
+
+    const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+    function esc(texto = '') {
+      return String(texto).replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+    }
+
+    function barajar(lista) {
+      const copia = [...lista];
+      for (let i = copia.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copia[i], copia[j]] = [copia[j], copia[i]];
+      }
+      return copia;
+    }
+
+    function opcionesDe(lista, correctaId, cantidad = 4) {
+      const correcta = lista.find((item) => item.id === correctaId);
+      if (!correcta) return [];
+      const distractores = barajar(lista.filter((item) => item.id !== correctaId)).slice(0, cantidad - 1);
+      return barajar([correcta, ...distractores]);
+    }
+
+    function opcionDeVocab(item) {
+      return { id: item.id, emoji: item.emoji, label: item.en, es: item.es };
+    }
+
+    function opcionesVocab(lista, correctaId, cantidad = 4) {
+      return opcionesDe(lista, correctaId, cantidad).map(opcionDeVocab);
+    }
+
+    // --------------------------------------------------------------
+    // Vocabulario base
+    // --------------------------------------------------------------
+    const EMOCIONES = [
+      { id: 'happy', emoji: '😊', en: 'happy', es: 'feliz' },
+      { id: 'sad', emoji: '😢', en: 'sad', es: 'triste' },
+      { id: 'angry', emoji: '😠', en: 'angry', es: 'enojado' },
+      { id: 'scared', emoji: '😨', en: 'scared', es: 'asustado' },
+      { id: 'surprised', emoji: '😲', en: 'surprised', es: 'sorprendido' },
+      { id: 'sleepy', emoji: '😴', en: 'sleepy', es: 'somnoliento' },
+      { id: 'excited', emoji: '🤩', en: 'excited', es: 'emocionado' },
+      { id: 'calm', emoji: '😌', en: 'calm', es: 'tranquilo' }
+    ];
+
+    const ANIMALES = [
+      { id: 'cat', emoji: '🐱', en: 'cat', es: 'gato' },
+      { id: 'dog', emoji: '🐶', en: 'dog', es: 'perro' },
+      { id: 'fish', emoji: '🐟', en: 'fish', es: 'pez' },
+      { id: 'frog', emoji: '🐸', en: 'frog', es: 'rana' },
+      { id: 'bird', emoji: '🐦', en: 'bird', es: 'pájaro' },
+      { id: 'duck', emoji: '🦆', en: 'duck', es: 'pato' },
+      { id: 'elephant', emoji: '🐘', en: 'elephant', es: 'elefante' },
+      { id: 'lion', emoji: '🦁', en: 'lion', es: 'león' },
+      { id: 'monkey', emoji: '🐵', en: 'monkey', es: 'mono' },
+      { id: 'cow', emoji: '🐄', en: 'cow', es: 'vaca' },
+      { id: 'sheep', emoji: '🐑', en: 'sheep', es: 'oveja' },
+      { id: 'horse', emoji: '🐴', en: 'horse', es: 'caballo' },
+      { id: 'tiger', emoji: '🐯', en: 'tiger', es: 'tigre' },
+      { id: 'owl', emoji: '🦉', en: 'owl', es: 'búho' },
+      { id: 'rabbit', emoji: '🐰', en: 'rabbit', es: 'conejo' },
+      { id: 'turtle', emoji: '🐢', en: 'turtle', es: 'tortuga' },
+      { id: 'hen', emoji: '🐔', en: 'hen', es: 'gallina' },
+      { id: 'pig', emoji: '🐷', en: 'pig', es: 'cerdo' }
+    ];
+
+    const FAMILIA = [
+      { id: 'mother', emoji: '👩', en: 'mother', es: 'mamá' },
+      { id: 'father', emoji: '👨', en: 'father', es: 'papá' },
+      { id: 'sister', emoji: '👧', en: 'sister', es: 'hermana' },
+      { id: 'brother', emoji: '👦', en: 'brother', es: 'hermano' },
+      { id: 'grandmother', emoji: '👵', en: 'grandmother', es: 'abuela' },
+      { id: 'grandfather', emoji: '👴', en: 'grandfather', es: 'abuelo' },
+      { id: 'baby', emoji: '👶', en: 'baby', es: 'bebé' },
+      { id: 'family', emoji: '👨‍👩‍👧‍👦', en: 'family', es: 'familia' }
+    ];
+
+    const PREPOSICIONES = [
+      { id: 'in', emoji: '📥', en: 'in', es: 'dentro' },
+      { id: 'on', emoji: '⬆️', en: 'on', es: 'sobre' },
+      { id: 'under', emoji: '⬇️', en: 'under', es: 'debajo' },
+      { id: 'next-to', emoji: '↔️', en: 'next to', es: 'al lado' },
+      { id: 'behind', emoji: '🙈', en: 'behind', es: 'detrás' },
+      { id: 'in-front-of', emoji: '👀', en: 'in front of', es: 'delante' }
+    ];
+
+    const ANIMALES_VOCAL = [
+      { id: 'ant', emoji: '🐜', en: 'ant', es: 'hormiga', vocal: 'A' },
+      { id: 'elephant', emoji: '🐘', en: 'elephant', es: 'elefante', vocal: 'E' },
+      { id: 'iguana', emoji: '🦎', en: 'iguana', es: 'iguana', vocal: 'I' },
+      { id: 'octopus', emoji: '🐙', en: 'octopus', es: 'pulpo', vocal: 'O' },
+      { id: 'owl', emoji: '🦉', en: 'owl', es: 'búho', vocal: 'O' },
+      { id: 'eagle', emoji: '🦅', en: 'eagle', es: 'águila', vocal: 'E' },
+      { id: 'alligator', emoji: '🐊', en: 'alligator', es: 'cocodrilo', vocal: 'A' },
+      { id: 'emu', emoji: '🦤', en: 'emu', es: 'emú', vocal: 'E' },
+      { id: 'unicorn', emoji: '🦄', en: 'unicorn', es: 'unicornio', vocal: 'U' }
+    ];
+
+    const SONIDOS = [
+      { id: 'cow', sonido: 'Moo' },
+      { id: 'dog', sonido: 'Woof' },
+      { id: 'cat', sonido: 'Meow' },
+      { id: 'duck', sonido: 'Quack' },
+      { id: 'sheep', sonido: 'Baa' },
+      { id: 'horse', sonido: 'Neigh' },
+      { id: 'bird', sonido: 'Tweet' },
+      { id: 'frog', sonido: 'Ribbit' }
+    ];
+
+    const VOCALES_DATA = [
+      { v: 'A', emoji: '🐜', en: 'ant', es: 'hormiga' },
+      { v: 'E', emoji: '🐘', en: 'elephant', es: 'elefante' },
+      { v: 'I', emoji: '🦎', en: 'iguana', es: 'iguana' },
+      { v: 'O', emoji: '🐙', en: 'octopus', es: 'pulpo' },
+      { v: 'U', emoji: '🦄', en: 'unicorn', es: 'unicornio' }
+    ];
+
+    const NUMEROS_DATA = [
+      { n: 1, en: 'one', es: 'uno', emoji: '🦋' },
+      { n: 2, en: 'two', es: 'dos', emoji: '🐟' },
+      { n: 3, en: 'three', es: 'tres', emoji: '🍎' },
+      { n: 4, en: 'four', es: 'cuatro', emoji: '🐤' },
+      { n: 5, en: 'five', es: 'cinco', emoji: '⭐' },
+      { n: 6, en: 'six', es: 'seis', emoji: '🐞' },
+      { n: 7, en: 'seven', es: 'siete', emoji: '🌷' },
+      { n: 8, en: 'eight', es: 'ocho', emoji: '🐚' },
+      { n: 9, en: 'nine', es: 'nueve', emoji: '🎈' },
+      { n: 10, en: 'ten', es: 'diez', emoji: '🖐️' }
+    ];
+
+    const COLORES_DATA = [
+      { en: 'red', es: 'rojo', hex: '#ef4444' },
+      { en: 'blue', es: 'azul', hex: '#3b82f6' },
+      { en: 'yellow', es: 'amarillo', hex: '#facc15' },
+      { en: 'green', es: 'verde', hex: '#22c55e' },
+      { en: 'orange', es: 'naranja', hex: '#f97316' },
+      { en: 'purple', es: 'morado', hex: '#a855f7' },
+      { en: 'pink', es: 'rosado', hex: '#ec4899' },
+      { en: 'brown', es: 'marrón', hex: '#92400e' },
+      { en: 'black', es: 'negro', hex: '#111827' },
+      { en: 'white', es: 'blanco', hex: '#f8fafc' }
+    ];
+
+    // --------------------------------------------------------------
+    // Categorías de los juegos
+    // --------------------------------------------------------------
+    const CATEGORIAS_JUEGOS = [
+      {
+        key: 'emociones', label: 'Emociones', title: '1. Feelings & Emotions', icon: 'fa-face-smile',
+        desc: 'Reconoce caritas y aprende happy, sad, angry, scared y más.',
+        accent: 'bg-pink-100 text-pink-700', badge: 'bg-pink-50 text-pink-700 border border-pink-200',
+        panel: 'border-pink-200/70 from-pink-50 via-white to-rose-50', star: 'text-pink-300',
+        pillActive: 'bg-pink-600 text-white border-pink-800 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-pink-300 hover:text-pink-800'
+      },
+      {
+        key: 'preposiciones', label: 'Preposiciones', title: '2. Where is it?', icon: 'fa-location-dot',
+        desc: 'In, on, under y next to con escenas visuales para ubicarse.',
+        accent: 'bg-sky-100 text-sky-700', badge: 'bg-sky-50 text-sky-700 border border-sky-200',
+        panel: 'border-sky-200/70 from-sky-50 via-white to-cyan-50', star: 'text-sky-300',
+        pillActive: 'bg-sky-600 text-white border-sky-800 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-sky-300 hover:text-sky-800'
+      },
+      {
+        key: 'vocales', label: 'Vocales', title: '3. Vowels & Sounds', icon: 'fa-font',
+        desc: 'A, E, I, O, U: sonidos iniciales, vocales que faltan y palabras.',
+        accent: 'bg-amber-100 text-amber-700', badge: 'bg-amber-50 text-amber-700 border border-amber-200',
+        panel: 'border-amber-200/70 from-amber-50 via-white to-yellow-50', star: 'text-amber-300',
+        pillActive: 'bg-amber-500 text-white border-amber-700 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-amber-300 hover:text-amber-800'
+      },
+      {
+        key: 'animales', label: 'Animales', title: '4. Animal Friends', icon: 'fa-paw',
+        desc: 'Escucha, imita sonidos, encuentra parejas y clasifica animalitos.',
+        accent: 'bg-emerald-100 text-emerald-700', badge: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+        panel: 'border-emerald-200/70 from-emerald-50 via-white to-teal-50', star: 'text-emerald-300',
+        pillActive: 'bg-emerald-600 text-white border-emerald-800 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-emerald-300 hover:text-emerald-800'
+      },
+      {
+        key: 'familia', label: 'Familia', title: '5. My Family', icon: 'fa-people-roof',
+        desc: 'Mother, father, sister, brother y las relaciones de la familia.',
+        accent: 'bg-purple-100 text-purple-700', badge: 'bg-purple-50 text-purple-700 border border-purple-200',
+        panel: 'border-purple-200/70 from-purple-50 via-white to-fuchsia-50', star: 'text-purple-300',
+        pillActive: 'bg-purple-600 text-white border-purple-800 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-purple-300 hover:text-purple-800'
+      }
+    ];
+
+    // --------------------------------------------------------------
+    // Catálogo de 20 juegos
+    // --------------------------------------------------------------
+    const RELACIONES_ESCENA = [
+      { rel: 'in', object: '🐱', objectName: 'cat' },
+      { rel: 'on', object: '🐱', objectName: 'cat' },
+      { rel: 'under', object: '🐱', objectName: 'cat' },
+      { rel: 'next-to', object: '🐱', objectName: 'cat' },
+      { rel: 'in', object: '⚽', objectName: 'ball' },
+      { rel: 'on', object: '🧸', objectName: 'teddy' },
+      { rel: 'under', object: '🐸', objectName: 'frog' },
+      { rel: 'next-to', object: '🐶', objectName: 'dog' }
+    ];
+
+    const RIMAS_FAMILIA = [
+      { pregunta: 'La mamá de mi mamá es mi...', correcta: 'grandmother' },
+      { pregunta: 'El papá de mi papá es mi...', correcta: 'grandfather' },
+      { pregunta: 'La hija de mi mamá es mi...', correcta: 'sister' },
+      { pregunta: 'El hijo de mi papá es mi...', correcta: 'brother' },
+      { pregunta: 'El bebé de la familia es el...', correcta: 'baby' },
+      { pregunta: 'Mis papás y yo somos una...', correcta: 'family' }
+    ];
+
+    const JUEGOS = [
+      // ===== EMOCIONES =====
+      {
+        slug: 'feelings-listen', titulo: 'Listen & Smile', cat: 'emociones', tipo: 'quiz',
+        desc: 'Escucha la emoción en inglés y elige la carita correcta.',
+        emoji: '😊', icon: 'fa-ear-listen', cover: 'from-pink-200 via-rose-100 to-amber-100',
+        badge: 'Escucha', badgeClass: 'bg-pink-100 text-pink-700', coverEmojis: ['😊', '😢', '😠'],
+        rondas: barajar(EMOCIONES).map((item) => ({
+          audio: item.en,
+          pregunta: 'Escucha y elige la carita.',
+          emoji: '👂',
+          ocultarEtiquetas: true,
+          opcionesModo: 'emoji',
+          opciones: opcionesVocab(EMOCIONES, item.id),
+          correcta: item.id,
+          pista: `${item.en} = ${item.es}`,
+          refuerzo: `${item.en}!`
+        }))
+      },
+      {
+        slug: 'feelings-faces', titulo: 'How do you feel?', cat: 'emociones', tipo: 'quiz',
+        desc: 'Mira la carita y elige la palabra correcta en inglés.',
+        emoji: '🥰', icon: 'fa-face-smile-beam', cover: 'from-rose-200 via-pink-100 to-fuchsia-100',
+        badge: 'Observa', badgeClass: 'bg-rose-100 text-rose-700', coverEmojis: ['😊', '😨', '🤩'],
+        rondas: barajar(EMOCIONES).map((item) => ({
+          pregunta: '¿Cómo se siente?',
+          emoji: item.emoji,
+          opcionesModo: 'texto',
+          opciones: opcionesVocab(EMOCIONES, item.id),
+          correcta: item.id,
+          pista: `${item.en} = ${item.es}`,
+          refuerzo: `${item.en}!`
+        }))
+      },
+      {
+        slug: 'feelings-memory', titulo: 'Feelings Memory', cat: 'emociones', tipo: 'memory',
+        desc: 'Encuentra la pareja entre cada carita y su palabra en inglés.',
+        emoji: '🃏', icon: 'fa-clone', cover: 'from-pink-200 via-fuchsia-100 to-purple-100',
+        badge: 'Memoria', badgeClass: 'bg-fuchsia-100 text-fuchsia-700', coverEmojis: ['😊', '😢', '😌'],
+        pares: barajar(EMOCIONES).slice(0, 6).map((item) => ({
+          id: item.id, emoji: item.emoji, label: item.en, es: item.es
+        }))
+      },
+      {
+        slug: 'feelings-spell', titulo: 'Spell a Feeling', cat: 'emociones', tipo: 'build',
+        desc: 'Ordena las letras y escribe la emoción que muestra la carita.',
+        emoji: '🔤', icon: 'fa-spell-check', cover: 'from-amber-200 via-rose-100 to-pink-100',
+        badge: 'Escribe', badgeClass: 'bg-amber-100 text-amber-700', coverEmojis: ['🔤', '😊', '⭐'],
+        rondas: ['happy', 'sad', 'angry', 'calm', 'scared'].map((word) => {
+          const item = EMOCIONES.find((e) => e.en === word);
+          return { word, emoji: item.emoji, es: item.es, pista: `${word} = ${item.es}` };
+        })
+      },
+
+      // ===== PREPOSICIONES =====
+      {
+        slug: 'where-is-cat', titulo: 'Where is the cat?', cat: 'preposiciones', tipo: 'quiz',
+        desc: 'Mira la escena y elige in, on, under o next to.',
+        emoji: '🐱', icon: 'fa-location-dot', cover: 'from-sky-200 via-cyan-100 to-blue-100',
+        badge: 'Observa', badgeClass: 'bg-sky-100 text-sky-700', coverEmojis: ['🐱', '📦', '📍'],
+        rondas: RELACIONES_ESCENA.map((item) => {
+          const prep = PREPOSICIONES.find((p) => p.id === item.rel);
+          return {
+            pregunta: `Where is the ${item.objectName}?`,
+            escena: { rel: item.rel, object: item.object },
+            opcionesModo: 'texto',
+            opciones: opcionesVocab(PREPOSICIONES.slice(0, 4), item.rel),
+            correcta: item.rel,
+            pista: `The ${item.objectName} is ${prep.en} the box.`,
+            refuerzo: `The ${item.objectName} is ${prep.en} the box.`
+          };
+        })
+      },
+      {
+        slug: 'prepositions-listen', titulo: 'Listen & Find', cat: 'preposiciones', tipo: 'quiz',
+        desc: 'Escucha la frase y elige la escena que la representa.',
+        emoji: '🎧', icon: 'fa-headphones', cover: 'from-cyan-200 via-sky-100 to-indigo-100',
+        badge: 'Escucha', badgeClass: 'bg-cyan-100 text-cyan-700', coverEmojis: ['🎧', '🐱', '📦'],
+        rondas: [
+          { rel: 'in', frase: 'The cat is in the box.' },
+          { rel: 'on', frase: 'The cat is on the box.' },
+          { rel: 'under', frase: 'The cat is under the box.' },
+          { rel: 'next-to', frase: 'The cat is next to the box.' },
+          { rel: 'in', frase: 'The cat is in the box.' },
+          { rel: 'under', frase: 'The cat is under the box.' }
+        ].map((item) => ({
+          audio: item.frase,
+          pregunta: 'Escucha y elige la escena correcta.',
+          emoji: '👂',
+          opcionesModo: 'escena',
+          opciones: PREPOSICIONES.slice(0, 4).map((p) => ({ id: p.id, label: p.en, escena: p.id })),
+          correcta: item.rel,
+          pista: item.frase,
+          refuerzo: item.frase
+        }))
+      },
+      {
+        slug: 'prepositions-memory', titulo: 'Prepositions Memory', cat: 'preposiciones', tipo: 'memory',
+        desc: 'Relaciona cada palabra con su escena: in, on, under y más.',
+        emoji: '🧠', icon: 'fa-clone', cover: 'from-blue-200 via-sky-100 to-teal-100',
+        badge: 'Memoria', badgeClass: 'bg-blue-100 text-blue-700', coverEmojis: ['📦', '🐱', '🧠'],
+        pares: PREPOSICIONES.map((item) => ({
+          id: item.id, emoji: item.emoji, label: item.en, es: item.es
+        }))
+      },
+      {
+        slug: 'prepositions-sort', titulo: 'In, On or Under?', cat: 'preposiciones', tipo: 'sort',
+        desc: 'Completa cada frase y clasifícala en la preposición correcta.',
+        emoji: '📦', icon: 'fa-boxes-stacked', cover: 'from-indigo-200 via-blue-100 to-sky-100',
+        badge: 'Clasifica', badgeClass: 'bg-indigo-100 text-indigo-700', coverEmojis: ['📦', '⬆️', '⬇️'],
+        mostrarFrase: true,
+        bins: [
+          { id: 'in', label: 'In', emoji: '📥', classes: 'bg-sky-50 border-sky-200 text-sky-800' },
+          { id: 'on', label: 'On', emoji: '⬆️', classes: 'bg-amber-50 border-amber-200 text-amber-800' },
+          { id: 'under', label: 'Under', emoji: '⬇️', classes: 'bg-emerald-50 border-emerald-200 text-emerald-800' }
+        ],
+        items: [
+          { id: 'in-box', emoji: '📦', frase: '___ the box', en: 'in the box', es: 'dentro de la caja', bin: 'in' },
+          { id: 'on-table', emoji: '🪑', frase: '___ the table', en: 'on the table', es: 'sobre la mesa', bin: 'on' },
+          { id: 'under-chair', emoji: '🪑', frase: '___ the chair', en: 'under the chair', es: 'debajo de la silla', bin: 'under' },
+          { id: 'in-bag', emoji: '🎒', frase: '___ the bag', en: 'in the bag', es: 'dentro de la mochila', bin: 'in' },
+          { id: 'on-bed', emoji: '🛏️', frase: '___ the bed', en: 'on the bed', es: 'sobre la cama', bin: 'on' },
+          { id: 'under-tree', emoji: '🌳', frase: '___ the tree', en: 'under the tree', es: 'debajo del árbol', bin: 'under' },
+          { id: 'in-cup', emoji: '🥤', frase: '___ the cup', en: 'in the cup', es: 'dentro del vaso', bin: 'in' },
+          { id: 'on-shelf', emoji: '📚', frase: '___ the shelf', en: 'on the shelf', es: 'sobre el estante', bin: 'on' }
+        ]
+      },
+
+      // ===== VOCALES =====
+      {
+        slug: 'vowel-sounds', titulo: 'Vowel Safari', cat: 'vocales', tipo: 'quiz',
+        desc: 'Mira el animal y elige la vocal con la que empieza su nombre.',
+        emoji: '🦁', icon: 'fa-font', cover: 'from-amber-200 via-yellow-100 to-lime-100',
+        badge: 'Vocales', badgeClass: 'bg-amber-100 text-amber-700', coverEmojis: ['A', 'E', 'I'],
+        rondas: ['ant', 'elephant', 'iguana', 'octopus', 'unicorn', 'eagle'].map((id) => {
+          const item = ANIMALES_VOCAL.find((a) => a.id === id);
+          return {
+            pregunta: '¿Con qué vocal empieza?',
+            emoji: item.emoji,
+            palabra: item.en.replace(/^[aeiou]/i, '_'),
+            opcionesModo: 'letra',
+            opciones: ['A', 'E', 'I', 'O', 'U'].map((v) => ({ id: v, label: v })),
+            correcta: item.vocal,
+            pista: `${item.en} empieza con ${item.vocal}.`,
+            refuerzo: `${item.en}!`
+          };
+        })
+      },
+      {
+        slug: 'vowel-begin', titulo: 'A, E, I, O, U', cat: 'vocales', tipo: 'quiz',
+        desc: 'Encuentra la palabra que empieza con la vocal indicada.',
+        emoji: '🔤', icon: 'fa-magnifying-glass', cover: 'from-yellow-200 via-amber-100 to-orange-100',
+        badge: 'Sonidos', badgeClass: 'bg-yellow-100 text-yellow-700', coverEmojis: ['A', '🐜', '🐘'],
+        rondas: [
+          { vocal: 'A', correcta: 'ant', ids: ['ant', 'elephant', 'iguana', 'octopus'] },
+          { vocal: 'E', correcta: 'elephant', ids: ['elephant', 'ant', 'owl', 'unicorn'] },
+          { vocal: 'I', correcta: 'iguana', ids: ['iguana', 'octopus', 'eagle', 'ant'] },
+          { vocal: 'O', correcta: 'octopus', ids: ['octopus', 'iguana', 'emu', 'alligator'] },
+          { vocal: 'U', correcta: 'unicorn', ids: ['unicorn', 'eagle', 'ant', 'owl'] }
+        ].map((ronda) => {
+          const correcta = ANIMALES_VOCAL.find((a) => a.id === ronda.correcta);
+          return {
+            pregunta: `¿Qué palabra empieza con ${ronda.vocal}?`,
+            letra: ronda.vocal,
+            opcionesModo: 'texto',
+            opcionesConEmoji: true,
+            opciones: ronda.ids.map((id) => {
+              const item = ANIMALES_VOCAL.find((a) => a.id === id);
+              return { id: item.id, emoji: item.emoji, label: item.en, es: item.es };
+            }),
+            correcta: ronda.correcta,
+            pista: `${correcta.en} empieza con ${ronda.vocal}.`,
+            refuerzo: `${correcta.en}!`
+          };
+        })
+      },
+      {
+        slug: 'vowel-spell', titulo: 'Animal Spelling', cat: 'vocales', tipo: 'build',
+        desc: 'Ordena las letras y escribe el nombre del animal en inglés.',
+        emoji: '✏️', icon: 'fa-spell-check', cover: 'from-lime-200 via-emerald-100 to-teal-100',
+        badge: 'Escribe', badgeClass: 'bg-lime-100 text-lime-700', coverEmojis: ['🐱', '🔤', '🐟'],
+        rondas: ['cat', 'dog', 'fish', 'frog', 'duck'].map((word) => {
+          const item = ANIMALES.find((a) => a.en === word);
+          return { word, emoji: item.emoji, es: item.es, pista: `${word} = ${item.es}` };
+        })
+      },
+      {
+        slug: 'vowel-missing', titulo: 'Missing Vowel', cat: 'vocales', tipo: 'quiz',
+        desc: 'Completa la palabra del animal con la vocal que falta.',
+        emoji: '❓', icon: 'fa-circle-question', cover: 'from-orange-200 via-amber-100 to-yellow-100',
+        badge: 'Completa', badgeClass: 'bg-orange-100 text-orange-700', coverEmojis: ['?', '🐷', '🦆'],
+        rondas: [
+          { id: 'cat', palabra: 'c_t', vocal: 'A' },
+          { id: 'dog', palabra: 'd_g', vocal: 'O' },
+          { id: 'fish', palabra: 'f_sh', vocal: 'I' },
+          { id: 'frog', palabra: 'fr_g', vocal: 'O' },
+          { id: 'bird', palabra: 'b_rd', vocal: 'I' },
+          { id: 'duck', palabra: 'd_ck', vocal: 'U' },
+          { id: 'hen', palabra: 'h_n', vocal: 'E' },
+          { id: 'pig', palabra: 'p_g', vocal: 'I' }
+        ].map((ronda) => {
+          const item = ANIMALES.find((a) => a.id === ronda.id);
+          return {
+            pregunta: '¿Qué vocal falta?',
+            emoji: item.emoji,
+            palabra: ronda.palabra,
+            opcionesModo: 'letra',
+            opciones: ['A', 'E', 'I', 'O', 'U'].map((v) => ({ id: v, label: v })),
+            correcta: ronda.vocal,
+            pista: `${item.en} = ${item.es}`,
+            refuerzo: `${item.en}!`
+          };
+        })
+      },
+
+      // ===== ANIMALES =====
+      {
+        slug: 'animal-listen', titulo: 'Listen to the Animal', cat: 'animales', tipo: 'quiz',
+        desc: 'Escucha el nombre del animal y elige su imagen.',
+        emoji: '🐾', icon: 'fa-ear-listen', cover: 'from-emerald-200 via-teal-100 to-cyan-100',
+        badge: 'Escucha', badgeClass: 'bg-emerald-100 text-emerald-700', coverEmojis: ['🐱', '🐶', '🐘'],
+        rondas: barajar(ANIMALES).slice(0, 8).map((item) => ({
+          audio: item.en,
+          pregunta: 'Escucha y elige el animal.',
+          emoji: '👂',
+          ocultarEtiquetas: true,
+          opcionesModo: 'emoji',
+          opciones: opcionesVocab(ANIMALES, item.id),
+          correcta: item.id,
+          pista: `${item.en} = ${item.es}`,
+          refuerzo: `${item.en}!`
+        }))
+      },
+      {
+        slug: 'animal-sounds', titulo: 'Animal Sounds', cat: 'animales', tipo: 'quiz',
+        desc: 'Escucha el sonido y adivina qué animal es.',
+        emoji: '🔊', icon: 'fa-volume-high', cover: 'from-teal-200 via-emerald-100 to-lime-100',
+        badge: 'Sonidos', badgeClass: 'bg-teal-100 text-teal-700', coverEmojis: ['🐄', '🐶', '🦆'],
+        rondas: SONIDOS.map((sonido) => {
+          const item = ANIMALES.find((a) => a.id === sonido.id);
+          return {
+            audio: sonido.sonido,
+            sonido: sonido.sonido,
+            pregunta: `¿Qué animal hace «${sonido.sonido}»?`,
+            emoji: '🔊',
+            ocultarEtiquetas: true,
+            opcionesModo: 'emoji',
+            opciones: opcionesVocab(ANIMALES, sonido.id),
+            correcta: sonido.id,
+            pista: `${item.en} says ${sonido.sonido}.`,
+            refuerzo: `${item.en} says ${sonido.sonido}!`
+          };
+        })
+      },
+      {
+        slug: 'animal-memory', titulo: 'Animal Memory', cat: 'animales', tipo: 'memory',
+        desc: 'Encuentra las parejas de animales y sus nombres en inglés.',
+        emoji: '🐼', icon: 'fa-clone', cover: 'from-green-200 via-emerald-100 to-teal-100',
+        badge: 'Memoria', badgeClass: 'bg-green-100 text-green-700', coverEmojis: ['🐱', '🐸', '🦉'],
+        pares: barajar(ANIMALES).slice(0, 6).map((item) => ({
+          id: item.id, emoji: item.emoji, label: item.en, es: item.es
+        }))
+      },
+      {
+        slug: 'animal-sort', titulo: 'Farm or Wild?', cat: 'animales', tipo: 'sort',
+        desc: 'Clasifica los animales según vivan en la granja o en la selva.',
+        emoji: '🚜', icon: 'fa-tractor', cover: 'from-emerald-200 via-lime-100 to-yellow-100',
+        badge: 'Clasifica', badgeClass: 'bg-emerald-100 text-emerald-700', coverEmojis: ['🚜', '🌴', '🐄'],
+        bins: [
+          { id: 'farm', label: 'Farm', emoji: '🚜', classes: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
+          { id: 'wild', label: 'Wild', emoji: '🌴', classes: 'bg-amber-50 border-amber-200 text-amber-800' }
+        ],
+        items: [
+          { id: 'cow', emoji: '🐄', en: 'cow', es: 'vaca', bin: 'farm' },
+          { id: 'sheep', emoji: '🐑', en: 'sheep', es: 'oveja', bin: 'farm' },
+          { id: 'horse', emoji: '🐴', en: 'horse', es: 'caballo', bin: 'farm' },
+          { id: 'duck', emoji: '🦆', en: 'duck', es: 'pato', bin: 'farm' },
+          { id: 'lion', emoji: '🦁', en: 'lion', es: 'león', bin: 'wild' },
+          { id: 'monkey', emoji: '🐵', en: 'monkey', es: 'mono', bin: 'wild' },
+          { id: 'elephant', emoji: '🐘', en: 'elephant', es: 'elefante', bin: 'wild' },
+          { id: 'tiger', emoji: '🐯', en: 'tiger', es: 'tigre', bin: 'wild' }
+        ]
+      },
+
+      // ===== FAMILIA =====
+      {
+        slug: 'family-listen', titulo: 'Meet My Family', cat: 'familia', tipo: 'quiz',
+        desc: 'Escucha el miembro de la familia y elige su imagen.',
+        emoji: '👨‍👩‍👧‍👦', icon: 'fa-ear-listen', cover: 'from-purple-200 via-violet-100 to-fuchsia-100',
+        badge: 'Escucha', badgeClass: 'bg-purple-100 text-purple-700', coverEmojis: ['👩', '👨', '👶'],
+        rondas: barajar(FAMILIA).map((item) => ({
+          audio: item.en,
+          pregunta: 'Escucha y elige el miembro de la familia.',
+          emoji: '👂',
+          ocultarEtiquetas: true,
+          opcionesModo: 'emoji',
+          opciones: opcionesVocab(FAMILIA, item.id),
+          correcta: item.id,
+          pista: `${item.en} = ${item.es}`,
+          refuerzo: `${item.en}!`
+        }))
+      },
+      {
+        slug: 'family-faces', titulo: 'Who is it?', cat: 'familia', tipo: 'quiz',
+        desc: 'Mira el dibujo y elige el nombre correcto en inglés.',
+        emoji: '👵', icon: 'fa-users', cover: 'from-violet-200 via-purple-100 to-pink-100',
+        badge: 'Observa', badgeClass: 'bg-violet-100 text-violet-700', coverEmojis: ['👵', '👴', '👧'],
+        rondas: barajar(FAMILIA).map((item) => ({
+          pregunta: '¿Quién es?',
+          emoji: item.emoji,
+          opcionesModo: 'texto',
+          opciones: opcionesVocab(FAMILIA, item.id),
+          correcta: item.id,
+          pista: `${item.en} = ${item.es}`,
+          refuerzo: `${item.en}!`
+        }))
+      },
+      {
+        slug: 'family-memory', titulo: 'Family Memory', cat: 'familia', tipo: 'memory',
+        desc: 'Encuentra las parejas de la familia y sus palabras en inglés.',
+        emoji: '🫶', icon: 'fa-clone', cover: 'from-fuchsia-200 via-pink-100 to-rose-100',
+        badge: 'Memoria', badgeClass: 'bg-fuchsia-100 text-fuchsia-700', coverEmojis: ['👩', '👨', '👵'],
+        pares: FAMILIA.slice(0, 6).map((item) => ({
+          id: item.id, emoji: item.emoji, label: item.en, es: item.es
+        }))
+      },
+      {
+        slug: 'family-tree', titulo: 'My Family Tree', cat: 'familia', tipo: 'quiz',
+        desc: 'Resuelve las pistas y descubre cómo se dice cada familiar.',
+        emoji: '🌳', icon: 'fa-sitemap', cover: 'from-purple-200 via-fuchsia-100 to-pink-100',
+        badge: 'Adivina', badgeClass: 'bg-purple-100 text-purple-700', coverEmojis: ['🌳', '👨‍👩‍👧‍👦', '💡'],
+        rondas: RIMAS_FAMILIA.map((rima) => {
+          const item = FAMILIA.find((f) => f.id === rima.correcta);
+          return {
+            pregunta: rima.pregunta,
+            emoji: '🌳',
+            opcionesModo: 'texto',
+            opcionesConEmoji: true,
+            opciones: opcionesVocab(FAMILIA, rima.correcta),
+            correcta: rima.correcta,
+            pista: `${item.en} = ${item.es}`,
+            refuerzo: `${item.en}!`
+          };
+        })
+      }
+    ];
+
+    const CATEGORIAS_RECURSOS = [
+      {
+        key: 'vocabulario', label: 'Vocabulario', title: '1. Flashcards de vocabulario', icon: 'fa-comment-dots',
+        desc: 'Tarjetas con dibujo, palabra en inglés y traducción para recortar.',
+        accent: 'bg-pink-100 text-pink-700', badge: 'bg-pink-50 text-pink-700 border border-pink-200',
+        panel: 'border-pink-200/70 from-pink-50 via-white to-rose-50', star: 'text-pink-300',
+        pillActive: 'bg-pink-600 text-white border-pink-800 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-pink-300 hover:text-pink-800'
+      },
+      {
+        key: 'posters', label: 'Pósters', title: '2. Pósters para el aula', icon: 'fa-image',
+        desc: 'Vocales, números y colores en grande para la pared o la mesa.',
+        accent: 'bg-amber-100 text-amber-700', badge: 'bg-amber-50 text-amber-700 border border-amber-200',
+        panel: 'border-amber-200/70 from-amber-50 via-white to-yellow-50', star: 'text-amber-300',
+        pillActive: 'bg-amber-500 text-white border-amber-700 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-amber-300 hover:text-amber-800'
+      },
+      {
+        key: 'trazos', label: 'Trazos', title: '3. Fichas para trazar', icon: 'fa-pencil',
+        desc: 'Palabras con letras punteadas para repasar con lápiz o dedo.',
+        accent: 'bg-sky-100 text-sky-700', badge: 'bg-sky-50 text-sky-700 border border-sky-200',
+        panel: 'border-sky-200/70 from-sky-50 via-white to-cyan-50', star: 'text-sky-300',
+        pillActive: 'bg-sky-600 text-white border-sky-800 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-sky-300 hover:text-sky-800'
+      },
+      {
+        key: 'juegos', label: 'Juegos', title: '4. Juegos para recortar', icon: 'fa-dice',
+        desc: 'Bingo y memory imprimibles para jugar en grupo o en familia.',
+        accent: 'bg-emerald-100 text-emerald-700', badge: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+        panel: 'border-emerald-200/70 from-emerald-50 via-white to-teal-50', star: 'text-emerald-300',
+        pillActive: 'bg-emerald-600 text-white border-emerald-800 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-emerald-300 hover:text-emerald-800'
+      }
+    ];
+
+    // --------------------------------------------------------------
+    // Catálogo de 12 fichas imprimibles
+    // --------------------------------------------------------------
+    const RECURSOS = [
+      {
+        id: 'flash-emociones', titulo: 'Flashcards de emociones', cat: 'vocabulario', tipo: 'flash',
+        desc: '8 tarjetas con caritas para aprender happy, sad, angry y más.',
+        emoji: '😊', icon: 'fa-face-smile', cover: 'from-pink-200 via-rose-100 to-amber-100',
+        badge: '8 tarjetas', badgeClass: 'bg-white/85 text-pink-700',
+        instrucciones: 'Recorta las tarjetas. Muestra la carita, di la palabra en inglés y pide al niño que la repita.',
+        items: EMOCIONES.map((item) => ({ emoji: item.emoji, en: item.en, es: item.es }))
+      },
+      {
+        id: 'flash-animales', titulo: 'Flashcards de animales', cat: 'vocabulario', tipo: 'flash',
+        desc: '12 animalitos con su nombre en inglés para jugar a nombrarlos.',
+        emoji: '🐘', icon: 'fa-paw', cover: 'from-emerald-200 via-teal-100 to-cyan-100',
+        badge: '12 tarjetas', badgeClass: 'bg-white/85 text-emerald-700',
+        instrucciones: 'Recorta las tarjetas y practica el nombre de cada animal. Después, juega a decir el sonido y adivinar.',
+        items: ANIMALES.slice(0, 12).map((item) => ({ emoji: item.emoji, en: item.en, es: item.es }))
+      },
+      {
+        id: 'flash-familia', titulo: 'Flashcards de familia', cat: 'vocabulario', tipo: 'flash',
+        desc: '8 tarjetas para presentar a mother, father, sister y brother.',
+        emoji: '👨‍👩‍👧‍👦', icon: 'fa-people-roof', cover: 'from-purple-200 via-violet-100 to-pink-100',
+        badge: '8 tarjetas', badgeClass: 'bg-white/85 text-purple-700',
+        instrucciones: 'Recorta las tarjetas y forma una familia. Señala cada dibujo y repite la palabra en inglés.',
+        items: FAMILIA.map((item) => ({ emoji: item.emoji, en: item.en, es: item.es }))
+      },
+      {
+        id: 'flash-preposiciones', titulo: 'Flashcards de preposiciones', cat: 'vocabulario', tipo: 'flash',
+        desc: '6 escenas con in, on, under, next to, behind e in front of.',
+        emoji: '📦', icon: 'fa-location-dot', cover: 'from-sky-200 via-blue-100 to-indigo-100',
+        badge: '6 escenas', badgeClass: 'bg-white/85 text-sky-700',
+        instrucciones: 'Recorta las escenas, colócalas alrededor de una caja real y practica la frase: «The cat is in the box».',
+        items: PREPOSICIONES.map((item) => ({ escena: item.id, en: item.en, es: item.es }))
+      },
+      {
+        id: 'poster-vocales', titulo: 'Póster de las vocales', cat: 'posters', tipo: 'poster',
+        desc: 'A, E, I, O, U con un animal y una palabra en inglés para cada vocal.',
+        emoji: '🔤', icon: 'fa-font', cover: 'from-amber-200 via-yellow-100 to-lime-100',
+        badge: 'Póster A4', badgeClass: 'bg-white/85 text-amber-700',
+        instrucciones: 'Imprime y coloca el póster en el aula. Señala una vocal y pide un ejemplo que empiece igual.',
+        items: VOCALES_DATA.map((item) => ({ big: item.v, emoji: item.emoji, en: item.en, es: item.es }))
+      },
+      {
+        id: 'poster-numeros', titulo: 'Póster de números 1-10', cat: 'posters', tipo: 'poster',
+        desc: 'Del one al ten con cantidad, palabra y dibujo para contar.',
+        emoji: '🔢', icon: 'fa-hashtag', cover: 'from-orange-200 via-amber-100 to-yellow-100',
+        badge: 'Póster A4', badgeClass: 'bg-white/85 text-orange-700',
+        instrucciones: 'Cuenta los dibujos en voz alta y repite el número en inglés. Después señala el número y cuenta otra vez.',
+        items: NUMEROS_DATA.map((item) => ({ big: String(item.n), emoji: item.emoji, en: item.en, es: item.es }))
+      },
+      {
+        id: 'poster-colores', titulo: 'Póster de colores', cat: 'posters', tipo: 'poster',
+        desc: '10 colores con su círculo, palabra en inglés y traducción.',
+        emoji: '🎨', icon: 'fa-palette', cover: 'from-rose-200 via-pink-100 to-fuchsia-100',
+        badge: 'Póster A4', badgeClass: 'bg-white/85 text-rose-700',
+        instrucciones: 'Busca objetos del color indicado por la clase y repite la palabra en inglés.',
+        items: COLORES_DATA.map((item) => ({ en: item.en, es: item.es, hex: item.hex }))
+      },
+      {
+        id: 'traza-animales', titulo: 'Traza los animales', cat: 'trazos', tipo: 'trace',
+        desc: '6 palabras de animales con letras punteadas para repasar.',
+        emoji: '✏️', icon: 'fa-pencil', cover: 'from-lime-200 via-emerald-100 to-teal-100',
+        badge: '6 palabras', badgeClass: 'bg-white/85 text-lime-700',
+        instrucciones: 'Repasa primero con el dedo y después con lápiz. Di la palabra en inglés mientras la escribes.',
+        items: ['cat', 'dog', 'fish', 'frog', 'bird', 'duck'].map((word) => {
+          const item = ANIMALES.find((a) => a.en === word);
+          return { emoji: item.emoji, en: item.en, es: item.es };
+        })
+      },
+      {
+        id: 'traza-familia', titulo: 'Traza la familia', cat: 'trazos', tipo: 'trace',
+        desc: 'Mother, father, sister, brother y más palabras para repasar.',
+        emoji: '🖍️', icon: 'fa-pencil', cover: 'from-violet-200 via-purple-100 to-pink-100',
+        badge: '6 palabras', badgeClass: 'bg-white/85 text-violet-700',
+        instrucciones: 'Repasa las palabras y relaciónalas con los dibujos. Puedes escribir también el nombre de tu familia.',
+        items: FAMILIA.slice(0, 6).map((item) => ({ emoji: item.emoji, en: item.en, es: item.es }))
+      },
+      {
+        id: 'traza-colores', titulo: 'Traza los colores', cat: 'trazos', tipo: 'trace',
+        desc: 'Red, blue, yellow, green, pink y orange para practicar trazos.',
+        emoji: '🌈', icon: 'fa-pencil', cover: 'from-cyan-200 via-sky-100 to-blue-100',
+        badge: '6 palabras', badgeClass: 'bg-white/85 text-cyan-700',
+        instrucciones: 'Repasa cada palabra y colorea un pequeño círculo con el color correspondiente.',
+        items: ['red', 'blue', 'yellow', 'green', 'pink', 'orange'].map((word) => {
+          const item = COLORES_DATA.find((c) => c.en === word);
+          return { emoji: '🎨', en: item.en, es: item.es, hex: item.hex };
+        })
+      },
+      {
+        id: 'bingo-animales', titulo: 'Bingo de animales', cat: 'juegos', tipo: 'bingo',
+        desc: '2 tableros de 3×3 y un banco de palabras para jugar en grupo.',
+        emoji: '🎲', icon: 'fa-dice', cover: 'from-emerald-200 via-lime-100 to-yellow-100',
+        badge: '2 tableros', badgeClass: 'bg-white/85 text-emerald-700',
+        instrucciones: 'Recorta o marca los animales que se nombren. El primero en completar su tablero dice «Bingo!».',
+        pool: ANIMALES.slice(0, 12).map((item) => ({ emoji: item.emoji, en: item.en, es: item.es }))
+      },
+      {
+        id: 'memory-emociones', titulo: 'Memory de emociones', cat: 'juegos', tipo: 'memory',
+        desc: '16 tarjetas para emparejar cada carita con su palabra en inglés.',
+        emoji: '🃏', icon: 'fa-clone', cover: 'from-pink-200 via-fuchsia-100 to-purple-100',
+        badge: '8 parejas', badgeClass: 'bg-white/85 text-fuchsia-700',
+        instrucciones: 'Recorta las tarjetas, voltéalas y busca la pareja entre la carita y la palabra. Di la emoción en voz alta.',
+        pairs: EMOCIONES.map((item) => ({ emoji: item.emoji, en: item.en, es: item.es }))
+      }
+    ];
+
+    // --------------------------------------------------------------
+    // Catálogo de videos de YouTube (IDs verificados)
+    // --------------------------------------------------------------
+    const CATEGORIAS_VIDEOS = [
+      {
+        key: 'emociones', label: 'Emociones', title: '1. Feelings & Emotions', icon: 'fa-face-smile',
+        desc: 'Canciones para saludar, preguntar «How are you?» y nombrar emociones.',
+        accent: 'bg-pink-100 text-pink-700', badge: 'bg-pink-50 text-pink-700 border border-pink-200',
+        panel: 'border-pink-200/70 from-pink-50 via-white to-rose-50', star: 'text-pink-300',
+        pillActive: 'bg-pink-600 text-white border-pink-800 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-pink-300 hover:text-pink-800'
+      },
+      {
+        key: 'preposiciones', label: 'Preposiciones', title: '2. In, On, Under', icon: 'fa-location-dot',
+        desc: 'Videos cortos para practicar preposiciones de lugar con objetos y escenas.',
+        accent: 'bg-sky-100 text-sky-700', badge: 'bg-sky-50 text-sky-700 border border-sky-200',
+        panel: 'border-sky-200/70 from-sky-50 via-white to-cyan-50', star: 'text-sky-300',
+        pillActive: 'bg-sky-600 text-white border-sky-800 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-sky-300 hover:text-sky-800'
+      },
+      {
+        key: 'animales', label: 'Animales', title: '3. Animal Friends', icon: 'fa-paw',
+        desc: 'Animales de la granja, sonidos y canciones para repetir en voz alta.',
+        accent: 'bg-emerald-100 text-emerald-700', badge: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+        panel: 'border-emerald-200/70 from-emerald-50 via-white to-teal-50', star: 'text-emerald-300',
+        pillActive: 'bg-emerald-600 text-white border-emerald-800 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-emerald-300 hover:text-emerald-800'
+      },
+      {
+        key: 'familia', label: 'Familia', title: '4. My Family', icon: 'fa-people-roof',
+        desc: 'Vocabulario y canciones con mom, dad, brother, sister y toda la familia.',
+        accent: 'bg-purple-100 text-purple-700', badge: 'bg-purple-50 text-purple-700 border border-purple-200',
+        panel: 'border-purple-200/70 from-purple-50 via-white to-fuchsia-50', star: 'text-purple-300',
+        pillActive: 'bg-purple-600 text-white border-purple-800 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-purple-300 hover:text-purple-800'
+      },
+      {
+        key: 'numeros', label: 'Números y colores', title: '5. Numbers & Colors', icon: 'fa-hashtag',
+        desc: 'Cuenta del 1 al 10 y descubre los colores en inglés.',
+        accent: 'bg-amber-100 text-amber-700', badge: 'bg-amber-50 text-amber-700 border border-amber-200',
+        panel: 'border-amber-200/70 from-amber-50 via-white to-yellow-50', star: 'text-amber-300',
+        pillActive: 'bg-amber-500 text-white border-amber-700 shadow-md',
+        pillInactive: 'bg-white text-gray-700 border-gray-200 hover:border-amber-300 hover:text-amber-800'
+      }
+    ];
+
+    const VIDEOS = [
+      {
+        id: 'tVlcKp3bWH8', titulo: 'Hello! Greetings & Feelings', autor: 'Super Simple Songs',
+        desc: 'Saluda y descubre emociones con una canción muy pegadiza.',
+        cat: 'emociones', tag: 'Saludos y emociones', emoji: '👋'
+      },
+      {
+        id: 'eMOnyPxE_w8', titulo: 'Feelings and Emotions Song', autor: 'Fun Kids English',
+        desc: 'Happy, sad, angry, hungry y sleepy con monstruos simpáticos.',
+        cat: 'emociones', tag: 'Emociones', emoji: '😊'
+      },
+      {
+        id: 'TJhjEWBljOk', titulo: 'How are You Today? #2', autor: 'Maple Leaf Learning',
+        desc: 'Pregunta y responde «How are you?» con distintas emociones.',
+        cat: 'emociones', tag: 'How are you?', emoji: '💬'
+      },
+      {
+        id: '3VwQrnA6dkY', titulo: 'On In Under Song', autor: 'Dream English Kids',
+        desc: 'In, on y under con objetos cotidianos para cantar y señalar.',
+        cat: 'preposiciones', tag: 'In, on, under', emoji: '📦'
+      },
+      {
+        id: 'niPyVnC6W5g', titulo: 'Prepositions of Place for Children', autor: 'Smile and Learn',
+        desc: 'Chester el gato enseña in, on, under, next to y más.',
+        cat: 'preposiciones', tag: 'Preposiciones de lugar', emoji: '🐱'
+      },
+      {
+        id: 'DHb4-CCif7U', titulo: 'On In Under By Song', autor: 'Maple Leaf Learning',
+        desc: 'Canción corta para practicar on, in, under y by.',
+        cat: 'preposiciones', tag: 'On, in, under, by', emoji: '🎵'
+      },
+      {
+        id: 'zXEq-QO3xTg', titulo: 'The Animals on the Farm', autor: 'Super Simple Songs',
+        desc: 'Animales de la granja y sus sonidos en una canción clásica.',
+        cat: 'animales', tag: 'Animales de la granja', emoji: '🚜'
+      },
+      {
+        id: 'pZw9veQ76fo', titulo: 'Five Little Ducks', autor: 'Super Simple Songs',
+        desc: 'Patitos, conteo y repetición con una melodía muy conocida.',
+        cat: 'animales', tag: 'Patitos y conteo', emoji: '🦆'
+      },
+      {
+        id: 'FHaObkHEkHQ', titulo: 'Meet My Family', autor: 'English Singsing',
+        desc: 'Mom, dad, brother y sister en una presentación sencilla.',
+        cat: 'familia', tag: 'Vocabulario de familia', emoji: '👨‍👩‍👧‍👦'
+      },
+      {
+        id: 'kCka94jeGTk', titulo: 'Finger Family', autor: 'Cocomelon',
+        desc: 'La familia de los dedos canta y se presenta en inglés.',
+        cat: 'familia', tag: 'Canción de familia', emoji: '🖐️'
+      },
+      {
+        id: 'DR-cfDsHCGA', titulo: 'Counting 1-10 Song', autor: 'The Singing Walrus',
+        desc: 'Cuenta del 1 al 10 en inglés con ritmo y movimiento.',
+        cat: 'numeros', tag: 'Números 1-10', emoji: '🔢'
+      },
+      {
+        id: '2n7CXoRMsG4', titulo: 'Los Colores en Inglés', autor: 'Amigo Mumu Español',
+        desc: 'Colores en inglés explicados para niños con ejemplos visuales.',
+        cat: 'numeros', tag: 'Colores', emoji: '🎨'
+      },
+      {
+        id: '_8-jyBZE9_E', titulo: 'Los Números en Inglés', autor: 'El Mono Sílabo',
+        desc: 'Aprende a contar en inglés con el simpático Mono Sílabo.',
+        cat: 'numeros', tag: 'Números en inglés', emoji: '🐵'
+      }
+    ];
+
+    // --------------------------------------------------------------
+    // Utilidades de catálogo
+    // --------------------------------------------------------------
+    const CLASES_PILL = 'filter-btn btn-squish font-bold text-sm py-2.5 px-5 md:px-6 rounded-full shadow-sm transition-all hover:scale-105 border-b-4 inline-flex items-center gap-1.5';
+
+    function totalJuego(juego) {
+      if (juego.tipo === 'memory') return juego.pares.length;
+      if (juego.tipo === 'sort') return juego.items.length;
+      return juego.rondas.length;
+    }
+
+    function metaJuego(juego) {
+      if (juego.tipo === 'memory') return `${juego.pares.length} parejas`;
+      if (juego.tipo === 'sort') return `${juego.items.length} tarjetas`;
+      if (juego.tipo === 'build') return `${juego.rondas.length} palabras`;
+      return `${juego.rondas.length} rondas`;
+    }
+
+    function tipoJuego(juego) {
+      return { quiz: 'Quiz', memory: 'Memoria', sort: 'Clasifica', build: 'Escribe' }[juego.tipo] || 'Juego';
+    }
+
+    function metaRecurso(recurso) {
+      if (recurso.tipo === 'flash') return `${recurso.items.length} tarjetas`;
+      if (recurso.tipo === 'poster') return 'Póster A4';
+      if (recurso.tipo === 'trace') return `${recurso.items.length} palabras`;
+      if (recurso.tipo === 'bingo') return '2 tableros';
+      if (recurso.tipo === 'memory') return `${recurso.pairs.length} parejas`;
+      return 'Imprimible';
+    }
+
+    function pintarPills(contenedor, activo) {
+      $$('.filter-btn', contenedor).forEach((boton) => {
+        const esActivo = boton.dataset.cat === activo;
+        boton.className = `${CLASES_PILL} ${esActivo ? boton.dataset.active : boton.dataset.inactive}`;
+        boton.setAttribute('aria-pressed', String(esActivo));
+      });
+    }
+
+    // --------------------------------------------------------------
+    // Juegos: tarjetas, paneles y filtros
+    // --------------------------------------------------------------
+    function crearTarjetaJuego(juego) {
+      const categoria = CATEGORIAS_JUEGOS.find((c) => c.key === juego.cat);
+      const minis = (juego.coverEmojis || []).slice(0, 3).map((emoji, i) =>
+        `<span class="game-mini game-mini-${i + 1}" aria-hidden="true">${emoji}</span>`).join('');
+      return `
+        <article class="game-card group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg border border-gray-100"
+          data-juego="${juego.slug}" role="button" tabindex="0" aria-label="Jugar a ${esc(juego.titulo)}">
+          <div class="game-cover bg-gradient-to-br ${juego.cover}" aria-hidden="true">
+            <span class="game-cover-emoji">${juego.emoji}</span>
+            ${minis}
+            <span class="absolute top-3 left-3 z-10 text-[10px] font-extrabold uppercase tracking-widest bg-white/85 text-gray-700 px-2.5 py-1 rounded-full">${juego.badge}</span>
+          </div>
+          <div class="p-5 flex flex-col gap-3 flex-1">
+            <span class="self-start text-xs font-bold px-3 py-1 rounded-full ${categoria.accent}">${categoria.label}</span>
+            <h3 class="font-bold text-gray-800 text-lg leading-snug">${juego.titulo}</h3>
+            <p class="text-sm text-muted leading-relaxed flex-1">${juego.desc}</p>
+            <div class="flex flex-wrap items-center gap-2 text-[11px] font-bold text-gray-500">
+              <span class="bg-gray-50 px-2.5 py-1 rounded-full"><i class="fa-solid fa-layer-group mr-1"></i>${metaJuego(juego)}</span>
+              <span class="bg-gray-50 px-2.5 py-1 rounded-full"><i class="fa-solid ${juego.icon} mr-1"></i>${tipoJuego(juego)}</span>
+            </div>
+            <span class="self-start min-h-[44px] bg-teal-700 group-hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all inline-flex items-center gap-2 mt-1">
+              Jugar <i class="fa-solid fa-play text-xs"></i>
+            </span>
+          </div>
+        </article>`;
+    }
+
+    function renderizarJuegos() {
+      const contenedor = $('#juegos-linea');
+      contenedor.innerHTML = CATEGORIAS_JUEGOS.map((categoria) => {
+        const juegos = JUEGOS.filter((juego) => juego.cat === categoria.key);
+        return `
+          <section id="sec-juego-${categoria.key}" data-cat="${categoria.key}"
+            class="juegos-section isolate relative overflow-hidden rounded-[32px] border bg-gradient-to-br ${categoria.panel} p-4 sm:p-6 md:p-8 shadow-sm space-y-5 scroll-mt-24">
+            <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+              <i class="fa-solid fa-star absolute top-3 right-7 ${categoria.star} text-2xl opacity-40 float-slow"></i>
+              <i class="fa-solid fa-star absolute bottom-5 left-6 text-yellow-300 text-xl opacity-50 twinkle"></i>
+              <i class="fa-solid fa-star absolute top-1/2 right-2 text-white text-sm opacity-60 hidden lg:block"></i>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/5 pb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-12 h-12 rounded-2xl ${categoria.accent} flex items-center justify-center text-lg shadow-sm shrink-0">
+                  <i class="fa-solid ${categoria.icon}"></i>
+                </span>
+                <div>
+                  <h3 class="text-xl md:text-2xl font-extrabold text-gray-800 leading-tight">${categoria.title}</h3>
+                  <p class="text-sm text-muted font-medium">${categoria.desc}</p>
+                </div>
+              </div>
+              <span class="self-start sm:self-auto text-xs font-bold px-3 py-1.5 rounded-full ${categoria.badge} whitespace-nowrap">
+                ${juegos.length} juegos
+              </span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+              ${juegos.map(crearTarjetaJuego).join('')}
+            </div>
+          </section>`;
+      }).join('');
+
+      const filtros = $('#gameFilters');
+      const botones = [
+        {
+          key: 'todas', label: 'Todos', icon: 'fa-layer-group', count: JUEGOS.length,
+          active: 'bg-indigo-600 text-white border-indigo-800 shadow-md',
+          inactive: 'bg-white text-gray-700 border-gray-200 hover:border-indigo-300 hover:text-indigo-800'
+        },
+        ...CATEGORIAS_JUEGOS.map((categoria) => ({
+          key: categoria.key, label: categoria.label, icon: categoria.icon,
+          count: JUEGOS.filter((juego) => juego.cat === categoria.key).length,
+          active: categoria.pillActive, inactive: categoria.pillInactive
+        }))
+      ];
+      filtros.innerHTML = botones.map((boton) => `
+        <button type="button" data-cat="${boton.key}" data-active="${boton.active}" data-inactive="${boton.inactive}"
+          aria-pressed="${boton.key === 'todas'}"
+          class="${CLASES_PILL} ${boton.key === 'todas' ? boton.active : boton.inactive}">
+          <i class="fa-solid ${boton.icon}"></i>
+          <span>${boton.label} (${boton.count})</span>
+        </button>`).join('');
+      filtros.onclick = (e) => {
+        const boton = e.target.closest('.filter-btn');
+        if (boton) filtrarJuegos(boton.dataset.cat);
+      };
+
+      contenedor.onclick = (e) => {
+        const tarjeta = e.target.closest('[data-juego]');
+        if (tarjeta) abrirJuego(tarjeta.dataset.juego);
+      };
+      contenedor.onkeydown = (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const tarjeta = e.target.closest('[data-juego]');
+        if (!tarjeta) return;
+        e.preventDefault();
+        abrirJuego(tarjeta.dataset.juego);
+      };
+
+      const total = $('#count-juegos');
+      if (total) total.textContent = JUEGOS.length;
+      const heroTotal = $('#heroJuegos');
+      if (heroTotal) heroTotal.textContent = JUEGOS.length;
+    }
+
+    function filtrarJuegos(cat) {
+      $$('.juegos-section').forEach((seccion) => {
+        seccion.classList.toggle('hidden', cat !== 'todas' && seccion.dataset.cat !== cat);
+      });
+      pintarPills($('#gameFilters'), cat);
+    }
+
+    // --------------------------------------------------------------
+    // Recursos: tarjetas, paneles y filtros
+    // --------------------------------------------------------------
+    function crearTarjetaRecurso(recurso) {
+      const categoria = CATEGORIAS_RECURSOS.find((c) => c.key === recurso.cat);
+      return `
+        <article class="game-card group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg border border-gray-100"
+          data-recurso="${recurso.id}" role="button" tabindex="0" aria-label="Ver ficha ${esc(recurso.titulo)}">
+          <div class="resource-cover bg-gradient-to-br ${recurso.cover}" aria-hidden="true">
+            <span class="resource-tag text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full ${recurso.badgeClass}">${recurso.badge}</span>
+            <span class="resource-cover-emoji">${recurso.emoji}</span>
+            <span class="resource-paper bg-white/85 text-gray-700 font-extrabold px-2.5 py-1 rounded-full"><i class="fa-solid fa-file-lines mr-1"></i>A4</span>
+          </div>
+          <div class="p-5 flex flex-col gap-3 flex-1">
+            <span class="self-start text-xs font-bold px-3 py-1 rounded-full ${categoria.accent}">${categoria.label}</span>
+            <h3 class="font-bold text-gray-800 text-lg leading-snug">${recurso.titulo}</h3>
+            <p class="text-sm text-muted leading-relaxed flex-1">${recurso.desc}</p>
+            <div class="flex flex-wrap items-center gap-2 text-[11px] font-bold text-gray-500">
+              <span class="bg-gray-50 px-2.5 py-1 rounded-full"><i class="fa-solid fa-file-arrow-down mr-1"></i>${metaRecurso(recurso)}</span>
+              <span class="bg-gray-50 px-2.5 py-1 rounded-full"><i class="fa-solid fa-print mr-1"></i>Imprimible</span>
+            </div>
+            <span class="self-start min-h-[44px] bg-purple-700 group-hover:bg-purple-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all inline-flex items-center gap-2 mt-1">
+              Ver ficha <i class="fa-solid fa-eye text-xs"></i>
+            </span>
+          </div>
+        </article>`;
+    }
+
+    function renderizarRecursos() {
+      const contenedor = $('#recursos-linea');
+      contenedor.innerHTML = CATEGORIAS_RECURSOS.map((categoria) => {
+        const recursos = RECURSOS.filter((recurso) => recurso.cat === categoria.key);
+        return `
+          <section id="sec-recurso-${categoria.key}" data-cat="${categoria.key}"
+            class="recursos-section isolate relative overflow-hidden rounded-[32px] border bg-gradient-to-br ${categoria.panel} p-4 sm:p-6 md:p-8 shadow-sm space-y-5 scroll-mt-24">
+            <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+              <i class="fa-solid fa-star absolute top-3 right-7 ${categoria.star} text-2xl opacity-40 float-slow"></i>
+              <i class="fa-solid fa-star absolute bottom-5 left-6 text-yellow-300 text-xl opacity-50 twinkle"></i>
+              <i class="fa-solid fa-star absolute top-1/2 right-2 text-white text-sm opacity-60 hidden lg:block"></i>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/5 pb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-12 h-12 rounded-2xl ${categoria.accent} flex items-center justify-center text-lg shadow-sm shrink-0">
+                  <i class="fa-solid ${categoria.icon}"></i>
+                </span>
+                <div>
+                  <h3 class="text-xl md:text-2xl font-extrabold text-gray-800 leading-tight">${categoria.title}</h3>
+                  <p class="text-sm text-muted font-medium">${categoria.desc}</p>
+                </div>
+              </div>
+              <span class="self-start sm:self-auto text-xs font-bold px-3 py-1.5 rounded-full ${categoria.badge} whitespace-nowrap">
+                ${recursos.length} fichas
+              </span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+              ${recursos.map(crearTarjetaRecurso).join('')}
+            </div>
+          </section>`;
+      }).join('');
+
+      const filtros = $('#recursoFilters');
+      const botones = [
+        {
+          key: 'todas', label: 'Todas', icon: 'fa-layer-group', count: RECURSOS.length,
+          active: 'bg-purple-700 text-white border-purple-900 shadow-md',
+          inactive: 'bg-white text-gray-700 border-gray-200 hover:border-purple-300 hover:text-purple-800'
+        },
+        ...CATEGORIAS_RECURSOS.map((categoria) => ({
+          key: categoria.key, label: categoria.label, icon: categoria.icon,
+          count: RECURSOS.filter((recurso) => recurso.cat === categoria.key).length,
+          active: categoria.pillActive, inactive: categoria.pillInactive
+        }))
+      ];
+      filtros.innerHTML = botones.map((boton) => `
+        <button type="button" data-cat="${boton.key}" data-active="${boton.active}" data-inactive="${boton.inactive}"
+          aria-pressed="${boton.key === 'todas'}"
+          class="${CLASES_PILL} ${boton.key === 'todas' ? boton.active : boton.inactive}">
+          <i class="fa-solid ${boton.icon}"></i>
+          <span>${boton.label} (${boton.count})</span>
+        </button>`).join('');
+      filtros.onclick = (e) => {
+        const boton = e.target.closest('.filter-btn');
+        if (boton) filtrarRecursos(boton.dataset.cat);
+      };
+
+      contenedor.onclick = (e) => {
+        const tarjeta = e.target.closest('[data-recurso]');
+        if (tarjeta) abrirRecurso(tarjeta.dataset.recurso);
+      };
+      contenedor.onkeydown = (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const tarjeta = e.target.closest('[data-recurso]');
+        if (!tarjeta) return;
+        e.preventDefault();
+        abrirRecurso(tarjeta.dataset.recurso);
+      };
+
+      const total = $('#count-recursos');
+      if (total) total.textContent = RECURSOS.length;
+      const heroTotal = $('#heroRecursos');
+      if (heroTotal) heroTotal.textContent = RECURSOS.length;
+    }
+
+    function filtrarRecursos(cat) {
+      $$('.recursos-section').forEach((seccion) => {
+        seccion.classList.toggle('hidden', cat !== 'todas' && seccion.dataset.cat !== cat);
+      });
+      pintarPills($('#recursoFilters'), cat);
+    }
+
+    // --------------------------------------------------------------
+    // Videos: tarjetas, paneles, filtros y reproductor
+    // --------------------------------------------------------------
+    function crearTarjetaVideo(video) {
+      return `
+        <article class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100 flex flex-col">
+          <button type="button" class="video-facade" data-video-id="${video.id}" data-title="${esc(video.titulo)}"
+            aria-label="Reproducir: ${esc(video.titulo)}">
+            <img src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="video-facade-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+          </button>
+          <div class="p-5 flex flex-col gap-2 flex-1">
+            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100">${video.tag}</span>
+            <h4 class="font-bold text-gray-800 leading-snug">${video.titulo}</h4>
+            <p class="text-sm text-muted leading-relaxed flex-1">${video.desc}</p>
+            <p class="text-[11px] font-bold text-gray-500"><i class="fa-brands fa-youtube text-rose-500 mr-1"></i>${video.autor}</p>
+            <a class="self-start inline-flex items-center gap-2 min-h-[44px] text-sm font-bold text-gray-600 hover:text-rose-700 hover:underline underline-offset-4 transition-colors"
+              target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=${video.id}">
+              <i class="fa-brands fa-youtube"></i> Ver en YouTube
+            </a>
+          </div>
+        </article>`;
+    }
+
+    let activeVideoPlayer = null;
+
+    function closeVideoPlayer() {
+      if (!activeVideoPlayer) return;
+      activeVideoPlayer.iframe.replaceWith(activeVideoPlayer.facade);
+      activeVideoPlayer = null;
+    }
+
+    function playVideo(facade) {
+      const id = facade.dataset.videoId;
+      if (location.protocol === 'file:' || 'noEmbed' in facade.dataset) {
+        window.open(`https://www.youtube.com/watch?v=${id}`, '_blank', 'noopener');
+        return;
+      }
+      closeVideoPlayer();
+      const iframe = document.createElement('iframe');
+      iframe.className = 'w-full aspect-video';
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+      iframe.title = facade.dataset.title;
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      facade.replaceWith(iframe);
+      activeVideoPlayer = { iframe, facade };
+      iframe.focus();
+    }
+
+    function renderizarVideos() {
+      const contenedor = $('#videos-linea');
+      contenedor.innerHTML = CATEGORIAS_VIDEOS.map((categoria) => {
+        const videos = VIDEOS.filter((video) => video.cat === categoria.key);
+        return `
+          <section id="sec-video-${categoria.key}" data-cat="${categoria.key}"
+            class="videos-section isolate relative overflow-hidden rounded-[32px] border bg-gradient-to-br ${categoria.panel} p-4 sm:p-6 md:p-8 shadow-sm space-y-5 scroll-mt-24">
+            <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+              <i class="fa-solid fa-star absolute top-3 right-7 ${categoria.star} text-2xl opacity-40 float-slow"></i>
+              <i class="fa-solid fa-star absolute bottom-5 left-6 text-yellow-300 text-xl opacity-50 twinkle"></i>
+              <i class="fa-solid fa-star absolute top-1/2 right-2 text-white text-sm opacity-60 hidden lg:block"></i>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/5 pb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-12 h-12 rounded-2xl ${categoria.accent} flex items-center justify-center text-lg shadow-sm shrink-0">
+                  <i class="fa-solid ${categoria.icon}"></i>
+                </span>
+                <div>
+                  <h3 class="text-xl md:text-2xl font-extrabold text-gray-800 leading-tight">${categoria.title}</h3>
+                  <p class="text-sm text-muted font-medium">${categoria.desc}</p>
+                </div>
+              </div>
+              <span class="self-start sm:self-auto text-xs font-bold px-3 py-1.5 rounded-full ${categoria.badge} whitespace-nowrap">
+                ${videos.length} videos
+              </span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+              ${videos.map(crearTarjetaVideo).join('')}
+            </div>
+          </section>`;
+      }).join('');
+
+      const filtros = $('#videoFilters');
+      const botones = [
+        {
+          key: 'todos', label: 'Todos', icon: 'fa-layer-group', count: VIDEOS.length,
+          active: 'bg-rose-600 text-white border-rose-800 shadow-md',
+          inactive: 'bg-white text-gray-700 border-gray-200 hover:border-rose-300 hover:text-rose-800'
+        },
+        ...CATEGORIAS_VIDEOS.map((categoria) => ({
+          key: categoria.key, label: categoria.label, icon: categoria.icon,
+          count: VIDEOS.filter((video) => video.cat === categoria.key).length,
+          active: categoria.pillActive, inactive: categoria.pillInactive
+        }))
+      ];
+      filtros.innerHTML = botones.map((boton) => `
+        <button type="button" data-cat="${boton.key}" data-active="${boton.active}" data-inactive="${boton.inactive}"
+          aria-pressed="${boton.key === 'todos'}"
+          class="${CLASES_PILL} ${boton.key === 'todos' ? boton.active : boton.inactive}">
+          <i class="fa-solid ${boton.icon}"></i>
+          <span>${boton.label} (${boton.count})</span>
+        </button>`).join('');
+      filtros.onclick = (e) => {
+        const boton = e.target.closest('.filter-btn');
+        if (boton) filtrarVideos(boton.dataset.cat);
+      };
+
+      contenedor.onclick = (e) => {
+        const facade = e.target.closest('.video-facade');
+        if (facade) playVideo(facade);
+      };
+      contenedor.addEventListener('error', (e) => {
+        if (e.target.tagName === 'IMG') e.target.remove();
+      }, true);
+
+      const total = $('#count-videos');
+      if (total) total.textContent = VIDEOS.length;
+      const heroTotal = $('#heroVideos');
+      if (heroTotal) heroTotal.textContent = VIDEOS.length;
+    }
+
+    function filtrarVideos(cat) {
+      closeVideoPlayer();
+      $$('.videos-section').forEach((seccion) => {
+        seccion.classList.toggle('hidden', cat !== 'todos' && seccion.dataset.cat !== cat);
+      });
+      pintarPills($('#videoFilters'), cat);
+    }
+
+    // --------------------------------------------------------------
+    // Voz en inglés
+    // --------------------------------------------------------------
+    let vozIngles = null;
+    const hayVoz = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+
+    function cargarVoces() {
+      if (!hayVoz) return;
+      try {
+        const voces = speechSynthesis.getVoices();
+        vozIngles = voces.find((v) => /^en[-_]US/i.test(v.lang)) ||
+          voces.find((v) => /^en[-_]GB/i.test(v.lang)) ||
+          voces.find((v) => /^en/i.test(v.lang)) || null;
+      } catch (error) {
+        vozIngles = null;
+      }
+    }
+
+    if (hayVoz) {
+      cargarVoces();
+      speechSynthesis.onvoiceschanged = cargarVoces;
+    }
+
+    function hablar(texto, opciones = {}) {
+      if (!texto || !hayVoz) return;
+      try {
+        speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(String(texto));
+        utterance.lang = 'en-US';
+        utterance.rate = opciones.rate || 0.82;
+        utterance.pitch = 1.05;
+        utterance.volume = 1;
+        if (vozIngles) utterance.voice = vozIngles;
+        speechSynthesis.speak(utterance);
+      } catch (error) {
+        /* El navegador no permite voz: el juego sigue funcionando. */
+      }
+    }
+
+    function detenerVoz() {
+      if (!hayVoz) return;
+      try {
+        speechSynthesis.cancel();
+      } catch (error) {
+        /* sin voz */
+      }
+    }
+
+    // --------------------------------------------------------------
+    // Estado del juego
+    // --------------------------------------------------------------
+    const estadoJuego = {
+      juego: null,
+      rondasQuiz: [],
+      ronda: 0,
+      estrellas: 0,
+      total: 0,
+      bloqueado: false,
+      memoria: null,
+      sort: null,
+      build: null,
+      timers: []
+    };
+
+    let recursoActual = null;
+    let ultimoFoco = null;
+
+    function programar(fn, ms) {
+      const id = window.setTimeout(fn, ms);
+      estadoJuego.timers.push(id);
+      return id;
+    }
+
+    function limpiarTimers() {
+      estadoJuego.timers.forEach((id) => clearTimeout(id));
+      estadoJuego.timers = [];
+    }
+
+    // --------------------------------------------------------------
+    // Modales
+    // --------------------------------------------------------------
+    function abrirModal(modal) {
+      if (!modal) return;
+      if (modal.classList.contains('hidden')) {
+        ultimoFoco = document.activeElement;
+      }
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      const foco = modal.querySelector('[data-cerrar-juego], [data-cerrar-recurso]');
+      if (foco) foco.focus({ preventScroll: true });
+    }
+
+    function cerrarModal(modal) {
+      if (!modal) return;
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (ultimoFoco && typeof ultimoFoco.focus === 'function') {
+        ultimoFoco.focus({ preventScroll: true });
+      }
+      ultimoFoco = null;
+    }
+
+    function atraparFoco(evento, modal) {
+      if (evento.key !== 'Tab' || !modal) return;
+      const enfocables = $$('button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', modal)
+        .filter((elemento) => elemento.offsetParent !== null);
+      if (!enfocables.length) return;
+      const primero = enfocables[0];
+      const ultimo = enfocables[enfocables.length - 1];
+      if (evento.shiftKey && document.activeElement === primero) {
+        evento.preventDefault();
+        ultimo.focus();
+      } else if (!evento.shiftKey && document.activeElement === ultimo) {
+        evento.preventDefault();
+        primero.focus();
+      }
+    }
+
+    // --------------------------------------------------------------
+    // Piezas compartidas del motor
+    // --------------------------------------------------------------
+    function escenaHTML(rel, objeto = '🐱', chica = false) {
+      return `
+        <span class="${chica ? 'scene-stage scene-sm' : 'scene-stage'}" aria-hidden="true">
+          <span class="scene-box"></span>
+          <span class="scene-box-front"></span>
+          <span class="scene-object scene-${rel}">${objeto}</span>
+          <span class="scene-floor"></span>
+        </span>`;
+    }
+
+    function actualizarCabeceraJuego(juego) {
+      const categoria = CATEGORIAS_JUEGOS.find((c) => c.key === juego.cat);
+      $('#gameModalEmoji').textContent = juego.emoji;
+      $('#gameModalCat').textContent = `${categoria ? categoria.label : 'Inglés'} · ${tipoJuego(juego)}`;
+      $('#gameModalTitle').textContent = juego.titulo;
+    }
+
+    function actualizarProgreso(actual, total, etiqueta) {
+      const porcentaje = total ? Math.min(100, Math.round((actual / total) * 100)) : 0;
+      const barra = $('#gameProgressBar');
+      const label = $('#gameProgressLabel');
+      const score = $('#gameScoreLabel');
+      if (barra) barra.style.width = `${porcentaje}%`;
+      if (label) label.textContent = etiqueta || `${actual} de ${total}`;
+      if (score) score.textContent = `⭐ ${estadoJuego.estrellas}`;
+    }
+
+    function mostrarFeedback(tipo, html = '') {
+      const contenedor = $('#gameFeedback');
+      if (!contenedor) return;
+      if (!tipo) {
+        contenedor.innerHTML = '';
+        return;
+      }
+      const esOk = tipo === 'ok';
+      contenedor.innerHTML = `
+        <div class="${esOk ? 'feedback-ok' : 'feedback-no'} rounded-2xl px-4 py-3 text-sm font-bold flex items-start gap-2">
+          <i class="fa-solid ${esOk ? 'fa-circle-check' : 'fa-lightbulb'} mt-0.5"></i>
+          <span>${html}</span>
+        </div>`;
+    }
+
+    // --------------------------------------------------------------
+    // Abrir, cerrar y reiniciar juegos
+    // --------------------------------------------------------------
+    function abrirJuego(slug) {
+      const juego = JUEGOS.find((item) => item.slug === slug);
+      if (!juego) return;
+      iniciarJuego(juego);
+    }
+
+    function iniciarJuego(juego) {
+      if (!juego) return;
+      detenerVoz();
+      limpiarTimers();
+      estadoJuego.juego = juego;
+      estadoJuego.ronda = 0;
+      estadoJuego.estrellas = 0;
+      estadoJuego.bloqueado = false;
+      estadoJuego.memoria = null;
+      estadoJuego.sort = null;
+      estadoJuego.build = null;
+      estadoJuego.total = totalJuego(juego);
+      estadoJuego.falloRonda = false;
+      estadoJuego.rondasQuiz = juego.tipo === 'quiz' ? barajar(juego.rondas) : [];
+      actualizarCabeceraJuego(juego);
+      abrirModal($('#gameModal'));
+      renderizarJuego();
+    }
+
+    function cerrarJuego() {
+      limpiarTimers();
+      detenerVoz();
+      mostrarFeedback(null);
+      const stage = $('#gameStage');
+      if (stage) stage.innerHTML = '';
+      cerrarModal($('#gameModal'));
+    }
+
+    function reiniciarJuego() {
+      if (!estadoJuego.juego) return;
+      iniciarJuego(estadoJuego.juego);
+    }
+
+    function renderizarJuego() {
+      const juego = estadoJuego.juego;
+      if (!juego) return;
+      if (juego.tipo === 'memory') renderizarMemoria();
+      else if (juego.tipo === 'sort') renderizarSort();
+      else if (juego.tipo === 'build') renderizarBuild();
+      else renderizarQuiz();
+    }
+
+    // --------------------------------------------------------------
+    // Pantalla final
+    // --------------------------------------------------------------
+    function mostrarFinal() {
+      const juego = estadoJuego.juego;
+      if (!juego) return;
+      limpiarTimers();
+      detenerVoz();
+      const total = estadoJuego.total || 1;
+      const estrellas = estadoJuego.estrellas;
+      const proporcion = estrellas / total;
+      actualizarProgreso(total, total, '¡Completado!');
+      mostrarFeedback(null);
+
+      const medalla = proporcion >= 0.9 ? '⭐⭐⭐' : proporcion >= 0.6 ? '⭐⭐' : '⭐';
+      const mensaje = proporcion >= 0.9
+        ? '¡Increíble! Eres una estrella del inglés.'
+        : proporcion >= 0.6
+          ? '¡Muy bien! Sigue practicando un poquito más.'
+          : '¡Buen trabajo! Vuelve a intentarlo y verás cómo mejoras.';
+      const confeti = ['🎉', '⭐', '🌈', '🎈', '✨', '🌟', '🎊', '💫'].map((emoji, i) =>
+        `<span class="confetti-piece" style="left:${6 + i * 12}%;animation-delay:${i * 0.18}s" aria-hidden="true">${emoji}</span>`).join('');
+
+      $('#gameStage').innerHTML = `
+        <div class="final-screen relative overflow-hidden rounded-[28px] border-2 border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-teal-50 px-4 py-8 text-center">
+          ${confeti}
+          <div class="text-6xl md:text-7xl mb-2" aria-hidden="true">${juego.emoji}</div>
+          <p class="text-[11px] font-extrabold uppercase tracking-widest text-indigo-500">${esc(juego.titulo)}</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold text-indigo-800 mt-1">${estrellas >= total ? '¡Perfecto!' : '¡Juego terminado!'}</h3>
+          <p class="text-4xl mt-2" aria-hidden="true">${medalla}</p>
+          <p class="text-sm font-bold text-gray-600 mt-1">${estrellas} de ${total} estrellas</p>
+          <p class="text-base text-gray-700 font-medium mt-1">${mensaje}</p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center mt-6">
+            <button type="button" data-reiniciar-juego
+              class="btn-squish min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center justify-center gap-2">
+              <i class="fa-solid fa-rotate-right"></i> Jugar otra vez
+            </button>
+            <button type="button" data-volver-juegos
+              class="btn-squish min-h-[48px] bg-white text-indigo-700 font-bold py-2.5 px-6 rounded-full border-2 border-indigo-200 hover:border-indigo-300 transition-colors inline-flex items-center justify-center gap-2">
+              <i class="fa-solid fa-gamepad"></i> Elegir otro juego
+            </button>
+          </div>
+        </div>`;
+    }
+
+    // --------------------------------------------------------------
+    // Motor tipo quiz
+    // --------------------------------------------------------------
+    function htmlOpcion(opcion, ronda, indice) {
+      const modo = ronda.opcionesModo || 'texto';
+      if (modo === 'escena') {
+        return `
+          <button type="button" class="game-option" data-opcion="${esc(opcion.id)}" aria-label="Escena ${indice + 1}">
+            ${escenaHTML(opcion.escena, '🐱', true)}
+          </button>`;
+      }
+      if (modo === 'letra') {
+        return `
+          <button type="button" class="game-option" data-opcion="${esc(opcion.id)}" aria-label="Letra ${esc(opcion.label)}">
+            <span class="option-letter">${esc(opcion.label)}</span>
+          </button>`;
+      }
+      const emoji = opcion.emoji ? `<span class="option-emoji" aria-hidden="true">${opcion.emoji}</span>` : '';
+      const nombre = ronda.ocultarEtiquetas ? '' : `<span class="option-label">${esc(opcion.label || '')}</span>`;
+      const sub = (!ronda.ocultarEtiquetas && opcion.es) ? `<span class="option-sub">${esc(opcion.es)}</span>` : '';
+      const etiqueta = ronda.ocultarEtiquetas ? `Opción ${indice + 1}` : (opcion.label || `Opción ${indice + 1}`);
+      return `
+        <button type="button" class="game-option" data-opcion="${esc(opcion.id)}" aria-label="${esc(etiqueta)}">
+          ${emoji}${nombre}${sub}
+        </button>`;
+    }
+
+    function renderizarQuiz() {
+      const juego = estadoJuego.juego;
+      const rondas = estadoJuego.rondasQuiz;
+      const ronda = rondas[estadoJuego.ronda];
+      if (!ronda) {
+        mostrarFinal();
+        return;
+      }
+      estadoJuego.bloqueado = false;
+      estadoJuego.falloRonda = false;
+      actualizarProgreso(estadoJuego.ronda, rondas.length, `Ronda ${estadoJuego.ronda + 1} de ${rondas.length}`);
+      mostrarFeedback(null);
+
+      const modo = ronda.opcionesModo || 'texto';
+      const columnasOpciones = modo === 'escena' ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-4';
+      const escena = ronda.escena ? escenaHTML(ronda.escena.rel, ronda.escena.object || '🐱') : '';
+      const emoji = (!ronda.escena && ronda.emoji && !ronda.letra)
+        ? `<div class="text-6xl md:text-7xl leading-none mb-2" aria-hidden="true">${ronda.emoji}</div>`
+        : '';
+      const letra = ronda.letra
+        ? `<div class="mt-1 mb-2"><span class="inline-flex w-16 h-16 md:w-20 md:h-20 items-center justify-center rounded-3xl bg-amber-100 border-2 border-amber-300 text-4xl md:text-5xl font-extrabold text-amber-700">${esc(ronda.letra)}</span></div>`
+        : '';
+      const palabra = ronda.palabra
+        ? `<p class="text-3xl md:text-4xl font-extrabold tracking-[0.2em] text-indigo-700 mt-1">${esc(ronda.palabra)}</p>`
+        : '';
+      const botonAudio = ronda.audio
+        ? `<button type="button" data-audio="${esc(ronda.audio)}"
+            class="btn-squish mt-3 inline-flex items-center justify-center gap-2 min-h-[48px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm py-2.5 px-5 rounded-full shadow-md transition-all hover:scale-105">
+            <i class="fa-solid fa-volume-high"></i> Escuchar otra vez
+          </button>`
+        : '';
+
+      $('#gameStage').innerHTML = `
+        <div class="text-center">
+          ${escena}${emoji}${letra}${palabra}
+          <p class="text-base md:text-lg font-bold text-gray-700 mt-3">${esc(ronda.pregunta)}</p>
+          ${botonAudio}
+        </div>
+        <div class="grid ${columnasOpciones} gap-2.5 md:gap-3 mt-5">
+          ${ronda.opciones.map((opcion, indice) => htmlOpcion(opcion, ronda, indice)).join('')}
+        </div>`;
+
+      if (ronda.audio) programar(() => hablar(ronda.audio), 260);
+    }
+
+    function responderOpcion(boton) {
+      const juego = estadoJuego.juego;
+      if (!juego || juego.tipo !== 'quiz' || estadoJuego.bloqueado) return;
+      const ronda = estadoJuego.rondasQuiz[estadoJuego.ronda];
+      if (!ronda) return;
+      const stage = $('#gameStage');
+      if (!stage || !boton) return;
+
+      if (boton.dataset.opcion === ronda.correcta) {
+        estadoJuego.bloqueado = true;
+        if (!estadoJuego.falloRonda) estadoJuego.estrellas += 1;
+        boton.classList.add('option-correct');
+        $$('[data-opcion]', stage).forEach((elemento) => { elemento.disabled = true; });
+        mostrarFeedback('ok', `<strong>¡Muy bien!</strong> ${esc(ronda.refuerzo || ronda.pista || '')}`);
+        if (ronda.refuerzo) hablar(ronda.refuerzo);
+        actualizarProgreso(estadoJuego.ronda + 1, estadoJuego.rondasQuiz.length,
+          `Ronda ${Math.min(estadoJuego.ronda + 1, estadoJuego.rondasQuiz.length)} de ${estadoJuego.rondasQuiz.length}`);
+        programar(() => {
+          estadoJuego.ronda += 1;
+          if (estadoJuego.ronda >= estadoJuego.rondasQuiz.length) mostrarFinal();
+          else renderizarQuiz();
+        }, 1250);
+      } else {
+        estadoJuego.falloRonda = true;
+        boton.classList.add('option-wrong');
+        boton.disabled = true;
+        mostrarFeedback('no', `<strong>Casi.</strong> ${esc(ronda.pista || 'Prueba otra vez.')}`);
+      }
+    }
+
+    // --------------------------------------------------------------
+    // Motor tipo memoria
+    // --------------------------------------------------------------
+    function crearCartasMemoria(juego) {
+      const cartas = [];
+      juego.pares.forEach((par) => {
+        cartas.push({ key: par.id, cara: 'dibujo', par });
+        cartas.push({ key: par.id, cara: 'texto', par });
+      });
+      return barajar(cartas);
+    }
+
+    function htmlCartaMemoria(carta, indice, memoria) {
+      const abierta = memoria.abiertas.includes(indice);
+      const encontrada = memoria.encontradas.includes(carta.key);
+      const clases = ['memory-card', abierta ? 'flipped' : '', encontrada ? 'matched' : ''].filter(Boolean).join(' ');
+      const par = carta.par;
+      const reverso = carta.cara === 'texto'
+        ? `<span class="memory-word">${esc(par.label || par.en || '')}</span><span class="memory-es">${esc(par.es || '')}</span>`
+        : `<span class="memory-emoji" aria-hidden="true">${par.emoji || '📦'}</span>`;
+      return `
+        <button type="button" class="${clases}" data-memoria="${indice}" aria-label="Carta ${indice + 1}"
+          aria-pressed="${abierta || encontrada}" ${encontrada ? 'disabled' : ''}>
+          <span class="memory-inner">
+            <span class="memory-face memory-front"><i class="fa-solid fa-star"></i><small>Memory</small></span>
+            <span class="memory-face memory-back">${reverso}</span>
+          </span>
+        </button>`;
+    }
+
+    function renderizarMemoria() {
+      const juego = estadoJuego.juego;
+      if (!juego) return;
+      if (!estadoJuego.memoria) {
+        estadoJuego.memoria = { cartas: crearCartasMemoria(juego), abiertas: [], encontradas: [], bloqueado: false };
+      }
+      const memoria = estadoJuego.memoria;
+      actualizarProgreso(memoria.encontradas.length, juego.pares.length,
+        `Parejas ${memoria.encontradas.length} de ${juego.pares.length}`);
+      mostrarFeedback(null);
+      $('#gameStage').innerHTML = `
+        <p class="text-center text-sm font-bold text-gray-600 mb-3">Encuentra cada dibujo con su palabra en inglés.</p>
+        <div class="memory-grid">
+          ${memoria.cartas.map((carta, indice) => htmlCartaMemoria(carta, indice, memoria)).join('')}
+        </div>`;
+    }
+
+    function voltearCarta(indice) {
+      const juego = estadoJuego.juego;
+      const memoria = estadoJuego.memoria;
+      if (!juego || !memoria || memoria.bloqueado) return;
+      const carta = memoria.cartas[indice];
+      if (!carta || memoria.encontradas.includes(carta.key) || memoria.abiertas.includes(indice)) return;
+
+      memoria.abiertas.push(indice);
+      const boton = $(`[data-memoria="${indice}"]`);
+      if (boton) {
+        boton.classList.add('flipped');
+        boton.setAttribute('aria-pressed', 'true');
+      }
+
+      if (memoria.abiertas.length < 2) return;
+
+      const [primera, segunda] = memoria.abiertas;
+      const cartaA = memoria.cartas[primera];
+      const cartaB = memoria.cartas[segunda];
+      const botonA = $(`[data-memoria="${primera}"]`);
+      const botonB = $(`[data-memoria="${segunda}"]`);
+
+      if (cartaA.key === cartaB.key) {
+        memoria.encontradas.push(cartaA.key);
+        memoria.abiertas = [];
+        estadoJuego.estrellas += 1;
+        [botonA, botonB].forEach((elemento) => {
+          if (!elemento) return;
+          elemento.classList.add('matched');
+          elemento.disabled = true;
+        });
+        const par = cartaA.par;
+        mostrarFeedback('ok', `<strong>¡Pareja!</strong> ${esc(par.label || par.en || '')} = ${esc(par.es || '')}`);
+        if (par.label || par.en) hablar(par.label || par.en);
+        actualizarProgreso(memoria.encontradas.length, juego.pares.length,
+          `Parejas ${memoria.encontradas.length} de ${juego.pares.length}`);
+        if (memoria.encontradas.length === juego.pares.length) {
+          programar(mostrarFinal, 1000);
+        }
+      } else {
+        memoria.bloqueado = true;
+        estadoJuego.estrellas = Math.max(0, estadoJuego.estrellas - 1);
+        actualizarProgreso(memoria.encontradas.length, juego.pares.length,
+          `Parejas ${memoria.encontradas.length} de ${juego.pares.length}`);
+        [botonA, botonB].forEach((elemento) => {
+          if (elemento) elemento.classList.add('wrong');
+        });
+        mostrarFeedback('no', '<strong>No es pareja.</strong> Mira bien y vuelve a intentarlo.');
+        programar(() => {
+          [primera, segunda].forEach((i) => {
+            const elemento = $(`[data-memoria="${i}"]`);
+            if (!elemento) return;
+            elemento.classList.remove('flipped', 'wrong');
+            elemento.setAttribute('aria-pressed', 'false');
+          });
+          memoria.abiertas = [];
+          memoria.bloqueado = false;
+        }, 1000);
+      }
+    }
+
+    // --------------------------------------------------------------
+    // Motor tipo clasificar
+    // --------------------------------------------------------------
+    function fraseConBlanco(frase) {
+      const partes = String(frase).split('___');
+      return `${esc(partes[0] || '')}<span class="sort-blank" aria-hidden="true">?</span>${esc(partes[1] || '')}`;
+    }
+
+    function renderizarSort() {
+      const juego = estadoJuego.juego;
+      if (!juego) return;
+      if (!estadoJuego.sort) {
+        estadoJuego.sort = { items: barajar(juego.items), indice: 0 };
+      }
+      const sort = estadoJuego.sort;
+      const item = sort.items[sort.indice];
+      if (!item) {
+        mostrarFinal();
+        return;
+      }
+      estadoJuego.bloqueado = false;
+      estadoJuego.falloRonda = false;
+      actualizarProgreso(sort.indice, sort.items.length, `Tarjeta ${sort.indice + 1} de ${sort.items.length}`);
+      mostrarFeedback(null);
+
+      const contenido = item.frase
+        ? `<span class="sort-item-frase">${fraseConBlanco(item.frase)}</span>`
+        : `<span class="sort-item-label">${esc(item.en || '')}</span>`;
+      const sub = item.frase ? '' : `<span class="sort-item-sub">${esc(item.es || '')}</span>`;
+      const columnas = juego.bins.length === 2 ? 'grid-cols-2' : 'grid-cols-3';
+
+      $('#gameStage').innerHTML = `
+        <p class="text-center text-sm font-bold text-gray-600 mb-3">${esc(juego.desc)}</p>
+        <div class="flex justify-center">
+          <div class="sort-item w-full max-w-sm">
+            <span class="sort-item-emoji" aria-hidden="true">${item.emoji || '📦'}</span>
+            ${contenido}
+            ${sub}
+          </div>
+        </div>
+        <div class="grid ${columnas} gap-2.5 md:gap-3 mt-5">
+          ${juego.bins.map((bin) => `
+            <button type="button" class="sort-bin ${bin.classes}" data-bin="${esc(bin.id)}">
+              <span class="sort-bin-emoji" aria-hidden="true">${bin.emoji}</span>
+              <span class="sort-bin-label">${esc(bin.label)}</span>
+            </button>`).join('')}
+        </div>`;
+    }
+
+    function clasificar(boton) {
+      const juego = estadoJuego.juego;
+      const sort = estadoJuego.sort;
+      if (!juego || !sort || estadoJuego.bloqueado) return;
+      const item = sort.items[sort.indice];
+      if (!item) return;
+
+      if (boton.dataset.bin === item.bin) {
+        estadoJuego.bloqueado = true;
+        if (!estadoJuego.falloRonda) estadoJuego.estrellas += 1;
+        boton.classList.add('bin-correct');
+        $$('[data-bin]', $('#gameStage')).forEach((elemento) => { elemento.disabled = true; });
+        mostrarFeedback('ok', `<strong>¡Correcto!</strong> ${esc(item.en || item.frase || '')}`);
+        if (item.en) hablar(item.en);
+        actualizarProgreso(sort.indice + 1, sort.items.length,
+          `Tarjeta ${Math.min(sort.indice + 1, sort.items.length)} de ${sort.items.length}`);
+        programar(() => {
+          sort.indice += 1;
+          if (sort.indice >= sort.items.length) mostrarFinal();
+          else renderizarSort();
+        }, 1150);
+      } else {
+        estadoJuego.falloRonda = true;
+        boton.classList.add('bin-wrong');
+        boton.disabled = true;
+        mostrarFeedback('no', `<strong>Prueba otra vez.</strong> ${esc(item.es ? `Pista: ${item.es}.` : '')}`);
+      }
+    }
+
+    // --------------------------------------------------------------
+    // Motor tipo construir palabras
+    // --------------------------------------------------------------
+    function prepararPalabraBuild() {
+      const build = estadoJuego.build;
+      if (!build) return;
+      const ronda = build.rondas[build.indice];
+      if (!ronda) return;
+      estadoJuego.falloRonda = false;
+      estadoJuego.bloqueado = false;
+      const letras = ronda.word.toLowerCase().split('');
+      build.slots = letras.map(() => null);
+      build.pool = barajar(letras.map((letra, indice) => ({
+        id: `t${indice}`,
+        letra,
+        usado: false
+      })));
+    }
+
+    function renderizarBuild() {
+      const juego = estadoJuego.juego;
+      if (!juego) return;
+      if (!estadoJuego.build) {
+        estadoJuego.build = { rondas: barajar(juego.rondas), indice: 0, slots: [], pool: [] };
+        prepararPalabraBuild();
+      }
+      const build = estadoJuego.build;
+      const ronda = build.rondas[build.indice];
+      if (!ronda) {
+        mostrarFinal();
+        return;
+      }
+      actualizarProgreso(build.indice, build.rondas.length, `Palabra ${build.indice + 1} de ${build.rondas.length}`);
+      mostrarFeedback(null);
+
+      const huecos = build.slots.map((letra, indice) => `
+        <button type="button" class="letter-slot ${letra ? 'filled' : ''}" data-slot="${indice}"
+          ${letra ? '' : 'disabled'} aria-label="${letra ? `Quitar la letra ${esc(letra)}` : `Hueco ${indice + 1} vacío`}">
+          ${letra ? esc(letra.toUpperCase()) : ''}
+        </button>`).join('');
+      const fichas = build.pool.map((ficha) => `
+        <button type="button" class="letter-tile" data-letra="${ficha.id}" ${ficha.usado ? 'disabled' : ''}
+          aria-label="Letra ${esc(ficha.letra)}">${esc(ficha.letra.toUpperCase())}</button>`).join('');
+      const completo = build.slots.every(Boolean);
+
+      $('#gameStage').innerHTML = `
+        <div class="text-center">
+          <div class="text-6xl md:text-7xl leading-none mb-2" aria-hidden="true">${ronda.emoji || '🔤'}</div>
+          <p class="text-sm font-bold text-gray-500">${esc(ronda.es || '')}</p>
+          <div class="letter-slots mt-3" role="group" aria-label="Letras de la palabra">${huecos}</div>
+          <div class="letter-pool" role="group" aria-label="Letras disponibles">${fichas}</div>
+          <button type="button" data-comprobar ${completo ? '' : 'disabled'}
+            class="btn-squish min-h-[48px] bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-300 disabled:hover:bg-gray-300 text-white font-bold text-sm py-2.5 px-6 rounded-full shadow-md transition-all inline-flex items-center gap-2 disabled:cursor-not-allowed">
+            <i class="fa-solid fa-check"></i> Comprobar
+          </button>
+        </div>`;
+    }
+
+    function colocarLetra(idFicha) {
+      const build = estadoJuego.build;
+      if (!build || estadoJuego.bloqueado) return;
+      const ficha = build.pool.find((elemento) => elemento.id === idFicha);
+      if (!ficha || ficha.usado) return;
+      const hueco = build.slots.indexOf(null);
+      if (hueco === -1) return;
+      ficha.usado = true;
+      build.slots[hueco] = ficha.letra;
+      renderizarBuild();
+    }
+
+    function quitarLetra(indice) {
+      const build = estadoJuego.build;
+      if (!build || estadoJuego.bloqueado) return;
+      const letra = build.slots[indice];
+      if (!letra) return;
+      const ficha = build.pool.find((elemento) => elemento.usado && elemento.letra === letra);
+      if (ficha) ficha.usado = false;
+      build.slots[indice] = null;
+      renderizarBuild();
+    }
+
+    function comprobarPalabra() {
+      const juego = estadoJuego.juego;
+      const build = estadoJuego.build;
+      if (!juego || !build || estadoJuego.bloqueado) return;
+      const ronda = build.rondas[build.indice];
+      if (!ronda || build.slots.some((letra) => !letra)) return;
+      const intento = build.slots.join('').toLowerCase();
+      const objetivo = ronda.word.toLowerCase();
+      const stage = $('#gameStage');
+
+      if (intento !== objetivo) {
+        estadoJuego.falloRonda = true;
+        $$('.letter-slot', stage).forEach((elemento) => elemento.classList.add('wrong'));
+        mostrarFeedback('no', `<strong>Casi...</strong> La palabra empieza con «${esc(objetivo[0].toUpperCase())}».`);
+        programar(() => {
+          $$('.letter-slot', stage).forEach((elemento) => elemento.classList.remove('wrong'));
+        }, 700);
+        return;
+      }
+
+      estadoJuego.bloqueado = true;
+      if (!estadoJuego.falloRonda) estadoJuego.estrellas += 1;
+      $$('.letter-slot', stage).forEach((elemento) => elemento.classList.add('correct'));
+      $$('.letter-tile', stage).forEach((elemento) => { elemento.disabled = true; });
+      mostrarFeedback('ok', `<strong>¡Correcto!</strong> ${esc(ronda.word)} = ${esc(ronda.es || '')}`);
+      hablar(ronda.word);
+      actualizarProgreso(build.indice + 1, build.rondas.length,
+        `Palabra ${Math.min(build.indice + 1, build.rondas.length)} de ${build.rondas.length}`);
+      programar(() => {
+        build.indice += 1;
+        if (build.indice >= build.rondas.length) {
+          mostrarFinal();
+        } else {
+          prepararPalabraBuild();
+          renderizarBuild();
+        }
+      }, 1300);
+    }
+
+    // --------------------------------------------------------------
+    // Fichas imprimibles
+    // --------------------------------------------------------------
+    function cabeceraFicha(titulo, instrucciones) {
+      return `
+        <div class="print-head">
+          <div>
+            <p class="print-brand">MotriKids · Inglés</p>
+            <h1>${esc(titulo)}</h1>
+            <p>${esc(instrucciones)}</p>
+          </div>
+          <span class="print-star" aria-hidden="true">★</span>
+        </div>`;
+    }
+
+    function pieFicha() {
+      return `
+        <div class="print-foot">
+          <span>Nombre: ______________________________</span>
+          <span>Fecha: ______________</span>
+          <span>MotriKids · Inglés</span>
+        </div>`;
+    }
+
+    function tarjetasFlash(items) {
+      return `
+        <div class="print-grid print-grid-4">
+          ${items.map((item) => `
+            <div class="print-card">
+              <span class="print-card-star" aria-hidden="true">★</span>
+              <div class="print-card-top"><span class="print-emoji" aria-hidden="true">${item.emoji || '📦'}</span></div>
+              <p class="print-card-en">${esc(item.en)}</p>
+              <p class="print-card-es">${esc(item.es || '')}</p>
+            </div>`).join('')}
+        </div>`;
+    }
+
+    function posterItems(items) {
+      return `
+        <div class="print-grid print-grid-3">
+          ${items.map((item) => {
+            let visual = `<span class="poster-emoji" aria-hidden="true">${item.emoji || '⭐'}</span>`;
+            if (item.hex) {
+              visual = `<span class="color-dot" style="background:${item.hex}"></span>`;
+            } else if (item.big) {
+              visual = `<span class="poster-big">${esc(item.big)}</span>`;
+            }
+            const palabra = item.hex || !item.big
+              ? esc(item.en)
+              : `${esc(item.en)} ${item.emoji || ''}`;
+            return `
+              <div class="poster-item">
+                <span class="poster-visual">${visual}</span>
+                <span>
+                  <span class="poster-en">${palabra}</span>
+                  <span class="poster-es">${esc(item.es || '')}</span>
+                </span>
+              </div>`;
+          }).join('')}
+        </div>`;
+    }
+
+    function tarjetasTrazos(items) {
+      return `
+        <div class="trace-list">
+          ${items.map((item) => `
+            <div class="trace-row ${item.en.length > 7 ? 'trace-long' : ''}">
+              <div class="trace-head">
+                <span class="trace-emoji" aria-hidden="true">${item.emoji || '✏️'}</span>
+                <span class="trace-model">${esc(item.en)}</span>
+                <span class="trace-es">${esc(item.es || '')}</span>
+              </div>
+              <div class="trace-line">
+                <span class="trace-word">${esc(item.en)} ${esc(item.en)}</span>
+              </div>
+            </div>`).join('')}
+        </div>`;
+    }
+
+    function tablerosBingo(pool) {
+      const mezcla = barajar(pool);
+      const tableroA = mezcla.slice(0, 9);
+      const tableroB = [...mezcla.slice(9), ...mezcla.slice(0, 6)];
+      const tablero = (items, numero) => `
+        <div class="bingo-board">
+          <h3>Tablero ${numero}</h3>
+          <div class="bingo-grid">
+            ${items.map((item) => `
+              <div class="bingo-cell">
+                <span aria-hidden="true">${item.emoji}</span>
+                <span>${esc(item.en)}</span>
+              </div>`).join('')}
+          </div>
+        </div>`;
+      return `
+        <div class="print-grid print-grid-2">
+          ${tablero(tableroA, 1)}
+          ${tablero(tableroB, 2)}
+        </div>
+        <div class="bingo-bank">
+          <strong>Palabras para cantar:</strong>
+          ${pool.map((item) => `<span>${item.emoji} ${esc(item.en)}</span>`).join('')}
+        </div>`;
+    }
+
+    function memoryImprimible(pairs) {
+      return `
+        <div class="print-section">
+          <h2 class="print-sub">Tarjetas con dibujos</h2>
+          <div class="print-grid print-grid-4">
+            ${pairs.map((par) => `
+              <div class="print-memory">
+                <span class="print-memory-emoji" aria-hidden="true">${par.emoji || '📦'}</span>
+              </div>`).join('')}
+          </div>
+        </div>
+        <div class="print-section">
+          <h2 class="print-sub">Tarjetas con palabras</h2>
+          <div class="print-grid print-grid-4">
+            ${pairs.map((par) => `
+              <div class="print-memory">
+                <span class="print-memory-word">${esc(par.en)}</span>
+                <span class="print-memory-es">${esc(par.es || '')}</span>
+              </div>`).join('')}
+          </div>
+        </div>`;
+    }
+
+    function construirRecurso(recurso) {
+      if (!recurso) return '';
+      let cuerpo = '';
+      if (recurso.tipo === 'flash') cuerpo = tarjetasFlash(recurso.items);
+      else if (recurso.tipo === 'poster') cuerpo = posterItems(recurso.items);
+      else if (recurso.tipo === 'trace') cuerpo = tarjetasTrazos(recurso.items);
+      else if (recurso.tipo === 'bingo') cuerpo = tablerosBingo(recurso.pool);
+      else if (recurso.tipo === 'memory') cuerpo = memoryImprimible(recurso.pairs);
+      return `
+        <article class="print-sheet">
+          ${cabeceraFicha(recurso.titulo, recurso.instrucciones)}
+          ${cuerpo}
+          ${pieFicha()}
+        </article>`;
+    }
+
+    function abrirRecurso(id) {
+      const recurso = RECURSOS.find((item) => item.id === id);
+      if (!recurso) return;
+      recursoActual = recurso;
+      $('#resourceModalTitle').textContent = recurso.titulo;
+      $('#resourceModalEmoji').textContent = recurso.emoji;
+      $('#resourcePreview').innerHTML = construirRecurso(recurso);
+      abrirModal($('#resourceModal'));
+    }
+
+    function cerrarRecurso() {
+      const preview = $('#resourcePreview');
+      if (preview) preview.innerHTML = '';
+      const print = $('#printContainer');
+      if (print) print.innerHTML = '';
+      recursoActual = null;
+      cerrarModal($('#resourceModal'));
+    }
+
+    function imprimirRecurso() {
+      if (!recursoActual) return;
+      $('#printContainer').innerHTML = construirRecurso(recursoActual);
+      window.setTimeout(() => window.print(), 90);
+    }
+
+    // --------------------------------------------------------------
+    // Pestañas Juegos / Recursos / Videos
+    // --------------------------------------------------------------
+    const VISTAS_INGLES = ['juegos', 'recursos', 'videos'];
+
+    function mostrarVista(vista, opciones = {}) {
+      const destino = VISTAS_INGLES.includes(vista) ? vista : 'juegos';
+      VISTAS_INGLES.forEach((clave) => {
+        const tab = document.getElementById(`tab-${clave}`);
+        const panel = document.getElementById(`view-${clave}`);
+        if (!tab || !panel) return;
+        const activa = clave === destino;
+        tab.setAttribute('aria-selected', String(activa));
+        tab.tabIndex = activa ? 0 : -1;
+        panel.classList.toggle('hidden', !activa);
+      });
+      if (destino !== 'videos') closeVideoPlayer();
+      if (!opciones.silencioso) {
+        try {
+          history.replaceState(null, '', `#${destino}`);
+        } catch (error) {
+          location.hash = destino;
+        }
+      }
+    }
+
+    // --------------------------------------------------------------
+    // Interacción con el escenario del juego
+    // --------------------------------------------------------------
+    function manejarClickJuego(evento) {
+      const opcion = evento.target.closest('[data-opcion]');
+      if (opcion) {
+        responderOpcion(opcion);
+        return;
+      }
+      const carta = evento.target.closest('[data-memoria]');
+      if (carta) {
+        voltearCarta(Number(carta.dataset.memoria));
+        return;
+      }
+      const bin = evento.target.closest('[data-bin]');
+      if (bin) {
+        clasificar(bin);
+        return;
+      }
+      const ficha = evento.target.closest('[data-letra]');
+      if (ficha) {
+        colocarLetra(ficha.dataset.letra);
+        return;
+      }
+      const hueco = evento.target.closest('[data-slot]');
+      if (hueco) {
+        quitarLetra(Number(hueco.dataset.slot));
+        return;
+      }
+      const comprobar = evento.target.closest('[data-comprobar]');
+      if (comprobar) {
+        comprobarPalabra();
+        return;
+      }
+      const audio = evento.target.closest('[data-audio]');
+      if (audio) {
+        hablar(audio.dataset.audio);
+        return;
+      }
+      const reiniciar = evento.target.closest('[data-reiniciar-juego]');
+      if (reiniciar) {
+        reiniciarJuego();
+        return;
+      }
+      const volver = evento.target.closest('[data-volver-juegos]');
+      if (volver) {
+        cerrarJuego();
+        const filtros = $('#filtrosJuegos');
+        if (filtros) filtros.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function alternarMenu(abrir) {
+      const nav = $('#mobileNav');
+      const boton = $('#menuBtn');
+      if (!nav) return;
+      const mostrar = typeof abrir === 'boolean' ? abrir : nav.classList.contains('hidden');
+      nav.classList.toggle('hidden', !mostrar);
+      nav.classList.toggle('flex', mostrar);
+      if (boton) boton.setAttribute('aria-expanded', String(mostrar));
+    }
+
+    // --------------------------------------------------------------
+    // Arranque
+    // --------------------------------------------------------------
+    function iniciarIngles() {
+      renderizarJuegos();
+      renderizarRecursos();
+      renderizarVideos();
+
+      $$('.view-tab').forEach((tab) => {
+        tab.addEventListener('click', () => mostrarVista(tab.dataset.view));
+        tab.addEventListener('keydown', (evento) => {
+          if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(evento.key)) return;
+          evento.preventDefault();
+          const indice = VISTAS_INGLES.indexOf(tab.dataset.view);
+          let destino = indice;
+          if (evento.key === 'ArrowRight') destino = (indice + 1) % VISTAS_INGLES.length;
+          if (evento.key === 'ArrowLeft') destino = (indice - 1 + VISTAS_INGLES.length) % VISTAS_INGLES.length;
+          if (evento.key === 'Home') destino = 0;
+          if (evento.key === 'End') destino = VISTAS_INGLES.length - 1;
+          const vista = VISTAS_INGLES[destino];
+          mostrarVista(vista);
+          const siguiente = document.getElementById(`tab-${vista}`);
+          if (siguiente) siguiente.focus();
+        });
+      });
+
+      $$('[data-ir-vista]').forEach((boton) => {
+        boton.addEventListener('click', () => {
+          const vista = boton.dataset.irVista;
+          mostrarVista(vista);
+          const filtros = document.getElementById(vista === 'recursos' ? 'filtrosRecursos' : 'filtrosJuegos');
+          if (filtros) {
+            window.requestAnimationFrame(() => filtros.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+          }
+        });
+      });
+
+      const menuBtn = $('#menuBtn');
+      if (menuBtn) menuBtn.addEventListener('click', () => alternarMenu());
+      $$('#mobileNav a').forEach((enlace) => enlace.addEventListener('click', () => alternarMenu(false)));
+
+      const stage = $('#gameStage');
+      if (stage) stage.addEventListener('click', manejarClickJuego);
+
+      $$('[data-cerrar-juego]').forEach((elemento) => elemento.addEventListener('click', cerrarJuego));
+      $$('[data-cerrar-recurso]').forEach((elemento) => elemento.addEventListener('click', cerrarRecurso));
+      const printBtn = $('#printResourceBtn');
+      if (printBtn) printBtn.addEventListener('click', imprimirRecurso);
+
+      document.addEventListener('keydown', (evento) => {
+        const modalJuego = $('#gameModal');
+        const modalRecurso = $('#resourceModal');
+        if (evento.key === 'Escape') {
+          if (modalJuego && !modalJuego.classList.contains('hidden')) cerrarJuego();
+          else if (modalRecurso && !modalRecurso.classList.contains('hidden')) cerrarRecurso();
+          else if ($('#mobileNav') && !$('#mobileNav').classList.contains('hidden')) alternarMenu(false);
+        }
+        if (modalJuego && !modalJuego.classList.contains('hidden')) atraparFoco(evento, modalJuego);
+        else if (modalRecurso && !modalRecurso.classList.contains('hidden')) atraparFoco(evento, modalRecurso);
+      });
+
+      window.addEventListener('hashchange', () => {
+        const hash = location.hash.replace('#', '').toLowerCase();
+        if (VISTAS_INGLES.includes(hash)) mostrarVista(hash, { silencioso: true });
+      });
+
+      const parametros = new URLSearchParams(location.search);
+      const hash = location.hash.replace('#', '').toLowerCase();
+      const vistaParam = (parametros.get('vista') || '').toLowerCase();
+      const vistaInicial = VISTAS_INGLES.includes(hash)
+        ? hash
+        : (VISTAS_INGLES.includes(vistaParam) ? vistaParam : 'juegos');
+      mostrarVista(vistaInicial, { silencioso: true });
+
+      const slug = parametros.get('juego');
+      if (slug) {
+        const juego = JUEGOS.find((item) => item.slug === slug);
+        if (juego) {
+          mostrarVista('juegos', { silencioso: true });
+          iniciarJuego(juego);
+        }
+      }
+    }
+
+    iniciarIngles();
+  </script>
+</body>
+
+</html>

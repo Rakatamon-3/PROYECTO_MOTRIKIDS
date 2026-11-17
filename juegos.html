@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -98,56 +98,34 @@
       animation: twinkle 2.2s ease-in-out infinite
     }
 
-    /* Portada ilustrada de cada juego */
+    /* Portada oficial de cada juego */
     .game-cover {
       position: relative;
-      aspect-ratio: 16 / 9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden
+      aspect-ratio: 1200 / 630;
+      overflow: hidden;
+      background: #f3f4f6
     }
 
-    .game-cover::before,
-    .game-cover::after {
-      content: "";
+    .game-cover img {
       position: absolute;
-      border-radius: 9999px;
-      background: rgba(255, 255, 255, .35)
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform .35s ease
     }
 
-    .game-cover::before {
-      width: 45%;
-      aspect-ratio: 1;
-      top: -18%;
-      left: -8%
-    }
-
-    .game-cover::after {
-      width: 30%;
-      aspect-ratio: 1;
-      bottom: -14%;
-      right: 6%
-    }
-
-    .game-cover span {
-      position: relative;
-      font-size: 64px;
-      line-height: 1;
-      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .18));
-      transition: transform .25s ease
-    }
-
-    .group:hover .game-cover span {
-      transform: scale(1.12) rotate(-4deg)
+    .group:hover .game-cover img {
+      transform: scale(1.06)
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .game-cover span {
+      .game-cover img {
         transition: none
       }
 
-      .group:hover .game-cover span {
+      .group:hover .game-cover img {
         transform: none
       }
     }
@@ -166,7 +144,7 @@
 
   <header class="bg-white sticky top-0 z-50 shadow-sm px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-3 min-h-[44px] no-underline">
-      <div class="text-3xl md:text-4xl text-purple-600"><i class="fa-solid fa-hand-sparkles"></i></div>
+      <img src="assets/nav-star.svg" alt="MotriKids" class="w-10 h-10 md:w-12 md:h-12">
       <div>
         <h1 class="text-2xl md:text-3xl font-bold text-purple-700 leading-none tracking-tight"><span
             class="text-purple-600">M</span><span class="text-blue-400">o</span><span
@@ -187,10 +165,9 @@
           class="fa-solid fa-book-open"></i><span>Recursos</span></a>
       <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="videos.html"><i
           class="fa-solid fa-circle-play"></i><span>Videos</span></a>
-      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="vocales.html"><i
-          class="fa-solid fa-font"></i><span>Vocales</span></a>
-      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="numeros.html"><i
-          class="fa-solid fa-hashtag"></i><span>Números</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="dibujo.html"><i class="fa-solid fa-palette"></i><span>Dibujo</span></a>
+      <a class="flex flex-col items-center justify-center gap-1 min-w-[44px] min-h-[44px] hover:text-purple-600 transition-colors" href="ingles.html"><i
+          class="fa-solid fa-language"></i><span>Inglés</span></a>
     </nav>
     <button id="menuBtn" class="lg:hidden w-12 h-12 flex items-center justify-center text-2xl text-purple-700" aria-label="Abrir menú"><i
         class="fa-solid fa-bars"></i></button>
@@ -205,10 +182,9 @@
         class="fa-solid fa-book-open w-5"></i> Recursos</a>
     <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="videos.html"><i
         class="fa-solid fa-circle-play w-5"></i> Videos educativos</a>
-    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="vocales.html"><i
-        class="fa-solid fa-font w-5"></i> Vocales</a>
-    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="numeros.html"><i
-        class="fa-solid fa-hashtag w-5"></i> Números</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="dibujo.html"><i class="fa-solid fa-palette w-5"></i> Dibujo</a>
+    <a class="flex items-center gap-3 min-h-[44px] text-muted hover:text-purple-600" href="ingles.html"><i
+        class="fa-solid fa-language w-5"></i> Inglés</a>
   </nav>
 
   <section class="relative pt-8 md:pt-10 pb-16 md:pb-20 px-6 overflow-hidden hero-bg">
@@ -218,7 +194,7 @@
         <i class="fa-solid fa-gamepad mr-1"></i> MotriKids · Juegos
       </p>
       <div class="flex items-center justify-center gap-3"><img src="assets/mascota.svg" alt="" class="w-12 h-12 md:w-16 md:h-16 float-slow"><h2 class="text-4xl md:text-5xl font-extrabold text-teal-800 tracking-tight">Juegos en Línea</h2></div>
-      <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl leading-relaxed">Juegos de Kodomi Club para aprender jugando: colores, números, letras y más. Se abren en otra pestaña.</p>
+      <p class="text-base md:text-lg text-gray-700 font-medium max-w-2xl leading-relaxed">Juegos de Kodomi Club para aprender jugando: <span id="totalJuegos">35</span> juegos de números, letras, lógica y mundo. Se abren en otra pestaña.</p>
     </div>
     <div class="absolute top-8 left-6 md:left-10 text-yellow-400 text-2xl md:text-3xl opacity-60 float-slow"><i
         class="fa-solid fa-star"></i></div>
@@ -237,311 +213,28 @@
     </div>
   </section>
 
-  <main class="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-14">
-    <section id="juegos-linea">
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-emerald-300 to-emerald-100" aria-hidden="true"><span>🍂</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Mundo</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Estaciones del año</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Descubre primavera, verano, otoño e invierno jugando.</p>
-            <a href="https://kodomiclub.com/juegos/estaciones-del-ano" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-sky-300 to-sky-100" aria-hidden="true"><span>🔤</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-sky-100 text-sky-700">Lenguaje</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Inglés: escucha y elige</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Escucha la palabra en inglés y elige la imagen correcta.</p>
-            <a href="https://kodomiclub.com/juegos/ingles-escucha-y-elige" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-amber-300 to-amber-100" aria-hidden="true"><span>🚦</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-700">Mundo</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">La calle y las señales</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Aprende las señales de tránsito y a cruzar seguro.</p>
-            <a href="https://kodomiclub.com/juegos/la-calle-y-las-senales" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-pink-300 to-pink-100" aria-hidden="true"><span>😊</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-700">Emociones</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Adivina la emoción</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Mira la carita y adivina si está feliz, triste o enojada.</p>
-            <a href="https://kodomiclub.com/juegos/adivina-la-emocion" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-purple-300 to-purple-100" aria-hidden="true"><span>🔊</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-purple-100 text-teal-800">Sonidos</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">¿Qué suena?</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Escucha con atención y descubre qué objeto está sonando.</p>
-            <a href="https://kodomiclub.com/juegos/que-suena" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-emerald-300 to-emerald-100" aria-hidden="true"><span>🏠</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Animales</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">¿Dónde vive cada uno?</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Lleva cada animalito a su casita correcta.</p>
-            <a href="https://kodomiclub.com/juegos/donde-vive-cada-uno" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-emerald-300 to-emerald-100" aria-hidden="true"><span>🍎</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Animales</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">¿Qué come cada uno?</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Dale a cada animal su comida favorita.</p>
-            <a href="https://kodomiclub.com/juegos/que-come-cada-uno" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-rose-300 to-rose-100" aria-hidden="true"><span>🎨</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-rose-100 text-rose-700">Colores</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Adivina el color</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Mira el objeto y elige su color correcto.</p>
-            <a href="https://kodomiclub.com/juegos/adivina-el-color" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-sky-300 to-sky-100" aria-hidden="true"><span>🎣</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-sky-100 text-sky-700">Coordinación</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">A pescar</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Pesca pececitos moviendo tu caña con precisión.</p>
-            <a href="https://kodomiclub.com/juegos/a-pescar" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-orange-300 to-orange-100" aria-hidden="true"><span>🛒</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-orange-100 text-orange-700">Lógica</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">La lista de la compra</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Memoriza la lista y mete al carrito lo que falta.</p>
-            <a href="https://kodomiclub.com/juegos/la-lista-de-la-compra" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-rose-300 to-rose-100" aria-hidden="true"><span>🫗</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-rose-100 text-rose-700">Colores</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Mezclamos colores</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Mezcla pinturas y descubre qué color nuevo aparece.</p>
-            <a href="https://kodomiclub.com/juegos/mezclamos-colores" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-sky-300 to-sky-100" aria-hidden="true"><span>🔤</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-sky-100 text-sky-700">Lenguaje</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Aprende las letras</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Conoce las letras del abecedario con dibujos divertidos.</p>
-            <a href="https://kodomiclub.com/juegos/aprende-las-letras" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-purple-300 to-purple-100" aria-hidden="true"><span>↔️</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-purple-100 text-teal-800">Espacio</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Izquierda y derecha</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Aprende a ubicar lo que está a cada lado.</p>
-            <a href="https://kodomiclub.com/juegos/izquierda-y-derecha" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-orange-300 to-orange-100" aria-hidden="true"><span>🧺</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-orange-100 text-orange-700">Lógica</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Clasifica en cestas</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Separa objetos por tipo y mételos en su cesta.</p>
-            <a href="https://kodomiclub.com/juegos/clasifica-en-cestas" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-yellow-300 to-yellow-100" aria-hidden="true"><span>🐘</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">Tamaños</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Grande o pequeño</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Compara objetos y elige cuál es más grande.</p>
-            <a href="https://kodomiclub.com/juegos/grande-o-pequeno" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-purple-300 to-purple-100" aria-hidden="true"><span>🌑</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-purple-100 text-teal-800">Atención</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Busca la sombra</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Empareja cada dibujo con su sombra correcta.</p>
-            <a href="https://kodomiclub.com/juegos/busca-la-sombra" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-yellow-300 to-yellow-100" aria-hidden="true"><span>🔢</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">Números</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">La misma cantidad</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Cuenta y encuentra los grupos con igual cantidad.</p>
-            <a href="https://kodomiclub.com/juegos/encuentra-la-misma-cantidad" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-emerald-300 to-emerald-100" aria-hidden="true"><span>🐣</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Animales</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">¿De quién es el bebé?</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Une cada cría con su mamá animal.</p>
-            <a href="https://kodomiclub.com/juegos/de-quien-es-el-bebe" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-pink-300 to-pink-100" aria-hidden="true"><span>👃</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-700">Cuerpo</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">¿Dónde está la nariz?</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Señala las partes del cuerpo en el dibujo.</p>
-            <a href="https://kodomiclub.com/juegos/donde-esta-la-nariz" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-yellow-300 to-yellow-100" aria-hidden="true"><span>🔢</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">Números</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">A contar</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Cuenta objetos y elige el número correcto.</p>
-            <a href="https://kodomiclub.com/juegos/a-contar" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-yellow-300 to-yellow-100" aria-hidden="true"><span>🖐️</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">Números</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Cuenta con los dedos</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Usa tus deditos para contar hasta 10.</p>
-            <a href="https://kodomiclub.com/juegos/cuenta-con-los-dedos" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-purple-300 to-purple-100" aria-hidden="true"><span>🧩</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-purple-100 text-teal-800">Formas</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Encaja las figuras</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Arrastra cada forma a su hueco correcto.</p>
-            <a href="https://kodomiclub.com/juegos/encaja-las-figuras" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
-
-        <article
-          class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
-          <div class="game-cover bg-gradient-to-br from-emerald-300 to-emerald-100" aria-hidden="true"><span>🍽️</span></div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <span class="self-start text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Animales</span>
-            <h3 class="font-bold text-gray-800 text-lg leading-snug">Dales de comer</h3>
-            <p class="text-sm text-muted leading-relaxed flex-1">Alimenta a los animalitos con su comida favorita.</p>
-            <a href="https://kodomiclub.com/juegos/dales-de-comer" target="_blank" rel="noopener"
-              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-          </div>
-        </article>
+  <main class="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
+    <!-- Filtros por sección -->
+    <section id="filtrosJuegos" class="mb-8 md:mb-10 relative isolate">
+      <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+        <i class="fa-solid fa-star absolute top-1 left-[5%] text-yellow-300 text-xl md:text-2xl opacity-70 twinkle"></i>
+        <i class="fa-solid fa-star absolute top-6 right-[7%] text-teal-300 text-2xl md:text-3xl opacity-50 float-slow hidden md:block"></i>
+        <i class="fa-solid fa-star absolute bottom-2 left-[20%] text-sky-300 text-lg opacity-50 float-fast hidden lg:block"></i>
+        <i class="fa-solid fa-star absolute bottom-4 right-[22%] text-amber-300 text-lg opacity-60 twinkle hidden lg:block"></i>
       </div>
+      <div class="text-center mb-4 flex items-center justify-center gap-3">
+        <i class="fa-solid fa-star text-yellow-400 text-2xl md:text-3xl"></i>
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Explora por categoría</h2>
+      </div>
+      <p class="text-center text-muted font-medium max-w-2xl mx-auto mb-6">Elige un tema y abre el juego que más te
+        guste. Todos se juegan en línea y sin registro.</p>
+      <div id="gameFilters" class="flex flex-wrap justify-center gap-2 md:gap-3"></div>
     </section>
+
+    <!-- Secciones y tarjetas generadas desde el catálogo -->
+    <div id="juegos-linea" class="space-y-10 md:space-y-12"></div>
   </main>
+
 
   <footer class="bg-purple-700 text-white py-8 px-6 mt-8">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
@@ -562,12 +255,203 @@
   </footer>
 
   <script>
+    // ==============================================================
+    // CATÁLOGO DE JUEGOS EN LÍNEA (KodomiClub)
+    // ==============================================================
+    const SECCIONES = [
+      {
+        key: 'numeros', label: 'Números', title: '1. Números y Formas',
+        desc: 'Contar, comparar, reconocer formas y ubicarse en el espacio.',
+        icon: 'fa-hashtag', accent: 'bg-amber-100 text-amber-700', badge: 'bg-amber-50 text-amber-700 border border-amber-200',
+        panel: 'border-amber-200/70 from-amber-50 via-white to-orange-50', star: 'text-amber-300'
+      },
+      {
+        key: 'lenguaje', label: 'Lenguaje', title: '2. Lenguaje y Sonidos',
+        desc: 'Letras, vocabulario, sonidos y emociones para comunicarse mejor.',
+        icon: 'fa-comments', accent: 'bg-sky-100 text-sky-700', badge: 'bg-sky-50 text-sky-700 border border-sky-200',
+        panel: 'border-sky-200/70 from-sky-50 via-white to-cyan-50', star: 'text-sky-300'
+      },
+      {
+        key: 'logica', label: 'Lógica', title: '3. Lógica y Atención',
+        desc: 'Resolver, clasificar, recordar y fijarse en los detalles.',
+        icon: 'fa-puzzle-piece', accent: 'bg-purple-100 text-purple-700', badge: 'bg-purple-50 text-purple-700 border border-purple-200',
+        panel: 'border-purple-200/70 from-purple-50 via-white to-fuchsia-50', star: 'text-purple-300'
+      },
+      {
+        key: 'mundo', label: 'Mundo', title: '4. Mundo, Animales y Colores',
+        desc: 'El entorno, los animales, el cuerpo y los colores.',
+        icon: 'fa-earth-americas', accent: 'bg-emerald-100 text-emerald-700', badge: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+        panel: 'border-emerald-200/70 from-emerald-50 via-white to-teal-50', star: 'text-emerald-300'
+      }
+    ];
+
+    const ETIQUETAS = {
+      Mundo: { cover: 'from-emerald-300 to-emerald-100', pill: 'bg-emerald-100 text-emerald-700' },
+      Lenguaje: { cover: 'from-sky-300 to-sky-100', pill: 'bg-sky-100 text-sky-700' },
+      Emociones: { cover: 'from-pink-300 to-pink-100', pill: 'bg-pink-100 text-pink-700' },
+      Sonidos: { cover: 'from-purple-300 to-purple-100', pill: 'bg-purple-100 text-purple-700' },
+      Animales: { cover: 'from-emerald-300 to-emerald-100', pill: 'bg-emerald-100 text-emerald-700' },
+      Colores: { cover: 'from-rose-300 to-rose-100', pill: 'bg-rose-100 text-rose-700' },
+      'Coordinación': { cover: 'from-sky-300 to-sky-100', pill: 'bg-sky-100 text-sky-700' },
+      'Lógica': { cover: 'from-orange-300 to-orange-100', pill: 'bg-orange-100 text-orange-700' },
+      Espacio: { cover: 'from-purple-300 to-purple-100', pill: 'bg-purple-100 text-purple-700' },
+      'Tamaños': { cover: 'from-yellow-300 to-yellow-100', pill: 'bg-yellow-100 text-yellow-700' },
+      'Atención': { cover: 'from-purple-300 to-purple-100', pill: 'bg-purple-100 text-purple-700' },
+      'Números': { cover: 'from-yellow-300 to-yellow-100', pill: 'bg-yellow-100 text-yellow-700' },
+      Cuerpo: { cover: 'from-pink-300 to-pink-100', pill: 'bg-pink-100 text-pink-700' },
+      Formas: { cover: 'from-purple-300 to-purple-100', pill: 'bg-purple-100 text-purple-700' }
+    };
+
+    const JUEGOS = [
+      // 1. Números y Formas
+      { slug: 'a-contar', titulo: 'A contar', desc: 'Cuenta objetos y elige el número correcto.', tag: 'Números', seccion: 'numeros' },
+      { slug: 'cuenta-con-los-dedos', titulo: 'Cuenta con los dedos', desc: 'Usa tus deditos para contar hasta 10.', tag: 'Números', seccion: 'numeros' },
+      { slug: 'encuentra-la-misma-cantidad', titulo: 'La misma cantidad', desc: 'Cuenta y encuentra los grupos con igual cantidad.', tag: 'Números', seccion: 'numeros' },
+      { slug: 'grande-o-pequeno', titulo: 'Grande o pequeño', desc: 'Compara objetos y elige cuál es más grande.', tag: 'Tamaños', seccion: 'numeros' },
+      { slug: 'encaja-las-figuras', titulo: 'Encaja las figuras', desc: 'Arrastra cada forma a su hueco correcto.', tag: 'Formas', seccion: 'numeros' },
+      { slug: 'une-los-puntos', titulo: 'Une los puntos', desc: 'Une los puntos en orden y descubre qué dibujo aparece.', tag: 'Números', seccion: 'numeros' },
+      { slug: 'colorea-por-numeros', titulo: 'Colorea por números', desc: 'Cada número tiene su color: pinta y descubre el dibujo.', tag: 'Números', seccion: 'numeros' },
+      { slug: 'hacemos-sopa', titulo: 'Hacemos sopa', desc: 'Escucha la receta, echa los ingredientes y cuenta hasta 5.', tag: 'Números', seccion: 'numeros' },
+      { slug: 'izquierda-y-derecha', titulo: 'Izquierda y derecha', desc: 'Aprende a ubicar lo que está a cada lado.', tag: 'Espacio', seccion: 'numeros' },
+
+      // 2. Lenguaje y Sonidos
+      { slug: 'aprende-las-letras', titulo: 'Aprende las letras', desc: 'Conoce las letras del abecedario con dibujos divertidos.', tag: 'Lenguaje', seccion: 'lenguaje' },
+      { slug: 'trazar-letras', titulo: 'Trazar letras', desc: 'Repasa el abecedario con el dedo, trazo a trazo.', tag: 'Lenguaje', seccion: 'lenguaje' },
+      { slug: 'primer-sonido', titulo: 'El primer sonido', desc: 'Mira el dibujo y elige la letra inicial de la palabra.', tag: 'Lenguaje', seccion: 'lenguaje' },
+      { slug: 'ingles-escucha-y-elige', titulo: 'Inglés: escucha y elige', desc: 'Escucha la palabra en inglés y elige la imagen correcta.', tag: 'Lenguaje', seccion: 'lenguaje' },
+      { slug: 'que-suena', titulo: '¿Qué suena?', desc: 'Escucha con atención y descubre qué objeto está sonando.', tag: 'Sonidos', seccion: 'lenguaje' },
+      { slug: 'de-quien-es-la-voz', titulo: '¿De quién es la voz?', desc: 'Escucha el sonido del animal y adivina de quién es.', tag: 'Sonidos', seccion: 'lenguaje' },
+      { slug: 'memori-de-sonidos', titulo: 'Memori de sonidos', desc: 'Busca las parejas de tarjetas escuchando su sonido.', tag: 'Sonidos', seccion: 'lenguaje' },
+      { slug: 'adivina-la-emocion', titulo: 'Adivina la emoción', desc: 'Mira la carita y adivina si está feliz, triste o enojada.', tag: 'Emociones', seccion: 'lenguaje' },
+
+      // 3. Lógica y Atención
+      { slug: 'puzle', titulo: 'Puzle', desc: 'Arrastra las piezas y monta el dibujo completo.', tag: 'Lógica', seccion: 'logica' },
+      { slug: 'que-viene-despues', titulo: '¿Qué viene después?', desc: 'Descubre el patrón y elige la pieza que sigue.', tag: 'Lógica', seccion: 'logica' },
+      { slug: 'la-lista-de-la-compra', titulo: 'La lista de la compra', desc: 'Memoriza la lista y mete al carrito lo que falta.', tag: 'Lógica', seccion: 'logica' },
+      { slug: 'clasifica-en-cestas', titulo: 'Clasifica en cestas', desc: 'Separa objetos por tipo y mételos en su cesta.', tag: 'Lógica', seccion: 'logica' },
+      { slug: 'busca-la-sombra', titulo: 'Busca la sombra', desc: 'Empareja cada dibujo con su sombra correcta.', tag: 'Atención', seccion: 'logica' },
+      { slug: 'donde-se-ha-escondido', titulo: '¿Dónde se ha escondido?', desc: 'Sigue con la mirada el vaso donde se esconde el juguete.', tag: 'Atención', seccion: 'logica' },
+      { slug: 'caza-del-arcoiris', titulo: 'Caza del arcoíris', desc: 'Se nombra un color y hay que recogerlo por el tablero.', tag: 'Colores', seccion: 'logica' },
+      { slug: 'colorea-como-el-modelo', titulo: 'Colorea como el modelo', desc: 'Observa el modelo, recuérdalo y pinta igual.', tag: 'Colores', seccion: 'logica' },
+      { slug: 'a-pescar', titulo: 'A pescar', desc: 'Pesca pececitos moviendo tu caña con precisión.', tag: 'Coordinación', seccion: 'logica' },
+
+      // 4. Mundo, Animales y Colores
+      { slug: 'estaciones-del-ano', titulo: 'Estaciones del año', desc: 'Descubre primavera, verano, otoño e invierno jugando.', tag: 'Mundo', seccion: 'mundo' },
+      { slug: 'la-calle-y-las-senales', titulo: 'La calle y las señales', desc: 'Aprende las señales de tránsito y a cruzar seguro.', tag: 'Mundo', seccion: 'mundo' },
+      { slug: 'donde-vive-cada-uno', titulo: '¿Dónde vive cada uno?', desc: 'Lleva cada animalito a su casita correcta.', tag: 'Animales', seccion: 'mundo' },
+      { slug: 'que-come-cada-uno', titulo: '¿Qué come cada uno?', desc: 'Dale a cada animal su comida favorita.', tag: 'Animales', seccion: 'mundo' },
+      { slug: 'de-quien-es-el-bebe', titulo: '¿De quién es el bebé?', desc: 'Une cada cría con su mamá animal.', tag: 'Animales', seccion: 'mundo' },
+      { slug: 'dales-de-comer', titulo: 'Dales de comer', desc: 'Alimenta a los animalitos con su comida favorita.', tag: 'Animales', seccion: 'mundo' },
+      { slug: 'donde-esta-la-nariz', titulo: '¿Dónde está la nariz?', desc: 'Señala las partes del cuerpo en el dibujo.', tag: 'Cuerpo', seccion: 'mundo' },
+      { slug: 'adivina-el-color', titulo: 'Adivina el color', desc: 'Mira el objeto y elige su color correcto.', tag: 'Colores', seccion: 'mundo' },
+      { slug: 'mezclamos-colores', titulo: 'Mezclamos colores', desc: 'Mezcla pinturas y descubre qué color nuevo aparece.', tag: 'Colores', seccion: 'mundo' }
+    ];
+
+    function crearTarjeta(juego) {
+      const etiqueta = ETIQUETAS[juego.tag] || ETIQUETAS.Mundo;
+      return `
+        <article class="group bg-white rounded-[32px] overflow-hidden flex flex-col shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 border border-gray-100">
+          <div class="game-cover bg-gradient-to-br ${etiqueta.cover}" aria-hidden="true">
+            <img src="assets/juegos/${juego.slug}.jpg" alt="" loading="lazy" decoding="async">
+          </div>
+          <div class="p-5 flex flex-col gap-3 flex-1">
+            <span class="self-start text-xs font-bold px-3 py-1 rounded-full ${etiqueta.pill}">${juego.tag}</span>
+            <h3 class="font-bold text-gray-800 text-lg leading-snug">${juego.titulo}</h3>
+            <p class="text-sm text-muted leading-relaxed flex-1">${juego.desc}</p>
+            <a href="https://kodomiclub.com/juegos/${juego.slug}" target="_blank" rel="noopener"
+              class="btn-squish self-start min-h-[48px] bg-teal-700 hover:bg-teal-800 text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-md transition-all hover:scale-105 inline-flex items-center gap-2">Jugar
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+          </div>
+        </article>`;
+    }
+
+    function renderizarJuegos() {
+      const contenedor = document.getElementById('juegos-linea');
+      contenedor.innerHTML = SECCIONES.map((seccion) => {
+        const juegos = JUEGOS.filter((juego) => juego.seccion === seccion.key);
+        return `
+          <section id="sec-${seccion.key}" data-cat="${seccion.key}"
+            class="juegos-section isolate relative overflow-hidden rounded-[32px] border bg-gradient-to-br ${seccion.panel} p-4 sm:p-6 md:p-8 shadow-sm space-y-5 scroll-mt-24">
+            <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+              <i class="fa-solid fa-star absolute top-3 right-7 ${seccion.star} text-2xl opacity-40 float-slow"></i>
+              <i class="fa-solid fa-star absolute bottom-5 left-6 text-yellow-300 text-xl opacity-50 twinkle"></i>
+              <i class="fa-solid fa-star absolute top-1/2 right-2 text-white text-sm opacity-60 hidden lg:block"></i>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/5 pb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-12 h-12 rounded-2xl ${seccion.accent} flex items-center justify-center text-lg shadow-sm shrink-0">
+                  <i class="fa-solid ${seccion.icon}"></i>
+                </span>
+                <div>
+                  <h3 class="text-xl md:text-2xl font-extrabold text-gray-800 leading-tight">${seccion.title}</h3>
+                  <p class="text-sm text-muted font-medium">${seccion.desc}</p>
+                </div>
+              </div>
+              <span class="self-start sm:self-auto text-xs font-bold px-3 py-1.5 rounded-full ${seccion.badge} whitespace-nowrap">
+                <span class="section-count">${juegos.length}</span> juegos
+              </span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+              ${juegos.map(crearTarjeta).join('')}
+            </div>
+          </section>`;
+      }).join('');
+
+      const filtros = document.getElementById('gameFilters');
+      const botones = [
+        { key: 'todas', label: 'Todos', icon: 'fa-layer-group', count: JUEGOS.length },
+        ...SECCIONES.map((seccion) => ({
+          key: seccion.key,
+          label: seccion.label,
+          icon: seccion.icon,
+          count: JUEGOS.filter((juego) => juego.seccion === seccion.key).length
+        }))
+      ];
+
+      filtros.innerHTML = botones.map((boton) => `
+        <button type="button" onclick="filtrarJuegos('${boton.key}')" data-cat="${boton.key}"
+          aria-pressed="${boton.key === 'todas'}"
+          class="game-filter-btn btn-squish font-bold text-sm py-2.5 px-5 md:px-6 rounded-full shadow-sm transition-all hover:scale-105 border-b-4 inline-flex items-center gap-1.5 ${boton.key === 'todas'
+            ? 'bg-teal-700 text-white border-teal-900 shadow-md'
+            : 'bg-white text-gray-700 border-gray-200 hover:border-teal-300 hover:text-teal-800'}">
+          <i class="fa-solid ${boton.icon}"></i>
+          <span>${boton.label} (<span class="filter-count">${boton.count}</span>)</span>
+        </button>`).join('');
+
+      const total = document.getElementById('totalJuegos');
+      if (total) total.textContent = JUEGOS.length;
+    }
+
+    function filtrarJuegos(cat) {
+      document.querySelectorAll('.juegos-section').forEach((seccion) => {
+        const visible = cat === 'todas' || seccion.dataset.cat === cat;
+        seccion.classList.toggle('hidden', !visible);
+      });
+
+      document.querySelectorAll('.game-filter-btn').forEach((boton) => {
+        const activo = boton.dataset.cat === cat;
+        boton.setAttribute('aria-pressed', String(activo));
+        boton.classList.toggle('bg-teal-700', activo);
+        boton.classList.toggle('text-white', activo);
+        boton.classList.toggle('border-teal-900', activo);
+        boton.classList.toggle('shadow-md', activo);
+        boton.classList.toggle('bg-white', !activo);
+        boton.classList.toggle('text-gray-700', !activo);
+        boton.classList.toggle('border-gray-200', !activo);
+        boton.classList.toggle('hover:border-teal-300', !activo);
+        boton.classList.toggle('hover:text-teal-800', !activo);
+      });
+    }
+
+    renderizarJuegos();
+
     document.getElementById('menuBtn')?.addEventListener('click', () => {
       const m = document.getElementById('mobileNav');
       m.classList.toggle('hidden');
       m.classList.toggle('flex');
     });
   </script>
+
 </body>
 
 </html>
